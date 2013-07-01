@@ -82,7 +82,9 @@ public class JNIRN {
                     writer.println(",");
                 }
 
-                writer.print("   {\"" + nativeMethod.name + "\", \"" + nativeMethod.type.getDescriptor() + "\", " + cFunctionNameForNativeMethod(className, nativeMethod, isOverloaded) + "}");
+                writer.print("   {\"" + nativeMethod.name + "\", " +
+                        "\"" + nativeMethod.type.getDescriptor() + "\", " +
+                        cFunctionNameForNativeMethod(className, nativeMethod, isOverloaded) + "}");
 
                 separatorRequired = true;
             }
