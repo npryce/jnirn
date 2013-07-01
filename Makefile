@@ -20,7 +20,7 @@ out/obj/test.o: $(TEST_INPUT_JAR) test/com/natpryce/jnirn/JNIRegisterNativesTest
 	@mkdir -p out/headers
 	javah -d out/headers -classpath $< $(subst /,.,$(TEST_INPUT_SRC:$(TEST_INPUT_SRCDIR)/%.java=%))
 	@mkdir -p $(dir $@)
-	gcc -I $(JDK)/include -I $(JDK)/include/linux  -I out/headers -c -o $@ test/com/natpryce/jnirn/JNIRegisterNativesTest.testGeneratedCode.c
+	gcc -Werror -Wall -I $(JDK)/include -I $(JDK)/include/linux  -I out/headers -c -o $@ test/com/natpryce/jnirn/JNIRegisterNativesTest.testGeneratedCode.c
 
 .PHONY: check
 check: out/obj/test.o
