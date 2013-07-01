@@ -5,15 +5,15 @@
 #include "com_natpryce_jnirn_examples_ClassWithNativeMethods.h"
 
 static const JNINativeMethod method_table_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods[] = {
-   {"nativeMethodOne", "()I", "Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodOne"},
-   {"nativeMethodTwo", "()I", "Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodTwo"}
+   {"nativeMethodOne", "()I", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodOne},
+   {"nativeMethodTwo", "()I", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodTwo}
 };
 static int method_count_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods = 2;
 
 static const JNINativeMethod method_table_com_natpryce_jnirn_examples_ClassWithNativeMethods[] = {
-   {"simpleStatic", "()V", "Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_simpleStatic"},
-   {"simpleNonStatic", "()V", "Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_simpleNonStatic"},
-   {"methodWithParametersAndResult", "(ILjava/math/BigInteger;)Ljava/lang/String;", "Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_methodWithParametersAndResult"}
+   {"simpleStatic", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_simpleStatic},
+   {"simpleNonStatic", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_simpleNonStatic},
+   {"methodWithParametersAndResult", "(ILjava/math/BigInteger;)Ljava/lang/String;", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_methodWithParametersAndResult}
 };
 static int method_count_com_natpryce_jnirn_examples_ClassWithNativeMethods = 3;
 
