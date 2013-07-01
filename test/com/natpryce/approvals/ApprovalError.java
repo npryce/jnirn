@@ -1,7 +1,5 @@
 package com.natpryce.approvals;
 
-import org.junit.ComparisonFailure;
-
 import java.io.File;
 
 public class ApprovalError extends AssertionError {

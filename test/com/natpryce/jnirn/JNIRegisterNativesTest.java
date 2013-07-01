@@ -4,7 +4,7 @@ import com.natpryce.approvals.junit.ApprovalRule;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.IOException;
 
 public class JNIRegisterNativesTest {
     @Rule

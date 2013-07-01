@@ -1,8 +1,8 @@
 package com.natpryce.approvals;
 
-import com.natpryce.approvals.junit.ApprovalFailure;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Approver {
