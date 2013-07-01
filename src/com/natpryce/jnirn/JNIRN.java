@@ -14,6 +14,20 @@ import java.util.jar.JarFile;
 public class JNIRN {
     private final SortedMap<String, Map<String,List<NativeMethod>>> nativeMethodsByClass = new TreeMap<String, Map<String, List<NativeMethod>>>();
 
+    public static void main(String... args) throws IOException {
+        JNIRN app = new JNIRN();
+        for (String arg : args) {
+            app.parseJAR(new File(arg));
+        }
+
+        final PrintWriter writer = new PrintWriter(System.out);
+        try {
+            app.writeCSource(writer);
+        } finally {
+            writer.flush();
+        }
+    }
+
     public void parseJAR(File file) throws IOException {
         JarFile jarFile = new JarFile(file);
 

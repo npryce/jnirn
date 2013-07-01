@@ -4,10 +4,7 @@ import com.natpryce.approvals.junit.ApprovalRule;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.*;
 
 public class JNIRegisterNativesTest {
     @Rule
@@ -15,13 +12,18 @@ public class JNIRegisterNativesTest {
 
     @Test
     public void testGeneratedCode() throws IOException {
-        StringWriter writer = new StringWriter();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-        JNIRN jnirn = new JNIRN();
-        jnirn.parseJAR(new File("out/jars/test-input.jar"));
-        jnirn.writeCSource(new PrintWriter(writer));
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(out));
+        try {
+            JNIRN.main("out/jars/test-input.jar");
+        }
+        finally {
+            System.setOut(originalOut);
+        }
 
-        approval.check(writer.toString());
+        approval.check(out.toString());
     }
 }
 
