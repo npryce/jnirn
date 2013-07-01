@@ -1,0 +1,7 @@
+JNI Register Natives
+====================
+
+A tool to generate calls to RegisterNatives for JNI code on platforms
+that do not support dynamic loading of native code.
+
+Work in progress...
