@@ -11,7 +11,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 public class JNIRN {
-    private final SortedMap<String, List<NativeMethod>> nativeMethodsByClass = new TreeMap<String, List<NativeMethod>>();
+    private final SortedMap<String, Map<String,List<NativeMethod>>> nativeMethodsByClass = new TreeMap<String, Map<String, List<NativeMethod>>>();
 
     public void parseJAR(File file) throws IOException {
         JarFile jarFile = new JarFile(file);
@@ -36,7 +36,7 @@ public class JNIRN {
         classReader.accept(collector, ClassReader.SKIP_CODE);
 
         if (collector.foundNativeMethods()) {
-            nativeMethodsByClass.put(classReader.getClassName(), collector.nativeMethods);
+            nativeMethodsByClass.put(classReader.getClassName(), collector.nativeMethodsByName);
         }
     }
 
@@ -67,19 +67,24 @@ public class JNIRN {
         }
     }
 
-    private void writeNativeMethodTable(PrintWriter writer, String className, List<NativeMethod> nativeMethods) {
+    private void writeNativeMethodTable(PrintWriter writer, String className, Map<String, List<NativeMethod>> nativeMethods) {
         writer.println("static const JNINativeMethod " + methodTableNameForClass(className) + "[] = {");
 
         boolean separatorRequired = false;
-        for (NativeMethod nativeMethod : nativeMethods) {
-            if (separatorRequired) {
-                writer.print(",");
-                writer.println();
+
+        for (String methodName : nativeMethods.keySet()) {
+            List<NativeMethod> overloads = nativeMethods.get(methodName);
+            boolean isOverloaded = overloads.size() > 1;
+
+            for (NativeMethod nativeMethod : overloads) {
+                if (separatorRequired) {
+                    writer.println(",");
+                }
+
+                writer.print("   {\"" + nativeMethod.name + "\", \"" + nativeMethod.desc + "\", " + cFunctionNameForNativeMethod(className, nativeMethod, isOverloaded) + "}");
+
+                separatorRequired = true;
             }
-
-            writer.print("   {\"" + nativeMethod.name + "\", \"" + nativeMethod.desc + "\", \"" + cFunctionNameForNativeMethod(className, nativeMethod) + "\"}");
-
-            separatorRequired = true;
         }
 
         writer.println();
@@ -108,8 +113,14 @@ public class JNIRN {
         writer.println("}");
     }
 
-    private String cFunctionNameForNativeMethod(String className, NativeMethod nativeMethod) {
-        return "Java_" + classNameToCIndentifier(className) + "_" + nativeMethod.name;
+    private String cFunctionNameForNativeMethod(String className, NativeMethod nativeMethod, boolean isOverloaded) {
+        String baseName = "Java_" + classNameToCIndentifier(className) + "_" + nativeMethod.name;
+        if (isOverloaded) {
+            return baseName + "__";
+        }
+        else {
+            return baseName;
+        }
     }
 
     private String jniGeneratedHeaderForClass(String className) {
