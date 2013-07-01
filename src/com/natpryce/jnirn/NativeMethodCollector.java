@@ -3,6 +3,7 @@ package com.natpryce.jnirn;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Type;
 
 import java.util.*;
 
@@ -22,7 +23,7 @@ public class NativeMethodCollector extends ClassVisitor {
                 nativeMethodsByName.put(name, overloads);
             }
 
-            overloads.add(new NativeMethod(name, desc, signature, exceptions));
+            overloads.add(new NativeMethod(name, Type.getMethodType(desc), signature, exceptions));
         }
 
         return super.visitMethod(access, name, desc, signature, exceptions);

@@ -1,15 +1,21 @@
 package com.natpryce.jnirn;
 
+import org.objectweb.asm.Type;
+
 public class NativeMethod {
     public final String name;
-    public final String desc;
+    public final Type type;
     public final String signature;
     public final String[] exceptions;
 
-    public NativeMethod(String name, String desc, String signature, String[] exceptions) {
+    public NativeMethod(String name, Type type, String signature, String[] exceptions) {
         this.name = name;
-        this.desc = desc;
+        this.type = type;
         this.signature = signature;
         this.exceptions = exceptions;
+    }
+
+    Type[] argumentTypes() {
+        return type.getArgumentTypes();
     }
 }

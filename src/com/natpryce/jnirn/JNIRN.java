@@ -1,6 +1,7 @@
 package com.natpryce.jnirn;
 
 import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.Type;
 
 import java.io.File;
 import java.io.IOException;
@@ -81,7 +82,7 @@ public class JNIRN {
                     writer.println(",");
                 }
 
-                writer.print("   {\"" + nativeMethod.name + "\", \"" + nativeMethod.desc + "\", " + cFunctionNameForNativeMethod(className, nativeMethod, isOverloaded) + "}");
+                writer.print("   {\"" + nativeMethod.name + "\", \"" + nativeMethod.type.getDescriptor() + "\", " + cFunctionNameForNativeMethod(className, nativeMethod, isOverloaded) + "}");
 
                 separatorRequired = true;
             }
@@ -116,12 +117,23 @@ public class JNIRN {
     private String cFunctionNameForNativeMethod(String className, NativeMethod nativeMethod, boolean isOverloaded) {
         String baseName = "Java_" + classNameToCIndentifier(className) + "_" + nativeMethod.name;
         if (isOverloaded) {
-            return baseName + "__";
+            return baseName + "__" + signatureToC(nativeMethod.argumentTypes());
         }
         else {
             return baseName;
         }
     }
+
+    private String signatureToC(Type[] argumentTypes) {
+        StringBuilder b = new StringBuilder();
+
+        for (Type argumentType : argumentTypes) {
+            b.append(argumentType.getDescriptor().replace("/", "_").replace(";", "_2"));
+        }
+
+        return b.toString();
+    }
+
 
     private String jniGeneratedHeaderForClass(String className) {
         return classNameToCIndentifier(className);
