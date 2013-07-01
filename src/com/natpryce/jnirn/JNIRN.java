@@ -84,6 +84,7 @@ public class JNIRN {
 
         writer.println();
         writer.println("};");
+        writer.println("static int " + methodCountNameForClass(className) + " = " + nativeMethods.size() + ";");
         writer.println();
     }
 
@@ -96,11 +97,9 @@ public class JNIRN {
         writer.println();
 
         for (String className : nativeMethodsByClass.keySet()) {
-            int nativeMethodCount = nativeMethodsByClass.get(className).size();
-
             writer.println("    the_class = (*env)->FindClass(env, \"" + className + "\");");
             writer.println("    if (the_class == NULL) return -1;");
-            writer.println("    status = (*env)->RegisterNatives(env, the_class, " + methodTableNameForClass(className) + ", " + nativeMethodCount + ");");
+            writer.println("    status = (*env)->RegisterNatives(env, the_class, " + methodTableNameForClass(className) + ", " + methodCountNameForClass(className) + ");");
             writer.println("    if (status < 0) return status;");
             writer.println();
         }
@@ -118,7 +117,11 @@ public class JNIRN {
     }
 
     private String methodTableNameForClass(String className) {
-        return "methods_" + classNameToCIndentifier(className);
+        return "method_table_" + classNameToCIndentifier(className);
+    }
+
+    private String methodCountNameForClass(String className) {
+        return "method_count_" + classNameToCIndentifier(className);
     }
 
     private String classNameToCIndentifier(String className) {
