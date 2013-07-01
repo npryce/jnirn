@@ -34,6 +34,10 @@ public class ApprovalRule implements TestRule {
         }
     }
 
+    public void recordAsApproved(String receivedContents) throws IOException {
+        approver.recordAsApproved(receivedContents);
+    }
+
     @Override
     public Statement apply(Statement base, Description description) {
         this.approver = new Approver(testFile(approvedDir, description), testFile(receivedDir, description));
@@ -41,6 +45,6 @@ public class ApprovalRule implements TestRule {
     }
 
     private File testFile(File baseDir, Description testDescription) {
-        return new File(baseDir, testDescription.getTestClass().getName().replace(".", "/") + "/" + testDescription.getMethodName() + suffix);
+        return new File(baseDir, testDescription.getTestClass().getName().replace(".", "/") + "." + testDescription.getMethodName() + suffix);
     }
 }

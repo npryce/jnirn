@@ -28,6 +28,10 @@ public class Approver {
         }
     }
 
+    public void recordAsApproved(String receivedContents) throws IOException {
+        writeContents(approvedFile, receivedContents);
+    }
+
     private String readContents(File file) throws IOException {
         Scanner scanner = new Scanner(file);
         try {

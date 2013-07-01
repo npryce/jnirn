@@ -11,7 +11,7 @@ public class ApprovalError extends AssertionError {
     public final String receivedContents;
 
     public ApprovalError(File approvedFile, String approvedContents, File receivedFile, String receivedContents) {
-        super("approval required: approved file=" + approvedFile + ", received file=" + receivedFile);
+        super("approval required:\n  approved file: " + approvedFile + "\n  received file: " + receivedFile + "\n");
 
         this.approvedFile = approvedFile;
         this.approvedContents = approvedContents;

@@ -41,11 +41,87 @@ public class JNIRN {
     }
 
     public void writeCSource(PrintWriter writer) {
-        for (String className : nativeMethodsByClass.keySet()) {
-            writer.println(className);
-            for (NativeMethod nativeMethod : nativeMethodsByClass.get(className)) {
-                writer.println("   " + nativeMethod.name + " " + nativeMethod.desc);
-            }
+        writer.println("/* GENERATED CODE - DO NOT EDIT */");
+        writer.println();
+        writeIncludeDirectives(writer);
+        writer.println();
+        writeNativeMethodTables(writer);
+        writer.println();
+        writeRegisterNativesCalls(writer);
+    }
+
+    private void writeIncludeDirectives(PrintWriter writer) {
+        writer.println("#include <jni.h>");
+        for (String className: nativeMethodsByClass.keySet()) {
+            writeIncludeGeneratedHeader(writer, className);
         }
+    }
+
+    private void writeIncludeGeneratedHeader(PrintWriter writer, String className) {
+        writer.println("#include \"" + jniGeneratedHeaderForClass(className) + ".h\"");
+    }
+
+    private void writeNativeMethodTables(PrintWriter writer) {
+        for (String className : nativeMethodsByClass.keySet()) {
+            writeNativeMethodTable(writer, className, nativeMethodsByClass.get(className));
+        }
+    }
+
+    private void writeNativeMethodTable(PrintWriter writer, String className, List<NativeMethod> nativeMethods) {
+        writer.println("static const JNINativeMethod " + methodTableNameForClass(className) + "[] = {");
+
+        boolean separatorRequired = false;
+        for (NativeMethod nativeMethod : nativeMethods) {
+            if (separatorRequired) {
+                writer.print(",");
+                writer.println();
+            }
+
+            writer.print("   {\"" + nativeMethod.name + "\", \"" + nativeMethod.desc + "\", \"" + cFunctionNameForNativeMethod(className, nativeMethod) + "\"}");
+
+            separatorRequired = true;
+        }
+
+        writer.println();
+        writer.println("};");
+        writer.println();
+    }
+
+    private void writeRegisterNativesCalls(PrintWriter writer) {
+        //jint RegisterNatives(JNIEnv *env, jclass clazz, const JNINativeMethod *methods, jint nMethods);
+
+        writer.println("jint RegisterNatives(JNIEnv *env) {");
+        writer.println("    jclass the_class;");
+        writer.println("    jint status;");
+        writer.println();
+
+        for (String className : nativeMethodsByClass.keySet()) {
+            int nativeMethodCount = nativeMethodsByClass.get(className).size();
+
+            writer.println("    the_class = (*env)->FindClass(env, \"" + className + "\");");
+            writer.println("    if (the_class == NULL) return -1;");
+            writer.println("    status = (*env)->RegisterNatives(env, the_class, " + methodTableNameForClass(className) + ", " + nativeMethodCount + ");");
+            writer.println("    if (status < 0) return status;");
+            writer.println();
+        }
+
+        writer.println("    return 0;");
+        writer.println("}");
+    }
+
+    private String cFunctionNameForNativeMethod(String className, NativeMethod nativeMethod) {
+        return "Java_" + classNameToCIndentifier(className) + "_" + nativeMethod.name;
+    }
+
+    private String jniGeneratedHeaderForClass(String className) {
+        return classNameToCIndentifier(className);
+    }
+
+    private String methodTableNameForClass(String className) {
+        return "methods_" + classNameToCIndentifier(className);
+    }
+
+    private String classNameToCIndentifier(String className) {
+        return className.replace("/", "_");
     }
 }

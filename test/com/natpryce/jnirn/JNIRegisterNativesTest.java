@@ -11,10 +11,10 @@ import java.io.StringWriter;
 
 public class JNIRegisterNativesTest {
     @Rule
-    public ApprovalRule approval = new ApprovalRule("src", "out/test", ".c");
+    public ApprovalRule approval = new ApprovalRule("test", "out/test", ".c");
 
     @Test
-    public void testNativeDecls() throws IOException {
+    public void testGeneratedCode() throws IOException {
         StringWriter writer = new StringWriter();
 
         JNIRN jnirn = new JNIRN();
