@@ -1,9 +1,10 @@
 package com.natpryce.approvals;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+
+import static com.natpryce.approvals.IO.readContents;
+import static com.natpryce.approvals.IO.writeContents;
 
 public class Approver {
     private final File approvedFile;
@@ -32,26 +33,4 @@ public class Approver {
         writeContents(approvedFile, receivedContents);
     }
 
-    private String readContents(File file) throws IOException {
-        Scanner scanner = new Scanner(file);
-        try {
-            return scanner.useDelimiter("\\A").next();
-        }
-        finally {
-            scanner.close();
-        }
-    }
-
-    private void writeContents(File file, String contents) throws IOException {
-        //noinspection ResultOfMethodCallIgnored
-        file.getParentFile().mkdirs();
-
-        FileWriter out = new FileWriter(file);
-        try {
-            out.write(contents);
-        }
-        finally {
-            out.close();
-        }
-    }
 }
