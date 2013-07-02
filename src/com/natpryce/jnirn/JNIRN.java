@@ -1,33 +1,62 @@
 package com.natpryce.jnirn;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class JNIRN {
-    private final SortedMap<String, Map<String,List<NativeMethod>>> nativeMethodsByClass = new TreeMap<String, Map<String, List<NativeMethod>>>();
-
     public static void main(String... args) throws IOException {
         JNIRN app = new JNIRN();
-        app.run(args);
+
+        JCommander jCommander = new JCommander(app);
+        jCommander.setProgramName("jnirn");
+        jCommander.parse(args);
+
+        if (app.help) {
+            jCommander.usage();
+        }
+        else {
+            app.run();
+        }
     }
 
-    public void run(String... args) throws IOException {
+    @Parameter
+    private List<File> inputFiles;
+
+    @Parameter(names="-o", description = "file in which to generate c source to register JNI native methods")
+    private String outputCSourceFile = null;
+
+    @Parameter(names="-f", description = "name of the generated function that registers JNI native methods")
+    private String functionName = "RegisterNatives";
+
+    @Parameter(names="-M", description = "file in which to generate dependency rules in make syntax")
+    private String outputMakefile = null;
+
+    @Parameter(names={"-h","--help", "-?"}, description = "show this help", hidden = true)
+    private boolean help = false;
+
+    public void run() throws IOException {
         JavaBytecodeParser parser = new JavaBytecodeParser();
-        for (String arg : args) {
-            parser.parse(new File(arg));
+        for (File inputFile : inputFiles) {
+            parser.parse(inputFile);
         }
 
-        CSourceOutput cSourceOutput = new CSourceOutput();
-        final PrintWriter writer = new PrintWriter(System.out);
-        try {
-            cSourceOutput.writeTo(writer, parser.nativeMethodsByClass());
-        } finally {
-            writer.flush();
+        if (outputCSourceFile != null) {
+            CSourceOutput cSourceOutput = new CSourceOutput();
+            OutputStream out = outputCSourceFile.equals("-") ? System.out : new FileOutputStream(outputCSourceFile);
+
+            try {
+                PrintWriter writer = new PrintWriter(out);
+                cSourceOutput.writeTo(writer, parser.nativeMethodsByClass());
+                writer.flush();
+            } finally {
+                if (out != System.out) out.close();
+            }
         }
     }
 }

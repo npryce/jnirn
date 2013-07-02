@@ -1,0 +1,7 @@
+Usage: jnirn [options] 
+  Options:
+    -M   file in which to generate dependency rules in make syntax
+    -f   name of the generated function that registers JNI native methods
+         Default: RegisterNatives
+    -o   file in which to generate c source to register JNI native methods
+

@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="jcommander">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/jcommander" />
+      <root url="file://$PROJECT_DIR$/lib/jcommander" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib/jcommander" />
+      <root url="file://$PROJECT_DIR$/lib/jcommander" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/lib/jcommander" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/jcommander" recursive="false" type="SOURCES" />
+  </library>
+</component>

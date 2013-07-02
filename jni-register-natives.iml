@@ -12,6 +12,7 @@
     <orderEntry type="library" name="junit" level="project" />
     <orderEntry type="library" name="asm" level="project" />
     <orderEntry type="library" name="hamcrest" level="project" />
+    <orderEntry type="library" name="jcommander" level="project" />
   </component>
 </module>
 
