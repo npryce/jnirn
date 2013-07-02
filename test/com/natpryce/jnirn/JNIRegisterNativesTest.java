@@ -20,6 +20,12 @@ public class JNIRegisterNativesTest {
     }
 
     @Test
+    public void canSpecifyNameOfFunctionThatRegistersNativeMethods() throws IOException {
+        JNIRN.main("out/jars/test-input.jar", "-o", "-", "-f", "DoTheDo");
+        approval.check(stdout.captured());
+    }
+
+    @Test
     public void reportsUsage() throws IOException {
         JNIRN.main("out/jars/test-input.jar", "-?");
         approval.check(stdout.captured());

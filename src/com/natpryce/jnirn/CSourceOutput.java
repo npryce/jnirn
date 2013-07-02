@@ -8,6 +8,12 @@ import java.util.Map;
 import java.util.SortedMap;
 
 public class CSourceOutput {
+    private final String publicFunctionName;
+
+    public CSourceOutput(String publicFunctionName) {
+        this.publicFunctionName = publicFunctionName;
+    }
+
     public void writeTo(PrintWriter writer, SortedMap<String, Map<String, List<NativeMethod>>> nativeMethodsByClass) {
         writer.println("/* GENERATED CODE - DO NOT EDIT */");
         writer.println();
@@ -66,7 +72,7 @@ public class CSourceOutput {
     private void writeRegisterNativesCalls(PrintWriter writer, SortedMap<String, Map<String, List<NativeMethod>>> nativeMethodsByClass) {
         //jint RegisterNatives(JNIEnv *env, jclass clazz, const JNINativeMethod *methods, jint nMethods);
 
-        writer.println("jint RegisterNatives(JNIEnv *env) {");
+        writer.println("jint " + publicFunctionName + "(JNIEnv *env) {");
         writer.println("    jclass the_class;");
         writer.println("    jint status;");
         writer.println();

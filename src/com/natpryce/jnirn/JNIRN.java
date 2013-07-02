@@ -5,9 +5,6 @@ import com.beust.jcommander.Parameter;
 
 import java.io.*;
 import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 public class JNIRN {
     public static void main(String... args) throws IOException {
@@ -47,7 +44,7 @@ public class JNIRN {
         }
 
         if (outputCSourceFile != null) {
-            CSourceOutput cSourceOutput = new CSourceOutput();
+            CSourceOutput cSourceOutput = new CSourceOutput(functionName);
             OutputStream out = outputCSourceFile.equals("-") ? System.out : new FileOutputStream(outputCSourceFile);
 
             try {
