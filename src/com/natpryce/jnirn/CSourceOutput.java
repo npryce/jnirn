@@ -6,26 +6,19 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
-import java.util.TreeMap;
 
 public class CSourceOutput {
-    private final SortedMap<String, Map<String,List<NativeMethod>>> nativeMethodsByClass;
-
-    public CSourceOutput(SortedMap<String, Map<String, List<NativeMethod>>> nativeMethodsByClass) {
-        this.nativeMethodsByClass = nativeMethodsByClass;
-    }
-
-    public void writeCSource(PrintWriter writer) {
+    public void writeTo(PrintWriter writer, SortedMap<String, Map<String, List<NativeMethod>>> nativeMethodsByClass) {
         writer.println("/* GENERATED CODE - DO NOT EDIT */");
         writer.println();
-        writeIncludeDirectives(writer);
+        writeIncludeDirectives(writer, nativeMethodsByClass);
         writer.println();
-        writeNativeMethodTables(writer);
+        writeNativeMethodTables(writer, nativeMethodsByClass);
         writer.println();
-        writeRegisterNativesCalls(writer);
+        writeRegisterNativesCalls(writer, nativeMethodsByClass);
     }
 
-    private void writeIncludeDirectives(PrintWriter writer) {
+    private void writeIncludeDirectives(PrintWriter writer, SortedMap<String, Map<String, List<NativeMethod>>> nativeMethodsByClass) {
         writer.println("#include <jni.h>");
         for (String className: nativeMethodsByClass.keySet()) {
             writeIncludeGeneratedHeader(writer, className);
@@ -36,7 +29,7 @@ public class CSourceOutput {
         writer.println("#include \"" + jniGeneratedHeaderForClass(className) + ".h\"");
     }
 
-    private void writeNativeMethodTables(PrintWriter writer) {
+    private void writeNativeMethodTables(PrintWriter writer, SortedMap<String, Map<String, List<NativeMethod>>> nativeMethodsByClass) {
         for (String className : nativeMethodsByClass.keySet()) {
             writeNativeMethodTable(writer, className, nativeMethodsByClass.get(className));
         }
@@ -70,7 +63,7 @@ public class CSourceOutput {
         writer.println();
     }
 
-    private void writeRegisterNativesCalls(PrintWriter writer) {
+    private void writeRegisterNativesCalls(PrintWriter writer, SortedMap<String, Map<String, List<NativeMethod>>> nativeMethodsByClass) {
         //jint RegisterNatives(JNIEnv *env, jclass clazz, const JNINativeMethod *methods, jint nMethods);
 
         writer.println("jint RegisterNatives(JNIEnv *env) {");

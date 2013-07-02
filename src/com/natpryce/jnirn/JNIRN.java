@@ -19,13 +19,13 @@ public class JNIRN {
     public void run(String... args) throws IOException {
         JavaBytecodeParser parser = new JavaBytecodeParser();
         for (String arg : args) {
-            parser.parseJAR(new File(arg));
+            parser.parse(new File(arg));
         }
 
-        CSourceOutput cSourceOutput = new CSourceOutput(parser.nativeMethodsByClass());
+        CSourceOutput cSourceOutput = new CSourceOutput();
         final PrintWriter writer = new PrintWriter(System.out);
         try {
-            cSourceOutput.writeCSource(writer);
+            cSourceOutput.writeTo(writer, parser.nativeMethodsByClass());
         } finally {
             writer.flush();
         }

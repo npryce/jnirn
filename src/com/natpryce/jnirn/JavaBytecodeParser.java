@@ -16,6 +16,14 @@ public class JavaBytecodeParser {
         return nativeMethodsByClass;
     }
 
+    public void parse(File file) throws IOException {
+        if (file.getName().endsWith(".jar")) {
+            parseJAR(file);
+        }
+        else {
+            throw new IOException("cannot parse " + file);
+        }
+    }
     public void parseJAR(File file) throws IOException {
         JarFile jarFile = new JarFile(file);
 
