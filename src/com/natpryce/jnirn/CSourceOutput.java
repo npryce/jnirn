@@ -6,13 +6,14 @@ import org.objectweb.asm.Type;
 import java.io.PrintWriter;
 import java.util.Collection;
 
-public class CSourceOutput {
+public class CSourceOutput implements OutputFormat {
     private final String publicFunctionName;
 
     public CSourceOutput(String publicFunctionName) {
         this.publicFunctionName = publicFunctionName;
     }
 
+    @Override
     public void writeTo(PrintWriter writer, Iterable<ParsedClass> classes) {
         writer.println("/* GENERATED CODE - DO NOT EDIT */");
         writer.println();

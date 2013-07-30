@@ -3,10 +3,7 @@ package com.natpryce.jnirn;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.List;
 
 import static com.beust.jcommander.internal.Lists.newArrayList;
@@ -49,26 +46,30 @@ public class JNIRN {
             parser.parse(inputFile);
         }
 
+        CSourceOutput cSourceOutput = new CSourceOutput(functionName);
+        Iterable<ParsedClass> nativeClasses = parser.nativeClasses();
+
         if (outputCSourceFile != null) {
-            PrintWriter writer = new PrintWriter(new FileOutputStream(outputCSourceFile));
-            try {
-                CSourceOutput cSourceOutput = new CSourceOutput(functionName);
-                cSourceOutput.writeTo(writer, parser.classes());
-            }
-            finally {
-                writer.close();
+            writeToFile(cSourceOutput, outputCSourceFile, nativeClasses);
+            if (outputMakefile != null) {
+                MakeDependencyOutput makeDependencyOutput = new MakeDependencyOutput(outputCSourceFile);
+                writeToFile(makeDependencyOutput, outputMakefile, nativeClasses);
             }
         }
+        else {
+            PrintWriter writer = new PrintWriter(System.out);
+            cSourceOutput.writeTo(writer, nativeClasses);
+            writer.flush();
+        }
+    }
 
-        if (outputCSourceFile != null && outputMakefile != null) {
-            PrintWriter writer = new PrintWriter(new FileOutputStream(outputMakefile));
-            try {
-                MakeDependencyOutput makeDependencyOutput = new MakeDependencyOutput(outputCSourceFile);
-                makeDependencyOutput.writeTo(writer, parser.classes());
-            }
-            finally {
-                writer.close();
-            }
+    private void writeToFile(OutputFormat format, String file, Iterable<ParsedClass> classes) throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(new FileOutputStream(file));
+        try {
+            format.writeTo(writer, classes);
+        }
+        finally {
+            writer.close();
         }
     }
 }

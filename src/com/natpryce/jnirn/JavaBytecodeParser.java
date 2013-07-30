@@ -15,7 +15,7 @@ import static com.google.common.collect.Maps.newTreeMap;
 public class JavaBytecodeParser {
     private final SortedMap<String, ParsedClass> classesByName = newTreeMap();
 
-    public Iterable<ParsedClass> classes() {
+    public Iterable<ParsedClass> nativeClasses() {
         return classesByName.values();
     }
 
