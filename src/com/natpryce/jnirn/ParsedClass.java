@@ -1,5 +1,6 @@
 package com.natpryce.jnirn;
 
+import com.google.common.base.Function;
 import com.google.common.collect.Multimap;
 
 import java.io.File;
@@ -15,4 +16,10 @@ public class ParsedClass {
         this.nativeMethods = nativeMethods;
     }
 
+    public static final Function<ParsedClass,File> toFile  = new Function<ParsedClass, File>() {
+        @Override
+        public File apply(ParsedClass input) {
+            return input.file;
+        }
+    };
 }
