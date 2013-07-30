@@ -2,9 +2,7 @@ package com.natpryce.jnirn;
 
 import org.objectweb.asm.ClassReader;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Enumeration;
 import java.util.SortedMap;
 import java.util.jar.JarEntry;
@@ -20,12 +18,35 @@ public class JavaBytecodeParser {
     }
 
     public void parse(File file) throws IOException {
-        if (file.getName().endsWith(".jar")) {
+        if (file.isDirectory()) {
+            parseDirectoryContents(file);
+        }
+        else if (file.getName().endsWith(".jar")) {
             parseJAR(file);
         }
         else {
             throw new IOException("cannot parse " + file);
         }
+    }
+
+    private void parseDirectoryContents(File dir) throws IOException {
+        for (File entry : dir.listFiles(onlyPackageOrClass())) {
+            if (entry.isDirectory()) {
+                parseDirectoryContents(entry);
+            }
+            else {
+                parseClassFile(entry);
+            }
+        }
+    }
+
+    private FileFilter onlyPackageOrClass() {
+        return new FileFilter() {
+            @Override
+            public boolean accept(File child) {
+                return child.isDirectory() || child.getName().endsWith(".class");
+            }
+        };
     }
 
     public void parseJAR(File file) throws IOException {
@@ -42,6 +63,16 @@ public class JavaBytecodeParser {
                     in.close();
                 }
             }
+        }
+    }
+
+    private void parseClassFile(File file) throws IOException {
+        InputStream in = new BufferedInputStream(new FileInputStream(file));
+        try {
+            parseClassBytecode(file, in);
+        }
+        finally {
+            in.close();
         }
     }
 

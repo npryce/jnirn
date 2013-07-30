@@ -2,6 +2,7 @@ package com.natpryce.approvals.junit;
 
 import com.natpryce.approvals.ApprovalError;
 import com.natpryce.approvals.Approver;
+import org.junit.internal.AssumptionViolatedException;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -30,6 +31,7 @@ public class ApprovalRule implements TestRule {
 
     public void recordAsApproved(String receivedContents) throws IOException {
         approver().recordAsApproved(receivedContents);
+        throw new AssumptionViolatedException("recording approval");
     }
 
     private Approver approver() {

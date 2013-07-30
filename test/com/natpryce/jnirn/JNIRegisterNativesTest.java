@@ -20,9 +20,16 @@ public class JNIRegisterNativesTest {
     public ApprovalRule approval = new ApprovalRule("test", "out/test");
 
     @Test
-    public void generatesCCode() throws IOException {
+    public void generatesCCodeFromJar() throws IOException {
         File cFile = fileNameForTest(".c");
         JNIRN.main("out/jars/test-input.jar", "-o", cFile.toString());
+        approval.check(IO.readContents(cFile));
+    }
+
+    @Test
+    public void generatesCCodeFromDirectoryOfClassFiles() throws IOException {
+        File cFile = fileNameForTest(".c");
+        JNIRN.main("out/classes/test-input", "-o", cFile.toString());
         approval.check(IO.readContents(cFile));
     }
 
@@ -31,6 +38,15 @@ public class JNIRegisterNativesTest {
         File mkFile = fileNameForTest(".mk");
         File cFile = fileNameForTest(".c");
         JNIRN.main("out/jars/test-input.jar", "-o", cFile.toString(), "-M", mkFile.toString());
+
+        approval.check(IO.readContents(mkFile));
+    }
+
+    @Test
+    public void generatesDependencyRulesFromDirectoryOfClassFiles() throws IOException {
+        File mkFile = fileNameForTest(".mk");
+        File cFile = fileNameForTest(".c");
+        JNIRN.main("out/classes/test-input", "-o", cFile.toString(), "-M", mkFile.toString());
 
         approval.check(IO.readContents(mkFile));
     }
