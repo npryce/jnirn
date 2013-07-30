@@ -16,11 +16,14 @@ $(TEST_INPUT_JAR): $(TEST_INPUT_SRC)
 	javac -d $(TEST_INPUT_CLASSDIR) -s $(TEST_INPUT_SRCDIR) $^
 	jar -cf0 $@ -C $(TEST_INPUT_CLASSDIR) ./
 
-out/obj/test.o: $(TEST_INPUT_JAR) test/com/natpryce/jnirn/JNIRegisterNativesTest.testGeneratedCode.c
+out/obj/test.c: test/com/natpryce/jnirn/JNIRegisterNativesTest.generatesCCodeFromJar
+	cp $< $@
+
+out/obj/test.o: $(TEST_INPUT_JAR) out/obj/test.c
 	@mkdir -p out/headers
 	javah -d out/headers -classpath $< $(subst /,.,$(TEST_INPUT_SRC:$(TEST_INPUT_SRCDIR)/%.java=%))
 	@mkdir -p $(dir $@)
-	gcc -Werror -Wall -I $(JDK)/include -I $(JDK)/include/linux  -I out/headers -c -o $@ test/com/natpryce/jnirn/JNIRegisterNativesTest.testGeneratedCode.c
+	gcc -Werror -Wall -I $(JDK)/include -I $(JDK)/include/linux  -I out/headers -c -o $@ out/obj/test.c
 
 .PHONY: check
 check: out/obj/test.o
