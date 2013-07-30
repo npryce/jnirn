@@ -15,7 +15,7 @@ public class NativeMethod {
         this.exceptions = exceptions;
     }
 
-    Type[] argumentTypes() {
+    public Type[] argumentTypes() {
         return type.getArgumentTypes();
     }
 }

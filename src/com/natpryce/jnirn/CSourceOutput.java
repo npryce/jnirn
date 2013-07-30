@@ -1,11 +1,10 @@
 package com.natpryce.jnirn;
 
+import com.google.common.collect.Multimap;
 import org.objectweb.asm.Type;
 
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
+import java.util.Collection;
 
 public class CSourceOutput {
     private final String publicFunctionName;
@@ -14,40 +13,40 @@ public class CSourceOutput {
         this.publicFunctionName = publicFunctionName;
     }
 
-    public void writeTo(PrintWriter writer, SortedMap<String, Map<String, List<NativeMethod>>> nativeMethodsByClass) {
+    public void writeTo(PrintWriter writer, Iterable<ParsedClass> classes) {
         writer.println("/* GENERATED CODE - DO NOT EDIT */");
         writer.println();
-        writeIncludeDirectives(writer, nativeMethodsByClass);
+        writeIncludeDirectives(writer, classes);
         writer.println();
-        writeNativeMethodTables(writer, nativeMethodsByClass);
+        writeNativeMethodTables(writer, classes);
         writer.println();
-        writeRegisterNativesCalls(writer, nativeMethodsByClass);
+        writeRegisterNativesCalls(writer, classes);
     }
 
-    private void writeIncludeDirectives(PrintWriter writer, SortedMap<String, Map<String, List<NativeMethod>>> nativeMethodsByClass) {
+    private void writeIncludeDirectives(PrintWriter writer, Iterable<ParsedClass> classes) {
         writer.println("#include <jni.h>");
-        for (String className: nativeMethodsByClass.keySet()) {
-            writeIncludeGeneratedHeader(writer, className);
+        for (ParsedClass c: classes) {
+            writeIncludeGeneratedHeader(writer, c);
         }
     }
 
-    private void writeIncludeGeneratedHeader(PrintWriter writer, String className) {
-        writer.println("#include \"" + jniGeneratedHeaderForClass(className) + ".h\"");
+    private void writeIncludeGeneratedHeader(PrintWriter writer, ParsedClass c) {
+        writer.println("#include \"" + jniGeneratedHeaderForClass(c.name) + ".h\"");
     }
 
-    private void writeNativeMethodTables(PrintWriter writer, SortedMap<String, Map<String, List<NativeMethod>>> nativeMethodsByClass) {
-        for (String className : nativeMethodsByClass.keySet()) {
-            writeNativeMethodTable(writer, className, nativeMethodsByClass.get(className));
+    private void writeNativeMethodTables(PrintWriter writer, Iterable<ParsedClass> classes) {
+        for (ParsedClass c : classes) {
+            writeNativeMethodTable(writer, c.name, c.nativeMethods);
         }
     }
 
-    private void writeNativeMethodTable(PrintWriter writer, String className, Map<String, List<NativeMethod>> nativeMethods) {
+    private void writeNativeMethodTable(PrintWriter writer, String className, Multimap<String, NativeMethod> nativeMethods) {
         writer.println("static const JNINativeMethod " + methodTableNameForClass(className) + "[] = {");
 
         boolean separatorRequired = false;
 
         for (String methodName : nativeMethods.keySet()) {
-            List<NativeMethod> overloads = nativeMethods.get(methodName);
+            Collection<NativeMethod> overloads = nativeMethods.get(methodName);
             boolean isOverloaded = overloads.size() > 1;
 
             for (NativeMethod nativeMethod : overloads) {
@@ -69,15 +68,15 @@ public class CSourceOutput {
         writer.println();
     }
 
-    private void writeRegisterNativesCalls(PrintWriter writer, SortedMap<String, Map<String, List<NativeMethod>>> nativeMethodsByClass) {
-        //jint RegisterNatives(JNIEnv *env, jclass clazz, const JNINativeMethod *methods, jint nMethods);
-
+    private void writeRegisterNativesCalls(PrintWriter writer, Iterable<ParsedClass> classes) {
         writer.println("jint " + publicFunctionName + "(JNIEnv *env) {");
         writer.println("    jclass the_class;");
         writer.println("    jint status;");
         writer.println();
 
-        for (String className : nativeMethodsByClass.keySet()) {
+        for (ParsedClass c : classes) {
+            String className = c.name;
+
             writer.println("    the_class = (*env)->FindClass(env, \"" + className + "\");");
             writer.println("    if (the_class == NULL) return -1;");
             writer.println("    status = (*env)->RegisterNatives(env, the_class, " + methodTableNameForClass(className) + ", " + methodCountNameForClass(className) + ");");

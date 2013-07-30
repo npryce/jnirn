@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import static com.beust.jcommander.internal.Lists.newArrayList;
+
 public class JNIRN {
     public static void main(String... args) throws IOException {
         JNIRN app = new JNIRN();
@@ -26,19 +28,19 @@ public class JNIRN {
     }
 
     @Parameter
-    private List<File> inputFiles;
+    public List<File> inputFiles = newArrayList();
 
     @Parameter(names="-o", description = "file in which to generate c source to register JNI native methods")
-    private String outputCSourceFile = null;
+    public  String outputCSourceFile = null;
 
     @Parameter(names="-f", description = "name of the generated function that registers JNI native methods")
-    private String functionName = "RegisterNatives";
+    public  String functionName = "RegisterNatives";
 
     @Parameter(names="-M", description = "file in which to generate dependency rules in make syntax")
-    private String outputMakefile = null;
+    public  String outputMakefile = null;
 
     @Parameter(names={"-h","--help", "-?"}, description = "show this help", hidden = true)
-    private boolean help = false;
+    public  boolean help = false;
 
 
     public void run() throws IOException {
@@ -48,11 +50,23 @@ public class JNIRN {
         }
 
         if (outputCSourceFile != null) {
-            CSourceOutput cSourceOutput = new CSourceOutput(functionName);
             PrintWriter writer = new PrintWriter(new FileOutputStream(outputCSourceFile));
             try {
-                cSourceOutput.writeTo(writer, parser.nativeMethodsByClass());
-            } finally {
+                CSourceOutput cSourceOutput = new CSourceOutput(functionName);
+                cSourceOutput.writeTo(writer, parser.classes());
+            }
+            finally {
+                writer.close();
+            }
+        }
+
+        if (outputCSourceFile != null && outputMakefile != null) {
+            PrintWriter writer = new PrintWriter(new FileOutputStream(outputMakefile));
+            try {
+                MakeDependencyOutput makeDependencyOutput = new MakeDependencyOutput(outputCSourceFile, inputFiles);
+                makeDependencyOutput.writeTo(writer, parser.classes());
+            }
+            finally {
                 writer.close();
             }
         }

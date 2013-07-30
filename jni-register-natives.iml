@@ -13,6 +13,7 @@
     <orderEntry type="library" name="asm" level="project" />
     <orderEntry type="library" name="hamcrest" level="project" />
     <orderEntry type="library" name="jcommander" level="project" />
+    <orderEntry type="library" name="guava" level="project" />
   </component>
 </module>
 

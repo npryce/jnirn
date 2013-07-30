@@ -29,7 +29,9 @@ public class JNIRegisterNativesTest {
     @Test
     public void generatesDependencyRules() throws IOException {
         File mkFile = tempDir.newFile();
-        JNIRN.main("out/jars/test-input.jar", "-M", mkFile.toString());
+        File cFile = tempDir.newFile();
+        JNIRN.main("out/jars/test-input.jar", "-o", cFile.toString(), "-M", mkFile.toString());
+
         approval.check(IO.readContents(mkFile));
     }
 

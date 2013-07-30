@@ -1,14 +1,14 @@
 package com.natpryce.jnirn;
 
+import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.Multimap;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
-import java.util.*;
-
 public class NativeMethodCollector extends ClassVisitor {
-    public final Map<String, List<NativeMethod>> nativeMethodsByName = new LinkedHashMap<String, List<NativeMethod>>();
+    public final Multimap<String, NativeMethod> nativeMethodsByName = LinkedHashMultimap.create();
 
     public NativeMethodCollector() {
         super(Opcodes.ASM4);
@@ -17,13 +17,7 @@ public class NativeMethodCollector extends ClassVisitor {
     @Override
     public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
         if ((access & Opcodes.ACC_NATIVE) != 0) {
-            List<NativeMethod> overloads = nativeMethodsByName.get(name);
-            if (overloads == null) {
-                overloads = new ArrayList<NativeMethod>();
-                nativeMethodsByName.put(name, overloads);
-            }
-
-            overloads.add(new NativeMethod(name, Type.getMethodType(desc), signature, exceptions));
+            nativeMethodsByName.put(name, new NativeMethod(name, Type.getMethodType(desc), signature, exceptions));
         }
 
         return super.visitMethod(access, name, desc, signature, exceptions);
