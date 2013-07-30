@@ -1,0 +1,3 @@
+out/test/generatesDependencyRulesFromDirectoryOfClassFiles.c: out/classes/test-input/com/natpryce/jnirn/examples/AClassWithOverloadedNativeMethods.class
+out/test/generatesDependencyRulesFromDirectoryOfClassFiles.c: out/classes/test-input/com/natpryce/jnirn/examples/AnotherClassWithNativeMethods.class
+out/test/generatesDependencyRulesFromDirectoryOfClassFiles.c: out/classes/test-input/com/natpryce/jnirn/examples/ClassWithNativeMethods.class
