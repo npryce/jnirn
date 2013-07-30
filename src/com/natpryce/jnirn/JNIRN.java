@@ -63,7 +63,7 @@ public class JNIRN {
         if (outputCSourceFile != null && outputMakefile != null) {
             PrintWriter writer = new PrintWriter(new FileOutputStream(outputMakefile));
             try {
-                MakeDependencyOutput makeDependencyOutput = new MakeDependencyOutput(outputCSourceFile, inputFiles);
+                MakeDependencyOutput makeDependencyOutput = new MakeDependencyOutput(outputCSourceFile);
                 makeDependencyOutput.writeTo(writer, parser.classes());
             }
             finally {
