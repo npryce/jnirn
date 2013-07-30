@@ -59,6 +59,18 @@ public class JNIRegisterNativesTest {
     }
 
     @Test
+    public void writesCCodeToStdoutByDefault() throws IOException {
+        JNIRN.main("out/classes/test-input");
+        approval.check(stdout.captured());
+    }
+
+    @Test(expected = IOException.class)
+    public void cannotGenerateMakefileDependenciesIfOutputFileNameNotSpecified() throws IOException {
+        File mkFile = fileNameForTest(".mk");
+        JNIRN.main("out/classes/test-input", "-M", mkFile.toString());
+    }
+
+    @Test
     public void reportsUsage() throws IOException {
         JNIRN.main("out/jars/test-input.jar", "-?");
         approval.check(stdout.captured());

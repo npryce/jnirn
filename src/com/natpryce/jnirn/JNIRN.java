@@ -33,7 +33,7 @@ public class JNIRN {
     @Parameter(names="-f", description = "name of the generated function that registers JNI native methods")
     public  String functionName = "RegisterNatives";
 
-    @Parameter(names="-M", description = "file in which to generate dependency rules in make syntax")
+    @Parameter(names="-M", description = "file in which to generate dependency rules in make syntax (requires -o)")
     public  String outputMakefile = null;
 
     @Parameter(names={"-h","--help", "-?"}, description = "show this help", hidden = true)
@@ -57,6 +57,10 @@ public class JNIRN {
             }
         }
         else {
+            if (outputMakefile != null) {
+                throw new IOException("cannot generate Makefile dependencies if no output file name specified");
+            }
+
             PrintWriter writer = new PrintWriter(System.out);
             cSourceOutput.writeTo(writer, nativeClasses);
             writer.flush();
@@ -72,4 +76,6 @@ public class JNIRN {
             writer.close();
         }
     }
+
+
 }
