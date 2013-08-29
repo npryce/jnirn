@@ -1,0 +1,10 @@
+#ifndef RegisterNatives_HEADER
+#define RegisterNatives_HEADER
+
+/* GENERATED CODE - DO NOT EDIT */
+
+#include <jni.h>
+
+jint RegisterNatives(JNIEnv*);
+
+#endif

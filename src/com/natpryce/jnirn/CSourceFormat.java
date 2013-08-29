@@ -1,16 +1,20 @@
 package com.natpryce.jnirn;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.Multimap;
 import org.objectweb.asm.Type;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.Collection;
 
 public class CSourceFormat implements OutputFormat {
     private final String publicFunctionName;
+    private final Optional<String> headerFileName;
 
-    public CSourceFormat(String publicFunctionName) {
+    public CSourceFormat(String publicFunctionName, Optional<String> headerFileName) {
         this.publicFunctionName = publicFunctionName;
+        this.headerFileName = headerFileName;
     }
 
     @Override
@@ -28,6 +32,9 @@ public class CSourceFormat implements OutputFormat {
         writer.println("#include <jni.h>");
         for (ParsedClass c: classes) {
             writeIncludeGeneratedHeader(writer, c);
+        }
+        for (String f : headerFileName.asSet()) {
+            writer.println("#include \"" + new File(f).getName() + "\"");
         }
     }
 

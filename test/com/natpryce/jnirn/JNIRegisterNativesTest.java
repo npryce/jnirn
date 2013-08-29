@@ -23,16 +23,25 @@ public class JNIRegisterNativesTest {
     public ApprovalRule approval = new ApprovalRule("test");
 
     @Test
-    public void generatesCCodeFromJar() throws IOException {
+    public void generatesCCodeToRegisterNativeMethods() throws IOException {
         File cFile = fileNameForTest(".c");
         JNIRN.main("out/test/jnirn/", "-o", cFile.toString());
         approval.check(IO.readContents(cFile));
     }
 
     @Test
-    public void generatesCCodeFromDirectoryOfClassFiles() throws IOException {
+    public void canGenerateHeaderDeclaringFunctionToRegisterNativeMethods() throws IOException {
         File cFile = fileNameForTest(".c");
-        JNIRN.main("out/test/jnirn", "-o", cFile.toString());
+        File headerFile = fileNameForTest(".h");
+        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-H", headerFile.toString());
+        approval.check(IO.readContents(headerFile));
+    }
+
+    @Test
+    public void theGeneratedSourceHashIncludesTheGeneratedHeader() throws IOException {
+        File cFile = fileNameForTest(".c");
+        File headerFile = fileNameForTest(".h");
+        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-H", headerFile.toString());
         approval.check(IO.readContents(cFile));
     }
 
