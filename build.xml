@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jnirn" default="package">
+    <import file="jnirn.xml"/>
+
+    <property name="report.dir" value="${module.jnirn.basedir}/out/reports"/>
+
+    <property name="version" value="SNAPSHOT"/>
+
+    <target name="package" depends="test">
+        <move file="${artifact.output.jnirn:jar}/jnirn.jar"
+              tofile="${artifact.output.jnirn:jar}/jnirn-${version}.jar"/>
+    </target>
+
+    <target name="test" depends="all">
+        <delete dir="${report.dir}"/>
+        <mkdir dir="${report.dir}/xml"/>
+        <mkdir dir="${report.dir}/html"/>
+
+        <junit printsummary="no"
+               showoutput="no"
+               outputtoformatters="no"
+               haltonfailure="no"
+               failureproperty="tests.failed"
+               includeantruntime="no" >
+
+            <classpath refid="jnirn.runtime.module.classpath"/>
+            <formatter type="xml"/>
+
+            <sysproperty key="jnirn.run-by-ant" value="true"/>
+
+            <batchtest todir="${report.dir}/xml">
+                <fileset dir="${jnirn.testoutput.dir}">
+                    <include name="**/*Test.class"/>
+                    <include name="**/*Example.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
+
+        <junitreport todir="${report.dir}/xml">
+            <fileset dir="${report.dir}/xml">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${report.dir}/html"/>
+        </junitreport>
+
+        <echo message="test results in file://${report.dir}/html/index.html"/>
+
+        <fail if="${tests.failed}"/>
+    </target>
+
+    <target name="real-clean">
+        <delete dir="out"/>
+    </target>
+</project>

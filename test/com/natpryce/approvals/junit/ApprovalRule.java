@@ -11,14 +11,12 @@ import java.io.File;
 import java.io.IOException;
 
 public class ApprovalRule implements TestRule {
-    private final File approvedDir;
-    private final File receivedDir;
+    private final File srcDir;
 
     private Approver approver = null;
 
-    public ApprovalRule(String approvedDir, String receivedDir) {
-        this.approvedDir = new File(approvedDir);
-        this.receivedDir = new File(receivedDir);
+    public ApprovalRule(String srcDir) {
+        this.srcDir = new File(srcDir);
     }
 
     public void check(String receivedContents) throws IOException {
@@ -44,11 +42,11 @@ public class ApprovalRule implements TestRule {
 
     @Override
     public Statement apply(Statement base, Description description) {
-        approver = new Approver(testFile(approvedDir, description), testFile(receivedDir, description));
+        approver = new Approver(testFile(srcDir, description, "approved"), testFile(srcDir, description, "received"));
         return base;
     }
 
-    private File testFile(File baseDir, Description testDescription) {
-        return new File(baseDir, testDescription.getTestClass().getName().replace(".", "/") + "." + testDescription.getMethodName());
+    private File testFile(File baseDir, Description testDescription, String type) {
+        return new File(baseDir, testDescription.getTestClass().getName().replace(".", "/") + "." + testDescription.getMethodName() + "." + type);
     }
 }

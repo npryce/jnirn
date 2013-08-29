@@ -24,7 +24,10 @@ public class Approver {
 
         String approvedContents = readContents(approvedFile);
 
-        if (! receivedContents.equals(approvedContents)) {
+        if (receivedContents.equals(approvedContents)) {
+            //noinspection ResultOfMethodCallIgnored
+            receivedFile.delete();
+        } else {
             throw new ApprovalError(approvedFile, approvedContents, receivedFile, receivedContents);
         }
     }
@@ -32,5 +35,4 @@ public class Approver {
     public void recordAsApproved(String receivedContents) throws IOException {
         writeContents(approvedFile, receivedContents);
     }
-
 }

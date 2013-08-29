@@ -14,6 +14,7 @@
     <orderEntry type="library" name="hamcrest" level="project" />
     <orderEntry type="library" name="jcommander" level="project" />
     <orderEntry type="library" name="guava" level="project" />
+    <orderEntry type="library" name="system-rules" level="project" />
   </component>
 </module>
 

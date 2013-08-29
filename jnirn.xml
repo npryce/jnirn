@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jni-register-natives" default="all">
+  
+  
+  <property file="jnirn.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.ftl"/>
+  </patternset>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.asm.classpath">
+    <pathelement location="${basedir}/lib/asm/asm-debug-all-4.1.jar"/>
+  </path>
+  
+  <path id="library.guava.classpath">
+    <pathelement location="${basedir}/lib/guava/guava-14.0.1.jar"/>
+  </path>
+  
+  <path id="library.hamcrest.classpath">
+    <fileset dir="${basedir}/lib/hamcrest">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="library.jcommander.classpath">
+    <fileset dir="${basedir}/lib/jcommander">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="library.junit.classpath">
+    <fileset dir="${basedir}/lib/junit">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="library.system-rules.classpath">
+    <pathelement location="${basedir}/lib/system-rules/system-rules-1.3.1.jar"/>
+  </path>
+  
+  
+  <!-- Global Libraries -->
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module jnirn -->
+  
+  <dirname property="module.jnirn.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.jnirn" value="${compiler.args}"/>
+  
+  <property name="jnirn.output.dir" value="${module.jnirn.basedir}/out/production/jnirn"/>
+  <property name="jnirn.testoutput.dir" value="${module.jnirn.basedir}/out/test/jnirn"/>
+  
+  <path id="jnirn.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="jnirn.module.production.classpath">
+    <path refid="library.junit.classpath"/>
+    <path refid="library.asm.classpath"/>
+    <path refid="library.hamcrest.classpath"/>
+    <path refid="library.jcommander.classpath"/>
+    <path refid="library.guava.classpath"/>
+    <path refid="library.system-rules.classpath"/>
+  </path>
+  
+  <path id="jnirn.runtime.production.module.classpath">
+    <pathelement location="${jnirn.output.dir}"/>
+    <path refid="library.junit.classpath"/>
+    <path refid="library.asm.classpath"/>
+    <path refid="library.hamcrest.classpath"/>
+    <path refid="library.jcommander.classpath"/>
+    <path refid="library.guava.classpath"/>
+    <path refid="library.system-rules.classpath"/>
+  </path>
+  
+  <path id="jnirn.module.classpath">
+    <pathelement location="${jnirn.output.dir}"/>
+    <path refid="library.junit.classpath"/>
+    <path refid="library.asm.classpath"/>
+    <path refid="library.hamcrest.classpath"/>
+    <path refid="library.jcommander.classpath"/>
+    <path refid="library.guava.classpath"/>
+    <path refid="library.system-rules.classpath"/>
+  </path>
+  
+  <path id="jnirn.runtime.module.classpath">
+    <pathelement location="${jnirn.testoutput.dir}"/>
+    <pathelement location="${jnirn.output.dir}"/>
+    <path refid="library.junit.classpath"/>
+    <path refid="library.asm.classpath"/>
+    <path refid="library.hamcrest.classpath"/>
+    <path refid="library.jcommander.classpath"/>
+    <path refid="library.guava.classpath"/>
+    <path refid="library.system-rules.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.jnirn">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.jnirn">
+    <patternset refid="excluded.from.module.jnirn"/>
+  </patternset>
+  
+  <path id="jnirn.module.sourcepath">
+    <dirset dir="${module.jnirn.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="jnirn.module.test.sourcepath">
+    <dirset dir="${module.jnirn.basedir}">
+      <include name="test"/>
+      <include name="test-input"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.jnirn" depends="compile.module.jnirn.production,compile.module.jnirn.tests" description="Compile module jnirn"/>
+  
+  <target name="compile.module.jnirn.production" description="Compile module jnirn; production classes">
+    <mkdir dir="${jnirn.output.dir}"/>
+    <javac destdir="${jnirn.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.jnirn}"/>
+      <bootclasspath refid="jnirn.module.bootclasspath"/>
+      <classpath refid="jnirn.module.production.classpath"/>
+      <src refid="jnirn.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.jnirn"/>
+    </javac>
+    
+    <copy todir="${jnirn.output.dir}">
+      <fileset dir="${module.jnirn.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.jnirn.tests" depends="compile.module.jnirn.production" description="compile module jnirn; test classes" unless="skip.tests">
+    <mkdir dir="${jnirn.testoutput.dir}"/>
+    <javac destdir="${jnirn.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.jnirn}"/>
+      <bootclasspath refid="jnirn.module.bootclasspath"/>
+      <classpath refid="jnirn.module.classpath"/>
+      <src refid="jnirn.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.jnirn"/>
+    </javac>
+    
+    <copy todir="${jnirn.testoutput.dir}">
+      <fileset dir="${module.jnirn.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.jnirn.basedir}/test-input">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.jnirn" description="cleanup module">
+    <delete dir="${jnirn.output.dir}"/>
+    <delete dir="${jnirn.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.jnirn" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.jnirn" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.jnirn:jar" value="${basedir}/out/artifacts/jnirn_jar"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.jnirn.jar" value="${artifacts.temp.dir}/jnirn.jar"/>
+  </target>
+  
+  <target name="artifact.jnirn:jar" depends="init.artifacts, compile.module.jnirn" description="Build &#39;jnirn:jar&#39; artifact">
+    <property name="artifact.temp.output.jnirn:jar" value="${artifacts.temp.dir}/jnirn_jar"/>
+    <mkdir dir="${artifact.temp.output.jnirn:jar}"/>
+    <jar destfile="${temp.jar.path.jnirn.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset file="${basedir}/src/META-INF/MANIFEST.MF" prefix="META-INF"/>
+      <zipfileset dir="${jnirn.output.dir}"/>
+      <zipfileset src="${basedir}/lib/guava/guava-14.0.1.jar"/>
+      <zipfileset src="${basedir}/lib/jcommander/jcommander-1.23.jar"/>
+      <zipfileset src="${basedir}/lib/asm/asm-debug-all-4.1.jar"/>
+    </jar>
+    <copy file="${temp.jar.path.jnirn.jar}" tofile="${artifact.temp.output.jnirn:jar}/jnirn.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.jnirn:jar" description="Build all artifacts">
+    <mkdir dir="${artifact.output.jnirn:jar}"/>
+    <copy todir="${artifact.output.jnirn:jar}">
+      <fileset dir="${artifact.temp.output.jnirn:jar}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
