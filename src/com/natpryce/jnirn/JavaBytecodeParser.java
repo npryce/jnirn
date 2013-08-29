@@ -13,10 +13,6 @@ import static com.google.common.collect.Maps.newTreeMap;
 public class JavaBytecodeParser {
     private final SortedMap<String, ParsedClass> classesByName = newTreeMap();
 
-    public Iterable<ParsedClass> nativeClasses() {
-        return classesByName.values();
-    }
-
     public void parse(File file) throws IOException {
         if (file.isDirectory()) {
             parseDirectoryContents(file);
@@ -85,5 +81,15 @@ public class JavaBytecodeParser {
             ParsedClass c = new ParsedClass(classReader.getClassName(), file, collector.nativeMethodsByName);
             classesByName.put(c.name, c);
         }
+    }
+
+    void parseAll(Iterable<File> inputFiles) throws IOException {
+        for (File inputFile : inputFiles) {
+            parse(inputFile);
+        }
+    }
+
+    void writeTo(Output output) throws IOException {
+        output.write(classesByName.values());
     }
 }

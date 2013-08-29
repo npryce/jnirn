@@ -6,10 +6,10 @@ import org.objectweb.asm.Type;
 import java.io.PrintWriter;
 import java.util.Collection;
 
-public class CSourceOutput implements OutputFormat {
+public class CSourceFormat implements OutputFormat {
     private final String publicFunctionName;
 
-    public CSourceOutput(String publicFunctionName) {
+    public CSourceFormat(String publicFunctionName) {
         this.publicFunctionName = publicFunctionName;
     }
 

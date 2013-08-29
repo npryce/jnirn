@@ -6,10 +6,10 @@ import com.google.common.collect.Sets;
 import java.io.File;
 import java.io.PrintWriter;
 
-public class MakeDependencyOutput implements OutputFormat {
+public class MakeDependencyFormat implements OutputFormat {
     private final String outputCSourceFile;
 
-    public MakeDependencyOutput(String outputCSourceFile) {
+    public MakeDependencyFormat(String outputCSourceFile) {
         this.outputCSourceFile = outputCSourceFile;
     }
 

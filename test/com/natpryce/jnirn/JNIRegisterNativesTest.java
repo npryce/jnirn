@@ -1,5 +1,6 @@
 package com.natpryce.jnirn;
 
+import com.beust.jcommander.ParameterException;
 import com.natpryce.approvals.IO;
 import com.natpryce.approvals.junit.ApprovalRule;
 import org.junit.Rule;
@@ -64,7 +65,7 @@ public class JNIRegisterNativesTest {
         approval.check(stdout.captured());
     }
 
-    @Test(expected = IOException.class)
+    @Test(expected = ParameterException.class)
     public void cannotGenerateMakefileDependenciesIfOutputFileNameNotSpecified() throws IOException {
         File mkFile = fileNameForTest(".mk");
         JNIRN.main("out/classes/test-input", "-M", mkFile.toString());
