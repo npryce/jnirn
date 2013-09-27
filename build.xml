@@ -6,7 +6,7 @@
 
     <property name="version" value="SNAPSHOT"/>
 
-    <target name="package" depends="test">
+    <target name="package" depends="real-clean, test">
         <move file="${artifact.output.jnirn:jar}/jnirn.jar"
               tofile="${artifact.output.jnirn:jar}/jnirn-${version}.jar"/>
     </target>

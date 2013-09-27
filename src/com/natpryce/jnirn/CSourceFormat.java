@@ -97,7 +97,7 @@ public class CSourceFormat implements OutputFormat {
     }
 
     private String cFunctionNameForNativeMethod(String className, NativeMethod nativeMethod, boolean isOverloaded) {
-        String baseName = "Java_" + classNameToCIndentifier(className) + "_" + nativeMethod.name;
+        String baseName = "Java_" + classNameToCIndentifier(className) + "_" + nativeMethod.name.replace("_", "_1");
         if (isOverloaded) {
             return baseName + "__" + signatureToC(nativeMethod.argumentTypes());
         }
