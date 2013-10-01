@@ -3,8 +3,9 @@
 #include <jni.h>
 #include "com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods.h"
 #include "com_natpryce_jnirn_examples_AnotherClassWithNativeMethods.h"
+#include "com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods.h"
 #include "com_natpryce_jnirn_examples_ClassWithNativeMethods.h"
-#include "theGeneratedSourceHashIncludesTheGeneratedHeader.h"
+#include "theGeneratedSourceIncludesTheGeneratedHeader.h"
 
 static const JNINativeMethod method_table_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods[] = {
    {"nativeMethod", "()V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__},
@@ -23,6 +24,11 @@ static const JNINativeMethod method_table_com_natpryce_jnirn_examples_AnotherCla
    {"nativeMethodTwo", "()I", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodTwo}
 };
 static int method_count_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods = 2;
+
+static const JNINativeMethod method_table_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods[] = {
+   {"nativeMethod", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods_nativeMethod}
+};
+static int method_count_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods = 1;
 
 static const JNINativeMethod method_table_com_natpryce_jnirn_examples_ClassWithNativeMethods[] = {
    {"simpleStatic", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_simpleStatic},
@@ -45,6 +51,11 @@ jint RegisterNatives(JNIEnv *env) {
     the_class = (*env)->FindClass(env, "com/natpryce/jnirn/examples/AnotherClassWithNativeMethods");
     if (the_class == NULL) return -1;
     status = (*env)->RegisterNatives(env, the_class, method_table_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods, method_count_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods);
+    if (status < 0) return status;
+
+    the_class = (*env)->FindClass(env, "com/natpryce/jnirn/examples/ClassWithNativeAndCallbackMethods");
+    if (the_class == NULL) return -1;
+    status = (*env)->RegisterNatives(env, the_class, method_table_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods, method_count_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods);
     if (status < 0) return status;
 
     the_class = (*env)->FindClass(env, "com/natpryce/jnirn/examples/ClassWithNativeMethods");

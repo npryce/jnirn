@@ -1,10 +1,71 @@
-#ifndef RegisterNatives_HEADER
-#define RegisterNatives_HEADER
+Header out/test/canGenerateHeaderDeclaringFunctionToRegisterNativeMethods.h:
+
+#ifndef Natives_HEADER
+#define Natives_HEADER
 
 /* GENERATED CODE - DO NOT EDIT */
 
 #include <jni.h>
 
-jint RegisterNatives(JNIEnv*);
+jint NativesInit(JNIEnv*);
 
 #endif
+
+
+C Source out/test/canGenerateHeaderDeclaringFunctionToRegisterNativeMethods.c:
+
+/* GENERATED CODE - DO NOT EDIT */
+
+#include <jni.h>
+#include "com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods.h"
+#include "com_natpryce_jnirn_examples_AnotherClassWithNativeMethods.h"
+#include "com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods.h"
+#include "com_natpryce_jnirn_examples_ClassWithNativeMethods.h"
+#include "canGenerateHeaderDeclaringFunctionToRegisterNativeMethods.h"
+
+static const JNINativeMethod method_table_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods[] = {
+   {"nativeMethod", "()V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__},
+   {"nativeMethod", "(II)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__II},
+   {"nativeMethod", "(Ljava/lang/String;)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__Ljava_lang_String_2},
+   {"nativeMethod", "(Ljava/lang/String;Ljava/lang/String;)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__Ljava_lang_String_2Ljava_lang_String_2},
+   {"nativeMethod", "(Ljava/math/BigInteger;Ljava/math/BigInteger;Ljava/math/BigInteger;)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__Ljava_math_BigInteger_2Ljava_math_BigInteger_2Ljava_math_BigInteger_2},
+   {"native_Method_With_Underscores", "()V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_native_1Method_1With_1Underscores__},
+   {"native_Method_With_Underscores", "(II)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_native_1Method_1With_1Underscores__II},
+   {"native_Method_With_Underscores", "(Ljava/lang/String;Ljava/lang/String;)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_native_1Method_1With_1Underscores__Ljava_lang_String_2Ljava_lang_String_2}
+};
+static const JNINativeMethod method_table_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods[] = {
+   {"nativeMethodOne", "()I", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodOne},
+   {"nativeMethodTwo", "()I", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodTwo}
+};
+static const JNINativeMethod method_table_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods[] = {
+   {"nativeMethod", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods_nativeMethod}
+};
+static const JNINativeMethod method_table_com_natpryce_jnirn_examples_ClassWithNativeMethods[] = {
+   {"simpleStatic", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_simpleStatic},
+   {"simpleNonStatic", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_simpleNonStatic},
+   {"method_With_Underscores", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_method_1With_1Underscores},
+   {"methodWithParametersAndResult", "(ILjava/math/BigInteger;)Ljava/lang/String;", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_methodWithParametersAndResult}
+};
+
+struct registration { const char * class_name; const JNINativeMethod *methods; int method_count; };
+static const struct registration registrations[] = {
+    {"com/natpryce/jnirn/examples/AClassWithOverloadedNativeMethods", method_table_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods, 8},
+    {"com/natpryce/jnirn/examples/AnotherClassWithNativeMethods", method_table_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods, 2},
+    {"com/natpryce/jnirn/examples/ClassWithNativeAndCallbackMethods", method_table_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods, 1},
+    {"com/natpryce/jnirn/examples/ClassWithNativeMethods", method_table_com_natpryce_jnirn_examples_ClassWithNativeMethods, 4},
+};
+
+jint NativesInit(JNIEnv *env) {
+    jclass the_class;
+    jint status;
+    int i, j;
+
+    for (i = 0; i < 4; i++) {
+        the_class = (*env)->FindClass(env, registrations[i].class_name);
+        if (the_class == NULL) return -1;
+        status = (*env)->RegisterNatives(env, the_class, registrations[i].methods, registrations[i].method_count);
+        if (status < 0) return status;
+    }
+
+    return 0;
+}

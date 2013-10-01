@@ -1,3 +1,4 @@
 out/test/generatesDependencyRules.c: out/test/jnirn/com/natpryce/jnirn/examples/AClassWithOverloadedNativeMethods.class
 out/test/generatesDependencyRules.c: out/test/jnirn/com/natpryce/jnirn/examples/AnotherClassWithNativeMethods.class
+out/test/generatesDependencyRules.c: out/test/jnirn/com/natpryce/jnirn/examples/ClassWithNativeAndCallbackMethods.class
 out/test/generatesDependencyRules.c: out/test/jnirn/com/natpryce/jnirn/examples/ClassWithNativeMethods.class

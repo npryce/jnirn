@@ -1,4 +1,8 @@
-package com.natpryce.jnirn;
+package com.natpryce.jnirn.output;
+
+import com.natpryce.jnirn.Output;
+import com.natpryce.jnirn.OutputFormat;
+import com.natpryce.jnirn.ParsedClass;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

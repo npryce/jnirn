@@ -1,5 +1,8 @@
-package com.natpryce.jnirn;
+package com.natpryce.jnirn.analysis;
 
+import com.google.common.collect.ImmutableSet;
+import com.natpryce.jnirn.Output;
+import com.natpryce.jnirn.ParsedClass;
 import org.objectweb.asm.ClassReader;
 
 import java.io.*;
@@ -11,7 +14,16 @@ import java.util.jar.JarFile;
 import static com.google.common.collect.Maps.newTreeMap;
 
 public class JavaBytecodeParser {
+    private final ImmutableSet<String> callbackAnnotations;
+    private final ImmutableSet<String> instantiatedAnnotations;
+    private final ImmutableSet<String> instantiatedClasses;
     private final SortedMap<String, ParsedClass> classesByName = newTreeMap();
+
+    public JavaBytecodeParser(ImmutableSet<String> callbackAnnotations, ImmutableSet<String> instantiatedAnnotations, ImmutableSet<String> instantiatedClasses) {
+        this.callbackAnnotations = callbackAnnotations;
+        this.instantiatedAnnotations = instantiatedAnnotations;
+        this.instantiatedClasses = instantiatedClasses;
+    }
 
     public void parse(File file) throws IOException {
         if (file.isDirectory()) {
@@ -74,22 +86,27 @@ public class JavaBytecodeParser {
 
     private void parseClassBytecode(File file, InputStream in) throws IOException {
         ClassReader classReader = new ClassReader(in);
-        NativeMethodCollector collector = new NativeMethodCollector();
-        classReader.accept(collector, ClassReader.SKIP_CODE);
+        ClassAnalysis analysis = new ClassAnalysis(callbackAnnotations, instantiatedClasses, instantiatedAnnotations);
 
-        if (collector.foundNativeMethods()) {
-            ParsedClass c = new ParsedClass(classReader.getClassName(), file, collector.nativeMethodsByName);
-            classesByName.put(c.name, c);
+        classReader.accept(analysis, ClassReader.SKIP_CODE);
+
+        if (analysis.classInterfacesWithNativeCode()) {
+            String className = classReader.getClassName();
+
+            classesByName.put(className, new ParsedClass(className, file,
+                    analysis.isInstantiatedFromNativeCode,
+                    analysis.nativeMethodsByName,
+                    analysis.callbackMethodsByName));
         }
     }
 
-    void parseAll(Iterable<File> inputFiles) throws IOException {
+    public void parseAll(Iterable<File> inputFiles) throws IOException {
         for (File inputFile : inputFiles) {
             parse(inputFile);
         }
     }
 
-    void writeTo(Output output) throws IOException {
+    public void writeTo(Output output) throws IOException {
         output.write(classesByName.values());
     }
 }

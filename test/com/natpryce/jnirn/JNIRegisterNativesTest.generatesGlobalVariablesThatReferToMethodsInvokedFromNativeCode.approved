@@ -38,6 +38,28 @@ static const struct registration registrations[] = {
     {"com/natpryce/jnirn/examples/ClassWithNativeMethods", method_table_com_natpryce_jnirn_examples_ClassWithNativeMethods, 4},
 };
 
+jclass Natives_class_com_natpryce_jnirn_examples_ClassWithCallbackMethods;
+jclass Natives_class_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods;
+
+jmethodID Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__callbackA;
+jmethodID Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__callbackB;
+jmethodID Natives_method_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods__calledFromNativeCode;
+
+struct method_ref { const char *name; const char *descriptor; jmethodID *method_id_p; };
+struct class_ref { const char *name; jobject *global_ref_p; int method_count; const struct method_ref* methods; };
+static const struct class_ref referenced_classes[] = {
+    { "com/natpryce/jnirn/examples/ClassWithCallbackMethods", &Natives_class_com_natpryce_jnirn_examples_ClassWithCallbackMethods, 2,
+        (struct method_ref[]) {
+            { "callbackA", "()V", &Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__callbackA },
+            { "callbackB", "()V", &Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__callbackB },
+        },
+    },
+    { "com/natpryce/jnirn/examples/ClassWithNativeAndCallbackMethods", &Natives_class_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods, 1,
+        (struct method_ref[]) {
+            { "calledFromNativeCode", "()V", &Natives_method_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods__calledFromNativeCode },
+        },
+    },
+};
 jint NativesInit(JNIEnv *env) {
     jclass the_class;
     jint status;
@@ -48,6 +70,17 @@ jint NativesInit(JNIEnv *env) {
         if (the_class == NULL) return -1;
         status = (*env)->RegisterNatives(env, the_class, registrations[i].methods, registrations[i].method_count);
         if (status < 0) return status;
+    }
+
+    for (i = 0; i < 2; i++) {
+        the_class = (*env)->FindClass(env, referenced_classes[i].name);
+        if (the_class == NULL) return -1;
+        *(referenced_classes[i].global_ref_p) = (*env)->NewGlobalRef(env, the_class);
+        if (*(referenced_classes[i].global_ref_p) == NULL) return -1;
+        for (j = 0; j < referenced_classes[i].method_count; j++) {
+            *(referenced_classes[i].methods[j].method_id_p) = (*env)->GetStaticMethodID(env, the_class, referenced_classes[i].methods[j].name, referenced_classes[i].methods[j].descriptor);
+            if(*(referenced_classes[i].methods[j].method_id_p) == NULL) return -1;
+        }
     }
 
     return 0;

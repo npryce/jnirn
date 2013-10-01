@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+ant all
+
+rm -rf out/e2e
+
+mkdir -p out/e2e
+
+javah -d out/e2e -classpath out/test/jnirn $(cd out/test/jnirn; find . -name *.class -path *examples* | sed -e 's:\./\(com/.*\)\.class:\1:' | tr / .)
+java -jar ./out/artifacts/jnirn_jar/jnirn.jar -o out/e2e/native.c -H out/e2e/native.h -C com.natpryce.jnirn.examples.NativeCallback out/test/jnirn
+
+gcc -I$JAVA_HOME/include -I$JAVA_HOME/include/linux -c out/e2e/native.c -o out/e2e/native.o
+
+
+
+

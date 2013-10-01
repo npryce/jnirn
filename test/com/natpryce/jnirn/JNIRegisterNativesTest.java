@@ -3,6 +3,7 @@ package com.natpryce.jnirn;
 import com.beust.jcommander.ParameterException;
 import com.natpryce.approvals.IO;
 import com.natpryce.approvals.junit.ApprovalRule;
+import com.natpryce.jnirn.examples.NativeCallback;
 import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
@@ -34,14 +35,24 @@ public class JNIRegisterNativesTest {
         File cFile = fileNameForTest(".c");
         File headerFile = fileNameForTest(".h");
         JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-H", headerFile.toString());
-        approval.check(IO.readContents(headerFile));
+
+        approval.check("Header " + headerFile + ":\n\n" + IO.readContents(headerFile) +
+                "\n\nC Source " + cFile + ":\n\n" + IO.readContents(cFile));
     }
 
     @Test
-    public void theGeneratedSourceHashIncludesTheGeneratedHeader() throws IOException {
+    public void generatesGlobalVariablesThatReferToMethodsInvokedFromNativeCode() throws IOException {
         File cFile = fileNameForTest(".c");
-        File headerFile = fileNameForTest(".h");
-        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-H", headerFile.toString());
+
+        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-C", NativeCallback.class.getName());
+
+        approval.check(IO.readContents(cFile));
+    }
+
+    @Test
+    public void canSpecifyNameOfFunctionThatRegistersNativeMethods() throws IOException {
+        File cFile = fileNameForTest(".c");
+        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-p", "Bobbly");
         approval.check(IO.readContents(cFile));
     }
 
@@ -52,19 +63,6 @@ public class JNIRegisterNativesTest {
         JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-M", mkFile.toString());
 
         approval.check(IO.readContents(mkFile));
-    }
-
-    @Test
-    public void canSpecifyNameOfFunctionThatRegistersNativeMethods() throws IOException {
-        File cFile = fileNameForTest(".c");
-        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-f", "DoTheDo");
-        approval.check(IO.readContents(cFile));
-    }
-
-    @Test
-    public void writesCCodeToStdoutByDefault() throws IOException {
-        JNIRN.main("out/test/jnirn");
-        approval.check(stdout.getLog());
     }
 
     @Test(expected = ParameterException.class)
