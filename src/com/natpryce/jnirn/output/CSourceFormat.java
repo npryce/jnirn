@@ -149,9 +149,9 @@ public class CSourceFormat implements OutputFormat {
     }
 
     private void writeGlobalCallbackTable(PrintWriter writer, List<ParsedClass> classes) {
-        writer.println("struct method_ref { const char *name; const char *descriptor; jmethodID *method_id_p; };");
+        writer.println("struct method_ref { const char *name; const char *signature; jmethodID *method_id_p; };");
         writer.println("struct class_ref { const char *name; jobject *global_ref_p; int method_count; const struct method_ref* methods; };");
-
+        writer.println();
         writer.println("static const struct class_ref referenced_classes[] = {");
 
         for (ParsedClass c : classes) {
@@ -199,7 +199,7 @@ public class CSourceFormat implements OutputFormat {
             writer.println("        *(referenced_classes[i].global_ref_p) = (*env)->NewGlobalRef(env, the_class);");
             writer.println("        if (*(referenced_classes[i].global_ref_p) == NULL) return -1;");
             writer.println("        for (j = 0; j < referenced_classes[i].method_count; j++) {");
-            writer.println("            *(referenced_classes[i].methods[j].method_id_p) = (*env)->GetStaticMethodID(env, the_class, referenced_classes[i].methods[j].name, referenced_classes[i].methods[j].descriptor);");
+            writer.println("            *(referenced_classes[i].methods[j].method_id_p) = (*env)->GetStaticMethodID(env, the_class, referenced_classes[i].methods[j].name, referenced_classes[i].methods[j].signature);");
             writer.println("            if(*(referenced_classes[i].methods[j].method_id_p) == NULL) return -1;");
             writer.println("        }");
             writer.println("    }");

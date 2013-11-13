@@ -47,8 +47,9 @@ jmethodID Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__c
 jmethodID Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__callbackB;
 jmethodID Natives_method_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods__calledFromNativeCode;
 
-struct method_ref { const char *name; const char *descriptor; jmethodID *method_id_p; };
+struct method_ref { const char *name; const char *signature; jmethodID *method_id_p; };
 struct class_ref { const char *name; jobject *global_ref_p; int method_count; const struct method_ref* methods; };
+
 static const struct class_ref referenced_classes[] = {
     { "com/natpryce/jnirn/examples/ClassWithCallbackMethods", &Natives_class_com_natpryce_jnirn_examples_ClassWithCallbackMethods, 2,
         (struct method_ref[]) {
@@ -90,7 +91,7 @@ int NativesInit(JNIEnv *env, NativesErrorCallback error_callback, void *client_c
         *(referenced_classes[i].global_ref_p) = (*env)->NewGlobalRef(env, the_class);
         if (*(referenced_classes[i].global_ref_p) == NULL) return -1;
         for (j = 0; j < referenced_classes[i].method_count; j++) {
-            *(referenced_classes[i].methods[j].method_id_p) = (*env)->GetStaticMethodID(env, the_class, referenced_classes[i].methods[j].name, referenced_classes[i].methods[j].descriptor);
+            *(referenced_classes[i].methods[j].method_id_p) = (*env)->GetStaticMethodID(env, the_class, referenced_classes[i].methods[j].name, referenced_classes[i].methods[j].signature);
             if(*(referenced_classes[i].methods[j].method_id_p) == NULL) return -1;
         }
     }
