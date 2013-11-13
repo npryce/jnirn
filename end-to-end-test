@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-ant all
+ant real-clean all
 
 rm -rf out/e2e
 
@@ -12,6 +12,4 @@ java -jar ./out/artifacts/jnirn_jar/jnirn.jar -o out/e2e/native.c -H out/e2e/nat
 
 gcc -I$JAVA_HOME/include -I$JAVA_HOME/include/linux -c out/e2e/native.c -o out/e2e/native.o
 
-
-
-
+echo SUCCESS
