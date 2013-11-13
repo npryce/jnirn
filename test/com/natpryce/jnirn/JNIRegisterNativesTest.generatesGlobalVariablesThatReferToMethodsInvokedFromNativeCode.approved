@@ -6,6 +6,8 @@
 #include "com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods.h"
 #include "com_natpryce_jnirn_examples_ClassWithNativeMethods.h"
 
+typedef void (*NativesErrorCallback)(void *client_context, const char *class_name, const char *method_name, const char *method_signature);
+
 static const JNINativeMethod method_table_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods[] = {
    {"nativeMethod", "()V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__},
    {"nativeMethod", "(II)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__II},
@@ -60,20 +62,29 @@ static const struct class_ref referenced_classes[] = {
         },
     },
 };
-jint NativesInit(JNIEnv *env) {
+
+int NativesInit(JNIEnv *env, NativesErrorCallback error_callback, void *client_context) {
     jclass the_class;
     jint status;
-    int i;
+    int i, j;
 
     for (i = 0; i < 4; i++) {
         the_class = (*env)->FindClass(env, registrations[i].class_name);
-        if (the_class == NULL) return -1;
-        status = (*env)->RegisterNatives(env, the_class, registrations[i].methods, registrations[i].method_count);
-        if (status < 0) return status;
+        if (the_class == NULL) {
+            error_callback(client_context, registrations[i].class_name, NULL, NULL);
+            return -1;
+        }
+        for (j = 0; j < registrations[i].method_count; j++) {
+            const JNINativeMethod *method = &registrations[i].methods[j];
+            status = (*env)->RegisterNatives(env, the_class, method, 1);
+            if (status < 0) {
+                error_callback(client_context, registrations[i].class_name, method->name, method->signature);
+                return -1;
+            }
+        }
     }
 
     for (i = 0; i < 2; i++) {
-        int j;
         the_class = (*env)->FindClass(env, referenced_classes[i].name);
         if (the_class == NULL) return -1;
         *(referenced_classes[i].global_ref_p) = (*env)->NewGlobalRef(env, the_class);

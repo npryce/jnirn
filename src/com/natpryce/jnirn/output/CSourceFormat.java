@@ -18,10 +18,12 @@ import static com.google.common.collect.Lists.newArrayList;
 
 public class CSourceFormat implements OutputFormat {
     private final String modulePrefix;
+    private String callbackTypeName;
     private final Optional<String> headerFileName;
 
     public CSourceFormat(String modulePrefix, Optional<String> headerFileName) {
         this.modulePrefix = modulePrefix;
+        this.callbackTypeName = modulePrefix + "ErrorCallback";
         this.headerFileName = headerFileName;
     }
 
@@ -34,15 +36,22 @@ public class CSourceFormat implements OutputFormat {
         writer.println();
         writeIncludeDirectives(writer, classesWithNativeMethods);
         writer.println();
+
+        if (! headerFileName.isPresent()) {
+            writer.println("typedef void (*" + callbackTypeName + ")(void *client_context, const char *class_name, const char *method_name, const char *method_signature);");
+            writer.println();
+        }
+
         writeNativeMethodTables(writer, classesWithNativeMethods);
-        writer.println();
         if (!classesWithCallbackMethods.isEmpty()) {
+            writer.println();
             writeGlobalClassReferences(writer, classesWithCallbackMethods);
             writer.println();
             writeGlobalCallbackVariables(writer, classesWithCallbackMethods);
             writer.println();
             writeGlobalCallbackTable(writer, classesWithCallbackMethods);
         }
+        writer.println();
         writeInitialisationFunction(writer, classesWithNativeMethods, classesWithCallbackMethods);
     }
 
@@ -101,7 +110,6 @@ public class CSourceFormat implements OutputFormat {
     }
 
     private void writeRegistrationList(PrintWriter writer, Iterable<ParsedClass> classes) {
-
         writer.println("struct registration { const char * class_name; const JNINativeMethod *methods; int method_count; };");
 
         writer.println("static const struct registration registrations[] = {");
@@ -162,22 +170,30 @@ public class CSourceFormat implements OutputFormat {
     }
 
     private void writeInitialisationFunction(PrintWriter writer, List<ParsedClass> classesWithNativeMethods, List<ParsedClass> classesWithCallbackMethods) {
-        writer.println("jint " + modulePrefix + "Init(JNIEnv *env) {");
+        writer.println("int " + modulePrefix + "Init(JNIEnv *env, " + callbackTypeName + " error_callback, void *client_context) {");
         writer.println("    jclass the_class;");
         writer.println("    jint status;");
-        writer.println("    int i;");
+        writer.println("    int i, j;");
         writer.println();
         writer.println("    for (i = 0; i < " + classesWithNativeMethods.size() + "; i++) {");
         writer.println("        the_class = (*env)->FindClass(env, registrations[i].class_name);");
-        writer.println("        if (the_class == NULL) return -1;");
-        writer.println("        status = (*env)->RegisterNatives(env, the_class, registrations[i].methods, registrations[i].method_count);");
-        writer.println("        if (status < 0) return status;");
+        writer.println("        if (the_class == NULL) {");
+        writer.println("            error_callback(client_context, registrations[i].class_name, NULL, NULL);");
+        writer.println("            return -1;");
+        writer.println("        }");
+        writer.println("        for (j = 0; j < registrations[i].method_count; j++) {");
+        writer.println("            const JNINativeMethod *method = &registrations[i].methods[j];");
+        writer.println("            status = (*env)->RegisterNatives(env, the_class, method, 1);");
+        writer.println("            if (status < 0) {");
+        writer.println("                error_callback(client_context, registrations[i].class_name, method->name, method->signature);");
+        writer.println("                return -1;");
+        writer.println("            }");
+        writer.println("        }");
         writer.println("    }");
         writer.println();
 
         if (!classesWithCallbackMethods.isEmpty()) {
             writer.println("    for (i = 0; i < " + classesWithCallbackMethods.size() + "; i++) {");
-            writer.println("        int j;");
             writer.println("        the_class = (*env)->FindClass(env, referenced_classes[i].name);");
             writer.println("        if (the_class == NULL) return -1;");
             writer.println("        *(referenced_classes[i].global_ref_p) = (*env)->NewGlobalRef(env, the_class);");
