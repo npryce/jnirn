@@ -58,7 +58,7 @@ static const struct registration registrations[] = {
 jint NativesInit(JNIEnv *env) {
     jclass the_class;
     jint status;
-    int i, j;
+    int i;
 
     for (i = 0; i < 4; i++) {
         the_class = (*env)->FindClass(env, registrations[i].class_name);

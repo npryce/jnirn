@@ -165,7 +165,7 @@ public class CSourceFormat implements OutputFormat {
         writer.println("jint " + modulePrefix + "Init(JNIEnv *env) {");
         writer.println("    jclass the_class;");
         writer.println("    jint status;");
-        writer.println("    int i, j;");
+        writer.println("    int i;");
         writer.println();
         writer.println("    for (i = 0; i < " + classesWithNativeMethods.size() + "; i++) {");
         writer.println("        the_class = (*env)->FindClass(env, registrations[i].class_name);");
@@ -177,6 +177,7 @@ public class CSourceFormat implements OutputFormat {
 
         if (!classesWithCallbackMethods.isEmpty()) {
             writer.println("    for (i = 0; i < " + classesWithCallbackMethods.size() + "; i++) {");
+            writer.println("        int j;");
             writer.println("        the_class = (*env)->FindClass(env, referenced_classes[i].name);");
             writer.println("        if (the_class == NULL) return -1;");
             writer.println("        *(referenced_classes[i].global_ref_p) = (*env)->NewGlobalRef(env, the_class);");
