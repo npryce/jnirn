@@ -34,6 +34,8 @@
     <exclude name="**/__pycache__/**"/>
     <exclude name="**/.bundle/**"/>
     <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.o/**"/>
+    <exclude name="**/*.obj/**"/>
   </patternset>
   <patternset id="library.patterns">
     <include name="*.war"/>
@@ -56,6 +58,7 @@
     <include name="**/?*.dtd"/>
     <include name="**/?*.tld"/>
     <include name="**/?*.ftl"/>
+    <include name="**/?*.txt"/>
   </patternset>
   
   
@@ -79,6 +82,10 @@
     <fileset dir="${basedir}/lib/jcommander">
       <patternset refid="library.patterns"/>
     </fileset>
+  </path>
+  
+  <path id="library.jmustache-1.8.classpath">
+    <pathelement location="${basedir}/lib/jmustache/jmustache-1.8.jar"/>
   </path>
   
   <path id="library.junit.classpath">
@@ -119,6 +126,7 @@
     <path refid="library.jcommander.classpath"/>
     <path refid="library.guava.classpath"/>
     <path refid="library.system-rules.classpath"/>
+    <path refid="library.jmustache-1.8.classpath"/>
   </path>
   
   <path id="jnirn.runtime.production.module.classpath">
@@ -129,6 +137,7 @@
     <path refid="library.jcommander.classpath"/>
     <path refid="library.guava.classpath"/>
     <path refid="library.system-rules.classpath"/>
+    <path refid="library.jmustache-1.8.classpath"/>
   </path>
   
   <path id="jnirn.module.classpath">
@@ -139,6 +148,7 @@
     <path refid="library.jcommander.classpath"/>
     <path refid="library.guava.classpath"/>
     <path refid="library.system-rules.classpath"/>
+    <path refid="library.jmustache-1.8.classpath"/>
   </path>
   
   <path id="jnirn.runtime.module.classpath">
@@ -150,6 +160,7 @@
     <path refid="library.jcommander.classpath"/>
     <path refid="library.guava.classpath"/>
     <path refid="library.system-rules.classpath"/>
+    <path refid="library.jmustache-1.8.classpath"/>
   </path>
   
   
@@ -246,6 +257,7 @@
       <zipfileset src="${basedir}/lib/guava/guava-14.0.1.jar"/>
       <zipfileset src="${basedir}/lib/jcommander/jcommander-1.23.jar"/>
       <zipfileset src="${basedir}/lib/asm/asm-debug-all-4.1.jar"/>
+      <zipfileset src="${basedir}/lib/jmustache/jmustache-1.8.jar"/>
     </jar>
     <copy file="${temp.jar.path.jnirn.jar}" tofile="${artifact.temp.output.jnirn:jar}/jnirn.jar"/>
   </target>

@@ -6,10 +6,14 @@ import com.beust.jcommander.ParameterException;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import com.natpryce.jnirn.analysis.JavaBytecodeParser;
-import com.natpryce.jnirn.output.*;
+import com.natpryce.jnirn.output.CHeaderFormat;
+import com.natpryce.jnirn.output.CSourceFormat;
+import com.natpryce.jnirn.output.FileOutput;
+import com.natpryce.jnirn.output.MakeDependencyFormat;
+import com.samskivert.mustache.Mustache;
+import com.samskivert.mustache.Template;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 import java.util.Set;
 
@@ -26,8 +30,7 @@ public class JNIRN {
 
         if (app.help) {
             jCommander.usage();
-        }
-        else {
+        } else {
             app.run();
         }
     }
@@ -35,28 +38,34 @@ public class JNIRN {
     @Parameter
     public List<File> inputFiles = newArrayList();
 
-    @Parameter(names="-o", description = "name of generated C source file")
+    @Parameter(names = "-ct", description = "mustache template for C source file")
+    public String cSourceFileTemplate = null;
+
+    @Parameter(names = "-Ht", description = "mustache template for C header file")
+    public String cHeaderFileTemplate = null;
+
+    @Parameter(names = "-o", description = "name of generated C source file")
     public String outputCSourceFile = null;
 
-    @Parameter(names="-H", description = "name of generated C header file")
+    @Parameter(names = "-H", description = "name of generated C header file")
     public String outputCHeaderFile = null;
 
-    @Parameter(names="-p", description = "prefix for all globally visible symbols")
+    @Parameter(names = "-p", description = "prefix for all globally visible symbols")
     public String modulePrefix = "Natives";
 
-    @Parameter(names="-M", description = "file in which to generate dependency rules in make syntax (requires -o)")
+    @Parameter(names = "-M", description = "file in which to generate dependency rules in make syntax (requires -o)")
     public String outputMakefile = null;
 
-    @Parameter(names={"-C", "--callback-annotation"}, description = "FQN of an annotation used to identify Java methods called from native code")
+    @Parameter(names = {"-C", "--callback-annotation"}, description = "FQN of an annotation used to identify Java methods called from native code")
     public Set<String> callbackAnnotations = newHashSet();
 
-    @Parameter(names={"-I", "--instantiated-annotation"}, description = "FQN of an annotation used to identify classes instantiated from native code")
+    @Parameter(names = {"-I", "--instantiated-annotation"}, description = "FQN of an annotation used to identify classes instantiated from native code")
     public Set<String> instantiatedAnnotations = newHashSet();
 
-    @Parameter(names={"-i", "--instantiated-class"}, description = "FQN of a class instantiated from native code")
+    @Parameter(names = {"-i", "--instantiated-class"}, description = "FQN of a class instantiated from native code")
     public Set<String> instantiatedClasses = newHashSet();
 
-    @Parameter(names={"-h","--help", "-?"}, description = "show this help", hidden = true)
+    @Parameter(names = {"-h", "--help", "-?"}, description = "show this help", hidden = true)
     public boolean help = false;
 
     public void run() throws IOException {
@@ -76,15 +85,24 @@ public class JNIRN {
         }
     }
 
-    private Iterable<Output> outputs() {
+    private Iterable<Output> outputs() throws FileNotFoundException {
         List<Output> outputs = newArrayList();
 
         if (outputCSourceFile != null) {
-            outputs.add(new FileOutput(outputCSourceFile, new CSourceFormat(modulePrefix, Optional.fromNullable(outputCHeaderFile))));
+            outputs.add(new FileOutput(outputCSourceFile,
+                    new CSourceFormat(
+                            loadTemplateOrDefault(cSourceFileTemplate, CSourceFormat.class, "c-source-template.txt"),
+                            modulePrefix, Optional.fromNullable(outputCHeaderFile)
+                    ))
+            );
         }
 
         if (outputCHeaderFile != null) {
-            outputs.add(new FileOutput(outputCHeaderFile, new CHeaderFormat(modulePrefix)));
+            outputs.add(new FileOutput(outputCHeaderFile,
+                    new CHeaderFormat(
+                            loadTemplateOrDefault(cHeaderFileTemplate, CHeaderFormat.class, "c-header-template.txt"),
+                            modulePrefix))
+            );
         }
 
         if (outputMakefile != null) {
@@ -93,4 +111,35 @@ public class JNIRN {
 
         return outputs;
     }
+
+    private Template loadTemplateOrDefault(String parameterValue, Class<?> owner, String resourceName) throws FileNotFoundException {
+        return parameterValue == null ? fromClass(owner, resourceName) : fromFile(parameterValue);
+    }
+
+
+    private Template fromClass(Class<?> owner, String resourceName) {
+        InputStream resource = owner.getResourceAsStream(resourceName);
+        return fromReader(new InputStreamReader(resource));
+    }
+
+    private Template fromFile(String filePath) throws FileNotFoundException {
+        return fromReader(new FileReader(filePath));
+    }
+
+    private Template fromReader(InputStreamReader source) {
+        try {
+            return Mustache.compiler().compile(source);
+        } finally {
+            closeQuietly(source);
+        }
+    }
+
+    private static void closeQuietly(InputStreamReader source) {
+        try {
+            source.close();
+        } catch (IOException e) {
+
+        }
+    }
+
 }

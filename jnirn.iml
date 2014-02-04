@@ -15,6 +15,7 @@
     <orderEntry type="library" name="jcommander" level="project" />
     <orderEntry type="library" name="guava" level="project" />
     <orderEntry type="library" name="system-rules" level="project" />
+    <orderEntry type="library" name="jmustache-1.8" level="project" />
   </component>
 </module>
 

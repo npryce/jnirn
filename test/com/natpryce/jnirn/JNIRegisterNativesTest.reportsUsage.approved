@@ -9,8 +9,10 @@ Usage: jnirn [options]
     -i, --instantiated-class        FQN of a class instantiated from native code
                                     Default: []
     -H                              name of generated C header file
+    -Ht                             mustache template for C header file
     -M                              file in which to generate dependency rules
                                     in make syntax (requires -o)
+    -ct                             mustache template for C source file
     -o                              name of generated C source file
     -p                              prefix for all globally visible symbols
                                     Default: Natives

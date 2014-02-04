@@ -2,28 +2,48 @@ package com.natpryce.jnirn;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimap;
 import org.objectweb.asm.commons.Method;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 public class ParsedClass {
-    public final String name;
+    private final String name;
     public final File file;
     public final boolean isInstantiatedByNativeCode;
-    public final ImmutableMultimap<String, Method> nativeMethods;
-    public final ImmutableMultimap<String, Method> callbackMethods;
+    public final List<ParsedMethod> nativeMethods;
+    public final List<ParsedMethod> callbackMethods;
 
     public ParsedClass(String name, File file, boolean instantiatedByNativeCode, Multimap<String, Method> nativeMethods, Multimap<String, Method> callbackMethods) {
         this.name = name;
         this.file = file;
         this.isInstantiatedByNativeCode = instantiatedByNativeCode;
-        this.nativeMethods = ImmutableMultimap.copyOf(nativeMethods);
-        this.callbackMethods = ImmutableMultimap.copyOf(callbackMethods);
+        this.nativeMethods = aslist(nativeMethods);
+        this.callbackMethods = aslist(callbackMethods);
     }
 
-    public static final Function<ParsedClass,File> toFile  = new Function<ParsedClass, File>() {
+    private List<ParsedMethod> aslist(final Multimap<String, Method> nativeMethods) {
+        return newArrayList(
+                Iterables.transform(nativeMethods.entries(), new Function<Map.Entry<String, Method>, ParsedMethod>() {
+                    @Override
+                    public ParsedMethod apply(Map.Entry<String, Method> input) {
+                        return new ParsedMethod(
+                                input.getKey(),
+                                input.getValue(),
+                                nativeMethods.get(input.getKey()).size() > 1
+                        );
+                    }
+                })
+        );
+    }
+
+
+    public static final Function<ParsedClass, File> toFile = new Function<ParsedClass, File>() {
         @Override
         public File apply(ParsedClass input) {
             return input.file;
@@ -43,4 +63,12 @@ public class ParsedClass {
             return !c.callbackMethods.isEmpty();
         }
     };
+
+    public String className() {
+        return name;
+    }
+
+    public String cclass() {
+        return name.replace("/", "_");
+    }
 }

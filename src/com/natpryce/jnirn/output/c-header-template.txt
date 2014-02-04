@@ -1,0 +1,12 @@
+#ifndef {{modulePrefix}}_HEADER
+#define {{modulePrefix}}_HEADER
+
+/* GENERATED CODE - DO NOT EDIT */
+
+#include <jni.h>
+
+typedef void (*{{modulePrefix}}ErrorCallback)(void *client_context, const char *class_name, const char *method_name, const char *method_signature);
+
+int {{modulePrefix}}Init(JNIEnv*, {{modulePrefix}}ErrorCallback error_callback, void *client_context);
+
+#endif

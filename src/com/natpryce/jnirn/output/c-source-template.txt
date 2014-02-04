@@ -1,0 +1,88 @@
+/* GENERATED CODE - DO NOT EDIT */
+
+#include <jni.h>
+{{#natives}}
+#include "{{cclass}}.h"
+{{/natives}}
+{{#headerfiles}}
+#include "{{this}}"
+{{/headerfiles}}
+{{^headerfiles}}
+
+typedef void (*{{module}}ErrorCallback)(void *client_context, const char *class_name, const char *method_name, const char *method_signature);
+{{/headerfiles}}
+
+{{#natives}}
+static const JNINativeMethod method_table_{{cclass}}[] = {
+{{#nativeMethods}}   {"{{name}}", "{{descriptor}}", Java_{{cclass}}_{{cmethod}}}{{^-last}},{{/-last}}
+{{/nativeMethods}}
+};
+{{/natives}}
+
+struct registration { const char * class_name; const JNINativeMethod *methods; int method_count; };
+static const struct registration registrations[] = {
+{{#natives}}    {"{{name}}", method_table_{{cclass}}, {{nativeMethods.size}}},
+{{/natives}}
+};
+{{^callbacks.isEmpty}}
+
+{{#callbacks}}
+jclass {{module}}_class_{{cclass}};
+{{/callbacks}}
+
+{{#callbacks}}
+{{#callbackMethods}}
+jmethodID {{module}}_method_{{cclass}}__{{name}};
+{{/callbackMethods}}{{/callbacks}}
+struct method_ref { const char *name; const char *signature; jmethodID *method_id_p; };
+struct class_ref { const char *name; jobject *global_ref_p; int method_count; const struct method_ref* methods; };
+
+static const struct class_ref referenced_classes[] = {
+{{#callbacks}}
+    { "{{className}}", &{{module}}_class_{{cclass}}, {{callbackMethods.size}},
+        (struct method_ref[]) {
+{{#callbackMethods}}
+            { "{{methodName}}", "{{descriptor}}", &{{module}}_method_{{cclass}}__{{name}} },
+{{/callbackMethods}}
+        },
+    },
+{{/callbacks}}
+};
+{{/callbacks.isEmpty}}
+
+int {{module}}Init(JNIEnv *env, {{module}}ErrorCallback error_callback, void *client_context) {
+    jclass the_class;
+    jint status;
+    int i, j;
+
+    for (i = 0; i < {{natives.size}}; i++) {
+        the_class = (*env)->FindClass(env, registrations[i].class_name);
+        if (the_class == NULL) {
+            error_callback(client_context, registrations[i].class_name, NULL, NULL);
+            return -1;
+        }
+        for (j = 0; j < registrations[i].method_count; j++) {
+            const JNINativeMethod *method = &registrations[i].methods[j];
+            status = (*env)->RegisterNatives(env, the_class, method, 1);
+            if (status < 0) {
+                error_callback(client_context, registrations[i].class_name, method->name, method->signature);
+                return -1;
+            }
+        }
+    }
+{{^callbacks.isEmpty}}
+
+    for (i = 0; i < {{callbacks.size}}; i++) {
+        the_class = (*env)->FindClass(env, referenced_classes[i].name);
+        if (the_class == NULL) return -1;
+        *(referenced_classes[i].global_ref_p) = (*env)->NewGlobalRef(env, the_class);
+        if (*(referenced_classes[i].global_ref_p) == NULL) return -1;
+        for (j = 0; j < referenced_classes[i].method_count; j++) {
+            *(referenced_classes[i].methods[j].method_id_p) = (*env)->GetStaticMethodID(env, the_class, referenced_classes[i].methods[j].name, referenced_classes[i].methods[j].signature);
+            if(*(referenced_classes[i].methods[j].method_id_p) == NULL) return -1;
+        }
+    }
+{{/callbacks.isEmpty}}
+
+    return 0;
+}
