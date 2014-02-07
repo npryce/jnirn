@@ -24,7 +24,36 @@ com.natpryce.approvals.junit.ApprovalRule -> e:
     com.natpryce.approvals.Approver approver() -> a
     org.junit.runners.model.Statement apply(org.junit.runners.model.Statement,org.junit.runner.Description) -> a
     java.io.File testFile(java.io.File,org.junit.runner.Description,java.lang.String) -> a
-com.natpryce.jnirn.JNIRegisterNativesTest -> f:
+com.natpryce.jnirn.examples.AClassWithOverloadedNativeMethods -> f:
+    void nativeMethod() -> a
+    void nativeMethod(int,int) -> a
+    void nativeMethod(java.lang.String) -> a
+    void nativeMethod(java.lang.String,java.lang.String) -> a
+    void nativeMethod(java.math.BigInteger,java.math.BigInteger,java.math.BigInteger) -> a
+    void native_Method_With_Underscores() -> b
+    void native_Method_With_Underscores(int,int) -> b
+    void native_Method_With_Underscores(java.lang.String,java.lang.String) -> b
+com.natpryce.jnirn.examples.AbstractClassWithNoNativeMethods -> g:
+    void thisIsNotNative() -> a
+com.natpryce.jnirn.examples.AnotherClassWithNativeMethods -> h:
+    int nativeMethodOne() -> a
+    int nativeMethodTwo() -> b
+com.natpryce.jnirn.examples.ClassWithCallbackMethods -> i:
+    void callbackA() -> a
+    void callbackB() -> b
+com.natpryce.jnirn.examples.ClassWithNativeAndCallbackMethods -> j:
+    void nativeMethod() -> a
+    void calledFromNativeCode() -> b
+com.natpryce.jnirn.examples.ClassWithNativeMethods -> k:
+    void simpleStatic() -> a
+    void simpleNonStatic() -> b
+    void method_With_Underscores() -> c
+    java.lang.String methodWithParametersAndResult(int,java.math.BigInteger) -> a
+com.natpryce.jnirn.examples.ClassWithNoNativeMethods -> l:
+    void thisIsNotNative() -> a
+    void thisIsNotNativeEither() -> b
+com.natpryce.jnirn.examples.NativeCallback -> m:
+com.natpryce.jnirn.noproguard.JNIRegisterNativesTest -> n:
     org.junit.rules.TestName testName -> a
     org.junit.contrib.java.lang.system.StandardOutputStreamLog stdout -> b
     com.natpryce.approvals.junit.ApprovalRule approval -> c
@@ -36,57 +65,41 @@ com.natpryce.jnirn.JNIRegisterNativesTest -> f:
     void cannotGenerateMakefileDependenciesIfOutputFileNameNotSpecified() -> f
     void reportsUsage() -> g
     java.io.File fileNameForTest(java.lang.String) -> a
-com.natpryce.jnirn.examples.AClassWithOverloadedNativeMethods -> com.natpryce.jnirn.examples.AClassWithOverloadedNativeMethods:
-    void nativeMethod() -> nativeMethod
-    void nativeMethod(int,int) -> nativeMethod
-    void nativeMethod(java.lang.String) -> nativeMethod
-    void nativeMethod(java.lang.String,java.lang.String) -> nativeMethod
-    void nativeMethod(java.math.BigInteger,java.math.BigInteger,java.math.BigInteger) -> nativeMethod
-    void native_Method_With_Underscores() -> native_Method_With_Underscores
-    void native_Method_With_Underscores(int,int) -> native_Method_With_Underscores
-    void native_Method_With_Underscores(java.lang.String,java.lang.String) -> native_Method_With_Underscores
-com.natpryce.jnirn.examples.AbstractClassWithNoNativeMethods -> com.natpryce.jnirn.examples.a:
-    void thisIsNotNative() -> a
-com.natpryce.jnirn.examples.AnotherClassWithNativeMethods -> com.natpryce.jnirn.examples.AnotherClassWithNativeMethods:
-    int nativeMethodOne() -> nativeMethodOne
-    int nativeMethodTwo() -> nativeMethodTwo
-com.natpryce.jnirn.examples.ClassWithCallbackMethods -> com.natpryce.jnirn.examples.b:
-    void callbackA() -> a
-    void callbackB() -> b
-com.natpryce.jnirn.examples.ClassWithNativeAndCallbackMethods -> com.natpryce.jnirn.examples.ClassWithNativeAndCallbackMethods:
-    void nativeMethod() -> nativeMethod
-    void calledFromNativeCode() -> a
-com.natpryce.jnirn.examples.ClassWithNativeMethods -> com.natpryce.jnirn.examples.ClassWithNativeMethods:
-    void simpleStatic() -> simpleStatic
-    void simpleNonStatic() -> simpleNonStatic
-    void method_With_Underscores() -> method_With_Underscores
-    java.lang.String methodWithParametersAndResult(int,java.math.BigInteger) -> methodWithParametersAndResult
-com.natpryce.jnirn.examples.ClassWithNoNativeMethods -> com.natpryce.jnirn.examples.c:
-    void thisIsNotNative() -> a
-    void thisIsNotNativeEither() -> b
-com.natpryce.jnirn.examples.NativeCallback -> com.natpryce.jnirn.examples.d:
-com.natpryce.jnirn.proguard.ClassMethodMapperTest -> g:
+com.natpryce.jnirn.proguard.ClassMethodMapperTest -> o:
     java.util.List nothing -> a
     com.natpryce.jnirn.proguard.MethodMaker maker -> b
-    com.natpryce.jnirn.proguard.ClassMethodMapper classMethodMapper -> c
+    com.natpryce.jnirn.proguard.Obfuscation obfuscation -> c
     void setUp() -> a
     void mappingMethodWithNoParameters() -> b
     void mappingMethodWithJavaLangParameters() -> c
     void mappingMethodWithMappedParameters() -> d
     void mappingMethodWithMappedParametersAndReturnValuesWithArrays() -> e
-com.natpryce.jnirn.proguard.JavaTypeConverterTest -> h:
+com.natpryce.jnirn.proguard.JNIRegisterNativesProguardTest -> p:
+    org.junit.rules.TestName testName -> a
+    org.junit.contrib.java.lang.system.StandardOutputStreamLog stdout -> b
+    com.natpryce.approvals.junit.ApprovalRule approval -> c
+    java.io.File proguardMapFile -> d
+    void generatesCCodeToRegisterNativeMethods() -> a
+    void canGenerateHeaderDeclaringFunctionToRegisterNativeMethods() -> b
+    void generatesGlobalVariablesThatReferToMethodsInvokedFromNativeCode() -> c
+    void canSpecifyNameOfFunctionThatRegistersNativeMethods() -> d
+    void generatesDependencyRules() -> e
+    void cannotGenerateMakefileDependenciesIfOutputFileNameNotSpecified() -> f
+    void reportsUsage() -> g
+    java.io.File fileNameForTest(java.lang.String) -> a
+com.natpryce.jnirn.proguard.JavaTypeConverterTest -> q:
     com.natpryce.jnirn.proguard.JavaTypeConverter converter -> a
     void testBasicTypes() -> a
     void testStandardJavaTypes() -> b
     void testSomeClassThatWeCantActuallyLoad() -> c
     void testBasicArrayType() -> d
     void testClassArrayType() -> e
-com.natpryce.jnirn.proguard.MapFileParserTest -> i:
+com.natpryce.jnirn.proguard.MapFileParserTest -> r:
     java.util.Map parsed -> a
     void readTheMapFile() -> a
     void testCanParseClassesFromAMapFile() -> b
     void testIncludesClassesEvenWhenTheHaveNoFieldsOrMethods() -> c
-com.natpryce.jnirn.proguard.MethodMakerTest -> j:
+com.natpryce.jnirn.proguard.MethodMakerTest -> s:
     java.util.List NO -> a
     com.natpryce.jnirn.proguard.MethodMaker methodMaker -> b
     void testConvertVoidNoArg() -> a

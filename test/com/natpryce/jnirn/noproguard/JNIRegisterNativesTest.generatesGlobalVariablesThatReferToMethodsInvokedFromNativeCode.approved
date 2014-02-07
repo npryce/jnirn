@@ -20,7 +20,8 @@ static const JNINativeMethod method_table_com_natpryce_jnirn_examples_AClassWith
 };
 static const JNINativeMethod method_table_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods[] = {
    {"nativeMethodOne", "()I", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodOne},
-   {"nativeMethodTwo", "()I", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodTwo}
+   {"nativeMethodTwo", "()I", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodTwo},
+   {"nativeMethodThree", "(Lcom/natpryce/jnirn/examples/AnotherClassWithNativeMethods$ArgClass;)Lcom/natpryce/jnirn/examples/AnotherClassWithNativeMethods$RetClass;", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodThree}
 };
 static const JNINativeMethod method_table_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods[] = {
    {"nativeMethod", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods_nativeMethod}
@@ -35,7 +36,7 @@ static const JNINativeMethod method_table_com_natpryce_jnirn_examples_ClassWithN
 struct registration { const char * class_name; const JNINativeMethod *methods; int method_count; };
 static const struct registration registrations[] = {
     {"com/natpryce/jnirn/examples/AClassWithOverloadedNativeMethods", method_table_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods, 8},
-    {"com/natpryce/jnirn/examples/AnotherClassWithNativeMethods", method_table_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods, 2},
+    {"com/natpryce/jnirn/examples/AnotherClassWithNativeMethods", method_table_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods, 3},
     {"com/natpryce/jnirn/examples/ClassWithNativeAndCallbackMethods", method_table_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods, 1},
     {"com/natpryce/jnirn/examples/ClassWithNativeMethods", method_table_com_natpryce_jnirn_examples_ClassWithNativeMethods, 4},
 };
@@ -45,16 +46,18 @@ jclass Natives_class_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMetho
 
 jmethodID Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__callbackA;
 jmethodID Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__callbackB;
+jmethodID Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__callbackC;
 jmethodID Natives_method_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods__calledFromNativeCode;
 
 struct method_ref { const char *name; const char *signature; jmethodID *method_id_p; };
 struct class_ref { const char *name; jobject *global_ref_p; int method_count; const struct method_ref* methods; };
 
 static const struct class_ref referenced_classes[] = {
-    { "com/natpryce/jnirn/examples/ClassWithCallbackMethods", &Natives_class_com_natpryce_jnirn_examples_ClassWithCallbackMethods, 2,
+    { "com/natpryce/jnirn/examples/ClassWithCallbackMethods", &Natives_class_com_natpryce_jnirn_examples_ClassWithCallbackMethods, 3,
         (struct method_ref[]) {
             { "callbackA", "()V", &Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__callbackA },
             { "callbackB", "()V", &Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__callbackB },
+            { "callbackC", "(Lcom/natpryce/jnirn/examples/ClassWithCallbackMethods$MyClass;)V", &Natives_method_com_natpryce_jnirn_examples_ClassWithCallbackMethods__callbackC },
         },
     },
     { "com/natpryce/jnirn/examples/ClassWithNativeAndCallbackMethods", &Natives_class_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods, 1,

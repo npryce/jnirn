@@ -48,7 +48,6 @@ public class ParsedClass {
         };
     }
 
-
     public static final Function<ParsedClass, File> toFile = new Function<ParsedClass, File>() {
         @Override
         public File apply(ParsedClass input) {
@@ -78,8 +77,17 @@ public class ParsedClass {
         return new ParsedClass(
                 className.obfuscatedAs(mapper.mapClass(className.inSource)),
                 file,
-                nativeMethods,
-                callbackMethods
+                newArrayList(Iterables.transform(nativeMethods, obfuscateMethod(mapper))),
+                newArrayList(Iterables.transform(callbackMethods, obfuscateMethod(mapper)))
         );
+    }
+
+    private Function<ParsedMethod, ParsedMethod> obfuscateMethod(final Obfuscation mapper) {
+        return new Function<ParsedMethod, ParsedMethod>() {
+            @Override
+            public ParsedMethod apply(ParsedMethod input) {
+                return input.obfuscate(className.inSource, mapper);
+            }
+        };
     }
 }

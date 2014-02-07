@@ -24,10 +24,12 @@ public class JNIRegisterNativesProguardTest {
     @Rule
     public ApprovalRule approval = new ApprovalRule("test");
 
+    File proguardMapFile = new File("test-input/jnirn.map.txt");
+
     @Test
     public void generatesCCodeToRegisterNativeMethods() throws IOException {
         File cFile = fileNameForTest(".c");
-        JNIRN.main("out/test/jnirn/", "-o", cFile.toString());
+        JNIRN.main("out/test/jnirn/", "-o", cFile.toString(), "-m", proguardMapFile.getAbsolutePath());
         approval.check(IO.readContents(cFile));
     }
 
