@@ -5,19 +5,15 @@ import org.objectweb.asm.commons.Method;
 
 public class ParsedMethod {
     public final ParsedClass owner;
-    public final Name _name;
+    public final Name methodName;
     public final Method method;
     public final boolean overloaded;
 
     public ParsedMethod(ParsedClass owner, Method method, boolean overloaded) {
         this.owner = owner;
-        this._name = new Name(method.getName());
+        this.methodName = new Name(method.getName());
         this.method = method;
         this.overloaded = overloaded;
-    }
-
-    public String methodName() {
-        return _name.binaryName;
     }
 
     public String descriptor() {
@@ -25,7 +21,7 @@ public class ParsedMethod {
     }
 
     public String cmethod() {
-        String v = _name.sourceName.replace("_", "_1");
+        String v = methodName.inSource.replace("_", "_1");
         return !overloaded ? v : v + "__" + signatureToC();
     }
 

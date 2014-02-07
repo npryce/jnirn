@@ -61,10 +61,10 @@ public class ParsedClass {
     };
 
     public String className() {
-        return _name.binaryName;
+        return _name.atRuntime;
     }
 
     public String cclass() {
-        return _name.sourceName.replace("/", "_");
+        return _name.inSource.replace("/", "_");
     }
 }
