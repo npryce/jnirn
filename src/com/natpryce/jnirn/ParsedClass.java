@@ -8,19 +8,18 @@ import org.objectweb.asm.commons.Method;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 import static com.google.common.collect.Lists.newArrayList;
 
 public class ParsedClass {
-    private final String name;
+    private final Name _name;
     public final File file;
     public final boolean isInstantiatedByNativeCode;
     public final List<ParsedMethod> nativeMethods;
     public final List<ParsedMethod> callbackMethods;
 
     public ParsedClass(String name, File file, boolean instantiatedByNativeCode, Multimap<String, Method> nativeMethods, Multimap<String, Method> callbackMethods) {
-        this.name = name;
+        this._name = new Name(name);
         this.file = file;
         this.isInstantiatedByNativeCode = instantiatedByNativeCode;
         this.nativeMethods = aslist(nativeMethods);
@@ -29,19 +28,16 @@ public class ParsedClass {
 
     private List<ParsedMethod> aslist(final Multimap<String, Method> nativeMethods) {
         return newArrayList(
-                Iterables.transform(nativeMethods.entries(), new Function<Map.Entry<String, Method>, ParsedMethod>() {
+                Iterables.transform(nativeMethods.values(), new Function<Method, ParsedMethod>() {
                     @Override
-                    public ParsedMethod apply(Map.Entry<String, Method> input) {
-                        return new ParsedMethod(
-                                input.getKey(),
-                                input.getValue(),
-                                nativeMethods.get(input.getKey()).size() > 1
-                        );
+                    public ParsedMethod apply(Method method) {
+                        boolean isOverloaded = nativeMethods.get(method.getName()).size() > 1;
+
+                        return new ParsedMethod(method, isOverloaded);
                     }
                 })
         );
     }
-
 
     public static final Function<ParsedClass, File> toFile = new Function<ParsedClass, File>() {
         @Override
@@ -65,10 +61,10 @@ public class ParsedClass {
     };
 
     public String className() {
-        return name;
+        return _name.binaryName;
     }
 
     public String cclass() {
-        return name.replace("/", "_");
+        return _name.sourceName.replace("/", "_");
     }
 }

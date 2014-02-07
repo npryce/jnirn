@@ -1,0 +1,2969 @@
+com.beust.jcommander.DynamicParameter -> a:
+    java.lang.String[] names() -> a
+    boolean required() -> b
+    java.lang.String description() -> c
+    java.lang.String descriptionKey() -> d
+    boolean hidden() -> e
+    java.lang.Class validateWith() -> f
+    java.lang.String assignment() -> g
+com.beust.jcommander.IDefaultProvider -> b:
+    java.lang.String getDefaultValueFor(java.lang.String) -> a
+com.beust.jcommander.IParameterValidator -> c:
+    void validate(java.lang.String,java.lang.String) -> a
+com.beust.jcommander.IStringConverter -> d:
+    java.lang.Object convert(java.lang.String) -> a
+com.beust.jcommander.IStringConverterFactory -> e:
+    java.lang.Class getConverter(java.lang.Class) -> a
+com.beust.jcommander.IVariableArity -> f:
+    int processVariableArity(java.lang.String,java.lang.String[]) -> a
+com.beust.jcommander.JCommander -> g:
+    java.util.Map m_descriptions -> a
+    java.util.List m_objects -> b
+    java.lang.reflect.Field m_mainParameterField -> c
+    java.lang.Object m_mainParameterObject -> d
+    com.beust.jcommander.Parameter m_mainParameterAnnotation -> e
+    com.beust.jcommander.ParameterDescription m_mainParameterDescription -> f
+    java.util.Map m_requiredFields -> g
+    java.util.Map m_fields -> h
+    java.util.ResourceBundle m_bundle -> i
+    com.beust.jcommander.IDefaultProvider m_defaultProvider -> j
+    java.util.Map m_commands -> k
+    java.util.Map aliasMap -> l
+    java.lang.String m_parsedCommand -> m
+    java.lang.String m_parsedAlias -> n
+    com.beust.jcommander.JCommander$ProgramName m_programName -> o
+    java.util.Comparator m_parameterDescriptionComparator -> p
+    int m_columnSize -> q
+    com.beust.jcommander.internal.Console m_console -> r
+    java.util.LinkedList CONVERTER_FACTORIES -> s
+    com.beust.jcommander.internal.Console getConsole() -> a
+    void addObject(java.lang.Object) -> a
+    void parse(java.lang.String[]) -> a
+    void parse(boolean,java.lang.String[]) -> a
+    java.lang.StringBuilder join(java.lang.Object[]) -> a
+    void initializeDefaultValues() -> f
+    void validateOptions() -> g
+    java.lang.String[] expandArgs(java.lang.String[]) -> b
+    java.util.List expandDynamicArg(java.lang.String) -> c
+    boolean isOption(java.lang.String[],java.lang.String) -> a
+    com.beust.jcommander.ParameterDescription getPrefixDescriptionFor(java.lang.String) -> d
+    com.beust.jcommander.ParameterDescription getDescriptionFor(java.lang.String[],java.lang.String) -> b
+    java.lang.String getSeparatorFor(java.lang.String[],java.lang.String) -> c
+    java.lang.String getOptionPrefixes(java.lang.String[],java.lang.String) -> d
+    java.util.List readFile(java.lang.String) -> e
+    java.lang.String trim(java.lang.String) -> f
+    void createDescriptions() -> h
+    void addDescription(java.lang.Object) -> b
+    void initializeDefaultValue(com.beust.jcommander.ParameterDescription) -> a
+    void parseValues(java.lang.String[]) -> c
+    java.lang.reflect.Type findFieldGenericType(java.lang.reflect.Field) -> a
+    int processVariableArity(java.lang.String[],int,com.beust.jcommander.ParameterDescription) -> a
+    int processFixedArity(java.lang.String[],int,com.beust.jcommander.ParameterDescription,java.lang.Class) -> a
+    char[] readPassword(java.lang.String) -> g
+    java.lang.String[] subArray(java.lang.String[],int) -> a
+    boolean isStringEmpty(java.lang.String) -> h
+    java.util.List getMainParameter(java.lang.String) -> i
+    java.lang.String getMainParameterDescription() -> b
+    void setProgramName(java.lang.String) -> a
+    void setProgramName(java.lang.String,java.lang.String[]) -> a
+    void usage(java.lang.String,java.lang.StringBuilder,java.lang.String) -> a
+    java.lang.String getCommandDescription(java.lang.String) -> b
+    java.lang.String getI18nString(java.lang.String,java.lang.String) -> a
+    void usage() -> c
+    void usage(java.lang.StringBuilder) -> a
+    void usage(java.lang.StringBuilder,java.lang.String) -> a
+    java.util.Comparator getParameterDescriptionComparator() -> i
+    int getColumnSize() -> d
+    void wrapDescription(java.lang.StringBuilder,int,java.lang.String) -> a
+    java.lang.String spaces(int) -> a
+    void p(java.lang.String) -> j
+    java.lang.Class findConverter(java.lang.Class) -> a
+    java.lang.Object convertValue(com.beust.jcommander.ParameterDescription,java.lang.String) -> a
+    java.lang.Object convertValue(java.lang.reflect.Field,java.lang.Class,java.lang.String) -> a
+    java.lang.Object convertToList(java.lang.String,com.beust.jcommander.IStringConverter,java.lang.Class) -> a
+    com.beust.jcommander.IStringConverter instantiateConverter(java.lang.String,java.lang.Class) -> a
+    java.lang.String s(int) -> b
+    java.util.List getObjects() -> e
+    com.beust.jcommander.JCommander findCommandByAlias(java.lang.String) -> k
+com.beust.jcommander.JCommander$1 -> h:
+    com.beust.jcommander.JCommander this$0 -> a
+    int compare(com.beust.jcommander.ParameterDescription,com.beust.jcommander.ParameterDescription) -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+com.beust.jcommander.JCommander$ProgramName -> i:
+    java.lang.String m_name -> a
+    java.util.List m_aliases -> b
+    java.lang.String getName() -> a
+    java.lang.String getDisplayName() -> b
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+    java.lang.String toString() -> toString
+    java.lang.String access$000(com.beust.jcommander.JCommander$ProgramName) -> a
+    java.lang.String access$100(com.beust.jcommander.JCommander$ProgramName) -> b
+com.beust.jcommander.MissingCommandException -> j:
+com.beust.jcommander.Parameter -> k:
+    java.lang.String[] names() -> a
+    java.lang.String description() -> b
+    boolean required() -> c
+    java.lang.String descriptionKey() -> d
+    int arity() -> e
+    boolean password() -> f
+    java.lang.Class converter() -> g
+    java.lang.Class listConverter() -> h
+    boolean hidden() -> i
+    java.lang.Class validateWith() -> j
+    boolean variableArity() -> k
+    java.lang.Class splitter() -> l
+com.beust.jcommander.ParameterDescription -> l:
+    java.lang.Object m_object -> a
+    com.beust.jcommander.WrappedParameter m_wrappedParameter -> b
+    com.beust.jcommander.Parameter m_parameterAnnotation -> c
+    com.beust.jcommander.DynamicParameter m_dynamicParameterAnnotation -> d
+    java.lang.reflect.Field m_field -> e
+    boolean m_assigned -> f
+    java.util.ResourceBundle m_bundle -> g
+    java.lang.String m_description -> h
+    com.beust.jcommander.JCommander m_jCommander -> i
+    java.lang.Object m_default -> j
+    java.lang.String m_longestName -> k
+    java.util.ResourceBundle findResourceBundle(java.lang.Object) -> a
+    boolean isEmpty(java.lang.String) -> b
+    void initDescription(java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void init(java.lang.Object,java.lang.reflect.Field,java.util.ResourceBundle,com.beust.jcommander.JCommander) -> a
+    void validateDefaultValues(java.lang.String[]) -> a
+    java.lang.String getLongestName() -> a
+    java.lang.Object getDefault() -> b
+    java.lang.String getDescription() -> c
+    java.lang.Object getObject() -> d
+    java.lang.String getNames() -> e
+    com.beust.jcommander.WrappedParameter getParameter() -> f
+    java.lang.reflect.Field getField() -> g
+    boolean isMultiOption() -> j
+    boolean isDynamicParameter(java.lang.reflect.Field) -> a
+    void addValue(java.lang.String) -> a
+    boolean isAssigned() -> h
+    void setAssigned(boolean) -> a
+    void addValue(java.lang.String,boolean) -> a
+    void validateParameter(java.lang.String,java.lang.String) -> a
+    void validateParameter(java.lang.Class,java.lang.String,java.lang.String) -> a
+    java.util.Collection newCollection(java.lang.Class) -> a
+    boolean fieldIsSetForTheFirstTime(boolean) -> b
+    void p(java.lang.String) -> c
+    java.lang.String toString() -> toString
+    boolean isDynamicParameter() -> i
+com.beust.jcommander.ParameterException -> m:
+com.beust.jcommander.Parameters -> n:
+    java.lang.String resourceBundle() -> a
+    java.lang.String separators() -> b
+    java.lang.String optionPrefixes() -> c
+    java.lang.String commandDescription() -> d
+    java.lang.String commandDescriptionKey() -> e
+com.beust.jcommander.ParametersDelegate -> o:
+com.beust.jcommander.ResourceBundle -> p:
+    java.lang.String value() -> a
+com.beust.jcommander.WrappedParameter -> q:
+    com.beust.jcommander.Parameter m_parameter -> a
+    com.beust.jcommander.DynamicParameter m_dynamicParameter -> b
+    int arity() -> a
+    boolean hidden() -> b
+    boolean required() -> c
+    boolean password() -> d
+    java.lang.String[] names() -> e
+    boolean variableArity() -> f
+    java.lang.Class validateWith() -> g
+    void addValue(java.lang.reflect.Field,java.lang.Object,java.lang.Object) -> a
+    void callPut(java.lang.Object,java.lang.reflect.Field,java.lang.String,java.lang.String) -> a
+    java.lang.reflect.Method findPut(java.lang.Class) -> a
+    java.lang.String getAssignment() -> h
+com.beust.jcommander.converters.BaseConverter -> r:
+    java.lang.String m_optionName -> a
+    java.lang.String getOptionName() -> a
+    java.lang.String getErrorString(java.lang.String,java.lang.String) -> a
+com.beust.jcommander.converters.BigDecimalConverter -> s:
+    java.math.BigDecimal convert(java.lang.String) -> b
+    java.lang.Object convert(java.lang.String) -> a
+com.beust.jcommander.converters.BooleanConverter -> t:
+    java.lang.Boolean convert(java.lang.String) -> b
+    java.lang.Object convert(java.lang.String) -> a
+com.beust.jcommander.converters.DoubleConverter -> u:
+    java.lang.Double convert(java.lang.String) -> b
+    java.lang.Object convert(java.lang.String) -> a
+com.beust.jcommander.converters.FileConverter -> v:
+    java.io.File convert(java.lang.String) -> b
+    java.lang.Object convert(java.lang.String) -> a
+com.beust.jcommander.converters.FloatConverter -> w:
+    java.lang.Float convert(java.lang.String) -> b
+    java.lang.Object convert(java.lang.String) -> a
+com.beust.jcommander.converters.IParameterSplitter -> x:
+    java.util.List split(java.lang.String) -> a
+com.beust.jcommander.converters.ISO8601DateConverter -> y:
+    java.text.SimpleDateFormat DATE_FORMAT -> a
+    java.util.Date convert(java.lang.String) -> b
+    java.lang.Object convert(java.lang.String) -> a
+com.beust.jcommander.converters.IntegerConverter -> z:
+    java.lang.Integer convert(java.lang.String) -> b
+    java.lang.Object convert(java.lang.String) -> a
+com.beust.jcommander.converters.LongConverter -> A:
+    java.lang.Long convert(java.lang.String) -> b
+    java.lang.Object convert(java.lang.String) -> a
+com.beust.jcommander.converters.NoConverter -> B:
+    java.lang.String convert(java.lang.String) -> b
+    java.lang.Object convert(java.lang.String) -> a
+com.beust.jcommander.converters.StringConverter -> C:
+    java.lang.String convert(java.lang.String) -> b
+    java.lang.Object convert(java.lang.String) -> a
+com.beust.jcommander.internal.Console -> D:
+    void print(java.lang.String) -> a
+    void println(java.lang.String) -> b
+    char[] readPassword() -> a
+com.beust.jcommander.internal.DefaultConsole -> E:
+    void print(java.lang.String) -> a
+    void println(java.lang.String) -> b
+    char[] readPassword() -> a
+com.beust.jcommander.internal.DefaultConverterFactory -> F:
+    java.util.Map m_classConverters -> a
+    java.lang.Class getConverter(java.lang.Class) -> a
+com.beust.jcommander.internal.JDK6Console -> G:
+    java.lang.Object console -> a
+    java.io.PrintWriter writer -> b
+    void print(java.lang.String) -> a
+    void println(java.lang.String) -> b
+    char[] readPassword() -> a
+com.beust.jcommander.internal.Lists -> H:
+    java.util.List newArrayList() -> a
+    java.util.LinkedList newLinkedList() -> b
+com.beust.jcommander.internal.Maps -> I:
+    java.util.Map newHashMap() -> a
+    java.util.Map newLinkedHashMap() -> b
+com.beust.jcommander.internal.Sets -> J:
+    java.util.Set newHashSet() -> a
+com.google.common.base.Absent -> K:
+    com.google.common.base.Absent INSTANCE -> a
+    java.util.Set asSet() -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+com.google.common.base.Function -> L:
+    java.lang.Object apply(java.lang.Object) -> a
+com.google.common.base.Joiner -> M:
+    java.lang.String separator -> a
+    com.google.common.base.Joiner on(java.lang.String) -> a
+    java.lang.Appendable appendTo(java.lang.Appendable,java.util.Iterator) -> a
+    java.lang.StringBuilder appendTo(java.lang.StringBuilder,java.lang.Iterable) -> a
+    java.lang.StringBuilder appendTo(java.lang.StringBuilder,java.util.Iterator) -> a
+    com.google.common.base.Joiner useForNull(java.lang.String) -> b
+    com.google.common.base.Joiner$MapJoiner withKeyValueSeparator(java.lang.String) -> c
+    java.lang.CharSequence toString(java.lang.Object) -> a
+com.google.common.base.Joiner$1 -> N:
+    java.lang.String val$nullText -> a
+    com.google.common.base.Joiner this$0 -> b
+    java.lang.CharSequence toString(java.lang.Object) -> a
+    com.google.common.base.Joiner useForNull(java.lang.String) -> b
+com.google.common.base.Joiner$MapJoiner -> O:
+    com.google.common.base.Joiner joiner -> a
+    java.lang.String keyValueSeparator -> b
+com.google.common.base.Objects -> P:
+    boolean equal(java.lang.Object,java.lang.Object) -> a
+com.google.common.base.Optional -> Q:
+    com.google.common.base.Optional absent() -> b
+    com.google.common.base.Optional fromNullable(java.lang.Object) -> a
+    java.util.Set asSet() -> a
+com.google.common.base.Preconditions -> R:
+    void checkArgument(boolean) -> a
+    void checkArgument(boolean,java.lang.Object) -> a
+    void checkArgument(boolean,java.lang.String,java.lang.Object[]) -> a
+    void checkState(boolean) -> b
+    void checkState(boolean,java.lang.Object) -> b
+    java.lang.Object checkNotNull(java.lang.Object) -> a
+    int checkElementIndex(int,int) -> a
+    int checkElementIndex(int,int,java.lang.String) -> a
+    java.lang.String badElementIndex(int,int,java.lang.String) -> c
+    int checkPositionIndex(int,int) -> b
+    int checkPositionIndex(int,int,java.lang.String) -> b
+    java.lang.String badPositionIndex(int,int,java.lang.String) -> d
+    void checkPositionIndexes(int,int,int) -> a
+    java.lang.String badPositionIndexes(int,int,int) -> b
+    java.lang.String format(java.lang.String,java.lang.Object[]) -> a
+com.google.common.base.Predicate -> S:
+    boolean apply(java.lang.Object) -> a
+com.google.common.base.Present -> T:
+    java.lang.Object reference -> a
+    java.util.Set asSet() -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+com.google.common.collect.AbstractIndexedListIterator -> U:
+    int size -> a
+    int position -> b
+    java.lang.Object get(int) -> a
+    boolean hasNext() -> hasNext
+    java.lang.Object next() -> next
+    int nextIndex() -> nextIndex
+    boolean hasPrevious() -> hasPrevious
+    java.lang.Object previous() -> previous
+    int previousIndex() -> previousIndex
+com.google.common.collect.AbstractIterator -> V:
+    com.google.common.collect.AbstractIterator$State state -> a
+    java.lang.Object next -> b
+    java.lang.Object computeNext() -> a
+    java.lang.Object endOfData() -> b
+    boolean hasNext() -> hasNext
+    boolean tryToComputeNext() -> c
+    java.lang.Object next() -> next
+com.google.common.collect.AbstractIterator$1 -> W:
+    int[] $SwitchMap$com$google$common$collect$AbstractIterator$State -> a
+com.google.common.collect.AbstractIterator$State -> X:
+    com.google.common.collect.AbstractIterator$State READY -> a
+    com.google.common.collect.AbstractIterator$State NOT_READY -> b
+    com.google.common.collect.AbstractIterator$State DONE -> c
+    com.google.common.collect.AbstractIterator$State FAILED -> d
+    com.google.common.collect.AbstractIterator$State[] $VALUES -> e
+    com.google.common.collect.AbstractIterator$State[] values() -> values
+    com.google.common.collect.AbstractIterator$State valueOf(java.lang.String) -> valueOf
+com.google.common.collect.AbstractMapBasedMultimap -> Y:
+    java.util.Map map -> a
+    int totalSize -> b
+    java.util.Collection createCollection() -> a
+    java.util.Collection createCollection(java.lang.Object) -> a
+    int size() -> b
+    boolean put(java.lang.Object,java.lang.Object) -> a
+    void clear() -> c
+    java.util.Collection get(java.lang.Object) -> b
+    java.util.Collection wrapCollection(java.lang.Object,java.util.Collection) -> a
+    java.util.List wrapList(java.lang.Object,java.util.List,com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection) -> a
+    java.util.Iterator iteratorOrListIterator(java.util.Collection) -> a
+    java.util.Set createKeySet() -> d
+    int removeValuesForKey(java.lang.Object) -> c
+    java.util.Collection entries() -> e
+    java.util.Iterator entryIterator() -> f
+    java.util.Map createAsMap() -> g
+    java.util.Map access$000(com.google.common.collect.AbstractMapBasedMultimap) -> a
+    java.util.Iterator access$100(com.google.common.collect.AbstractMapBasedMultimap,java.util.Collection) -> a
+    int access$210(com.google.common.collect.AbstractMapBasedMultimap) -> b
+    int access$208(com.google.common.collect.AbstractMapBasedMultimap) -> c
+    int access$212(com.google.common.collect.AbstractMapBasedMultimap,int) -> a
+    int access$220(com.google.common.collect.AbstractMapBasedMultimap,int) -> b
+    java.util.List access$300(com.google.common.collect.AbstractMapBasedMultimap,java.lang.Object,java.util.List,com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection) -> a
+    int access$400(com.google.common.collect.AbstractMapBasedMultimap,java.lang.Object) -> a
+com.google.common.collect.AbstractMapBasedMultimap$AsMap -> Z:
+    java.util.Map submap -> a
+    java.util.Set entrySet -> b
+    com.google.common.collect.AbstractMapBasedMultimap this$0 -> c
+    java.util.Set entrySet() -> entrySet
+    boolean containsKey(java.lang.Object) -> containsKey
+    java.util.Collection get(java.lang.Object) -> a
+    java.util.Set keySet() -> keySet
+    int size() -> size
+    java.util.Collection remove(java.lang.Object) -> b
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    void clear() -> clear
+    java.util.Map$Entry wrapEntry(java.util.Map$Entry) -> a
+    java.lang.Object remove(java.lang.Object) -> remove
+    java.lang.Object get(java.lang.Object) -> get
+com.google.common.collect.AbstractMapBasedMultimap$AsMap$AsMapEntries -> aa:
+    com.google.common.collect.AbstractMapBasedMultimap$AsMap this$1 -> a
+    java.util.Map map() -> a
+    java.util.Iterator iterator() -> iterator
+    boolean contains(java.lang.Object) -> contains
+    boolean remove(java.lang.Object) -> remove
+com.google.common.collect.AbstractMapBasedMultimap$AsMap$AsMapIterator -> ab:
+    java.util.Iterator delegateIterator -> a
+    java.util.Collection collection -> b
+    com.google.common.collect.AbstractMapBasedMultimap$AsMap this$1 -> c
+    boolean hasNext() -> hasNext
+    java.util.Map$Entry next() -> a
+    void remove() -> remove
+    java.lang.Object next() -> next
+com.google.common.collect.AbstractMapBasedMultimap$EntryIterator -> ac:
+    java.util.Iterator keyIterator -> a
+    java.lang.Object key -> b
+    java.util.Collection collection -> c
+    java.util.Iterator valueIterator -> d
+    com.google.common.collect.AbstractMapBasedMultimap this$0 -> e
+    void findValueIteratorAndKey() -> a
+    boolean hasNext() -> hasNext
+    java.util.Map$Entry next() -> b
+    void remove() -> remove
+    java.lang.Object next() -> next
+com.google.common.collect.AbstractMapBasedMultimap$KeySet -> ad:
+    java.util.Map subMap -> a
+    com.google.common.collect.AbstractMapBasedMultimap this$0 -> b
+    java.util.Map map() -> a
+    java.util.Iterator iterator() -> iterator
+    boolean remove(java.lang.Object) -> remove
+    void clear() -> clear
+    boolean containsAll(java.util.Collection) -> containsAll
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+com.google.common.collect.AbstractMapBasedMultimap$KeySet$1 -> ae:
+    java.util.Map$Entry entry -> a
+    java.util.Iterator val$entryIterator -> b
+    com.google.common.collect.AbstractMapBasedMultimap$KeySet this$1 -> c
+    boolean hasNext() -> hasNext
+    java.lang.Object next() -> next
+    void remove() -> remove
+com.google.common.collect.AbstractMapBasedMultimap$RandomAccessWrappedList -> af:
+    com.google.common.collect.AbstractMapBasedMultimap this$0 -> a
+com.google.common.collect.AbstractMapBasedMultimap$SortedAsMap -> ag:
+    java.util.SortedSet sortedKeySet -> d
+    com.google.common.collect.AbstractMapBasedMultimap this$0 -> e
+    java.util.SortedMap sortedMap() -> a
+    java.util.Comparator comparator() -> comparator
+    java.lang.Object firstKey() -> firstKey
+    java.lang.Object lastKey() -> lastKey
+    java.util.SortedMap headMap(java.lang.Object) -> headMap
+    java.util.SortedMap subMap(java.lang.Object,java.lang.Object) -> subMap
+    java.util.SortedMap tailMap(java.lang.Object) -> tailMap
+    java.util.SortedSet keySet() -> b
+    java.util.SortedSet createKeySet() -> c
+    java.util.Set keySet() -> keySet
+com.google.common.collect.AbstractMapBasedMultimap$SortedKeySet -> ah:
+    com.google.common.collect.AbstractMapBasedMultimap this$0 -> c
+    java.util.SortedMap sortedMap() -> b
+    java.util.Comparator comparator() -> comparator
+    java.lang.Object first() -> first
+    java.util.SortedSet headSet(java.lang.Object) -> headSet
+    java.lang.Object last() -> last
+    java.util.SortedSet subSet(java.lang.Object,java.lang.Object) -> subSet
+    java.util.SortedSet tailSet(java.lang.Object) -> tailSet
+com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection -> ai:
+    java.lang.Object key -> b
+    java.util.Collection delegate -> c
+    com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection ancestor -> d
+    java.util.Collection ancestorDelegate -> e
+    com.google.common.collect.AbstractMapBasedMultimap this$0 -> f
+    void refreshIfEmpty() -> a
+    void removeIfEmpty() -> b
+    java.lang.Object getKey() -> c
+    void addToMap() -> d
+    int size() -> size
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    java.util.Collection getDelegate() -> e
+    java.util.Iterator iterator() -> iterator
+    boolean add(java.lang.Object) -> add
+    com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection getAncestor() -> f
+    boolean addAll(java.util.Collection) -> addAll
+    boolean contains(java.lang.Object) -> contains
+    boolean containsAll(java.util.Collection) -> containsAll
+    void clear() -> clear
+    boolean remove(java.lang.Object) -> remove
+    boolean removeAll(java.util.Collection) -> removeAll
+    boolean retainAll(java.util.Collection) -> retainAll
+com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection$WrappedIterator -> aj:
+    java.util.Iterator delegateIterator -> a
+    java.util.Collection originalDelegate -> b
+    com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection this$1 -> c
+    void validateIterator() -> a
+    boolean hasNext() -> hasNext
+    java.lang.Object next() -> next
+    void remove() -> remove
+    java.util.Iterator getDelegateIterator() -> b
+com.google.common.collect.AbstractMapBasedMultimap$WrappedList -> ak:
+    com.google.common.collect.AbstractMapBasedMultimap this$0 -> g
+    java.util.List getListDelegate() -> g
+    boolean addAll(int,java.util.Collection) -> addAll
+    java.lang.Object get(int) -> get
+    java.lang.Object set(int,java.lang.Object) -> set
+    void add(int,java.lang.Object) -> add
+    java.lang.Object remove(int) -> remove
+    int indexOf(java.lang.Object) -> indexOf
+    int lastIndexOf(java.lang.Object) -> lastIndexOf
+    java.util.ListIterator listIterator() -> listIterator
+    java.util.ListIterator listIterator(int) -> listIterator
+    java.util.List subList(int,int) -> subList
+com.google.common.collect.AbstractMapBasedMultimap$WrappedList$WrappedListIterator -> al:
+    com.google.common.collect.AbstractMapBasedMultimap$WrappedList this$1 -> d
+    java.util.ListIterator getDelegateListIterator() -> c
+    boolean hasPrevious() -> hasPrevious
+    java.lang.Object previous() -> previous
+    int nextIndex() -> nextIndex
+    int previousIndex() -> previousIndex
+    void set(java.lang.Object) -> set
+    void add(java.lang.Object) -> add
+com.google.common.collect.AbstractMapBasedMultimap$WrappedSet -> am:
+    com.google.common.collect.AbstractMapBasedMultimap this$0 -> a
+    boolean removeAll(java.util.Collection) -> removeAll
+com.google.common.collect.AbstractMapBasedMultimap$WrappedSortedSet -> an:
+    com.google.common.collect.AbstractMapBasedMultimap this$0 -> a
+    java.util.SortedSet getSortedSetDelegate() -> g
+    java.util.Comparator comparator() -> comparator
+    java.lang.Object first() -> first
+    java.lang.Object last() -> last
+    java.util.SortedSet headSet(java.lang.Object) -> headSet
+    java.util.SortedSet subSet(java.lang.Object,java.lang.Object) -> subSet
+    java.util.SortedSet tailSet(java.lang.Object) -> tailSet
+com.google.common.collect.AbstractMapEntry -> ao:
+    java.lang.Object getKey() -> getKey
+    java.lang.Object getValue() -> getValue
+    java.lang.Object setValue(java.lang.Object) -> setValue
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+com.google.common.collect.AbstractMultimap -> ap:
+    java.util.Collection entries -> a
+    java.util.Set keySet -> b
+    java.util.Map asMap -> c
+    boolean isEmpty() -> h
+    boolean containsEntry(java.lang.Object,java.lang.Object) -> b
+    boolean remove(java.lang.Object,java.lang.Object) -> c
+    boolean put(java.lang.Object,java.lang.Object) -> a
+    java.util.Collection entries() -> e
+    java.util.Collection createEntries() -> i
+    java.util.Iterator entryIterator() -> f
+    java.util.Set keySet() -> j
+    java.util.Set createKeySet() -> d
+    java.util.Map asMap() -> k
+    java.util.Map createAsMap() -> g
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+com.google.common.collect.AbstractMultimap$1 -> aq:
+    com.google.common.collect.AbstractMultimap this$0 -> a
+    com.google.common.collect.Multimap multimap() -> a
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.AbstractMultimap$2 -> ar:
+    com.google.common.collect.AbstractMultimap this$0 -> a
+    com.google.common.collect.Multimap multimap() -> a
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.AbstractMultimap$3 -> as:
+    com.google.common.collect.AbstractMultimap this$0 -> a
+    java.util.Map map() -> a
+com.google.common.collect.AbstractSetMultimap -> at:
+    java.util.Set createCollection() -> l
+    java.util.Set get(java.lang.Object) -> c
+    java.util.Set entries() -> m
+    java.util.Map asMap() -> k
+    boolean put(java.lang.Object,java.lang.Object) -> a
+    boolean equals(java.lang.Object) -> equals
+    java.util.Collection entries() -> e
+    java.util.Collection get(java.lang.Object) -> b
+    java.util.Collection createCollection() -> a
+com.google.common.collect.Collections2 -> au:
+    com.google.common.base.Joiner STANDARD_JOINER -> a
+    boolean safeContains(java.util.Collection,java.lang.Object) -> a
+    boolean containsAllImpl(java.util.Collection,java.util.Collection) -> a
+    java.lang.String toStringImpl(java.util.Collection) -> a
+    java.lang.StringBuilder newStringBuilderForCollection(int) -> a
+    java.util.Collection cast(java.lang.Iterable) -> a
+com.google.common.collect.Collections2$1 -> av:
+    java.util.Collection val$collection -> a
+    java.lang.Object apply(java.lang.Object) -> a
+com.google.common.collect.ComparatorOrdering -> aw:
+    java.util.Comparator comparator -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+com.google.common.collect.DescendingImmutableSortedSet -> ax:
+    com.google.common.collect.ImmutableSortedSet forward -> d
+    int size() -> size
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    com.google.common.collect.ImmutableSortedSet headSetImpl(java.lang.Object,boolean) -> a
+    com.google.common.collect.ImmutableSortedSet subSetImpl(java.lang.Object,boolean,java.lang.Object,boolean) -> a
+    com.google.common.collect.ImmutableSortedSet tailSetImpl(java.lang.Object,boolean) -> b
+    com.google.common.collect.ImmutableSortedSet descendingSet() -> a_
+    com.google.common.collect.UnmodifiableIterator descendingIterator() -> c
+    com.google.common.collect.ImmutableSortedSet createDescendingSet() -> d
+    java.lang.Object lower(java.lang.Object) -> lower
+    java.lang.Object floor(java.lang.Object) -> floor
+    java.lang.Object ceiling(java.lang.Object) -> ceiling
+    java.lang.Object higher(java.lang.Object) -> higher
+    boolean isPartialView() -> e
+    java.util.Iterator descendingIterator() -> descendingIterator
+    java.util.NavigableSet descendingSet() -> descendingSet
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.EmptyImmutableList -> ay:
+    com.google.common.collect.EmptyImmutableList INSTANCE -> a
+    int size() -> size
+    boolean isEmpty() -> isEmpty
+    boolean isPartialView() -> e
+    boolean contains(java.lang.Object) -> contains
+    boolean containsAll(java.util.Collection) -> containsAll
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    java.lang.Object[] toArray() -> toArray
+    java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    java.lang.Object get(int) -> get
+    int indexOf(java.lang.Object) -> indexOf
+    int lastIndexOf(java.lang.Object) -> lastIndexOf
+    com.google.common.collect.ImmutableList subList(int,int) -> a
+    com.google.common.collect.UnmodifiableListIterator listIterator() -> c_
+    com.google.common.collect.UnmodifiableListIterator listIterator(int) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    java.util.List subList(int,int) -> subList
+    java.util.ListIterator listIterator(int) -> listIterator
+    java.util.ListIterator listIterator() -> listIterator
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.EmptyImmutableSet -> az:
+    com.google.common.collect.EmptyImmutableSet INSTANCE -> a
+    int size() -> size
+    boolean isEmpty() -> isEmpty
+    boolean contains(java.lang.Object) -> contains
+    boolean containsAll(java.util.Collection) -> containsAll
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    boolean isPartialView() -> e
+    java.lang.Object[] toArray() -> toArray
+    java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    com.google.common.collect.ImmutableList asList() -> b
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    boolean isHashCodeFast() -> b_
+    java.lang.String toString() -> toString
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.EmptyImmutableSortedSet -> aA:
+    int size() -> size
+    boolean isEmpty() -> isEmpty
+    boolean contains(java.lang.Object) -> contains
+    boolean containsAll(java.util.Collection) -> containsAll
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    com.google.common.collect.UnmodifiableIterator descendingIterator() -> c
+    boolean isPartialView() -> e
+    com.google.common.collect.ImmutableList asList() -> b
+    java.lang.Object[] toArray() -> toArray
+    java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    java.lang.Object first() -> first
+    java.lang.Object last() -> last
+    com.google.common.collect.ImmutableSortedSet headSetImpl(java.lang.Object,boolean) -> a
+    com.google.common.collect.ImmutableSortedSet subSetImpl(java.lang.Object,boolean,java.lang.Object,boolean) -> a
+    com.google.common.collect.ImmutableSortedSet tailSetImpl(java.lang.Object,boolean) -> b
+    com.google.common.collect.ImmutableSortedSet createDescendingSet() -> d
+    java.util.Iterator descendingIterator() -> descendingIterator
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.FluentIterable -> aB:
+    java.lang.Iterable iterable -> a
+    java.lang.String toString() -> toString
+com.google.common.collect.Hashing -> aC:
+    int MAX_TABLE_SIZE -> a
+    int smear(int) -> a
+    int closedTableSize(int,double) -> a
+    boolean needsResizing(int,int,double) -> a
+com.google.common.collect.ImmutableAsList -> aD:
+    com.google.common.collect.ImmutableCollection delegateCollection() -> c
+    boolean contains(java.lang.Object) -> contains
+    int size() -> size
+    boolean isEmpty() -> isEmpty
+    boolean isPartialView() -> e
+com.google.common.collect.ImmutableCollection -> aE:
+    com.google.common.collect.ImmutableCollection EMPTY_IMMUTABLE_COLLECTION -> b
+    com.google.common.collect.ImmutableList asList -> a
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    java.lang.Object[] toArray() -> toArray
+    java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    boolean contains(java.lang.Object) -> contains
+    boolean containsAll(java.util.Collection) -> containsAll
+    boolean isEmpty() -> isEmpty
+    java.lang.String toString() -> toString
+    boolean add(java.lang.Object) -> add
+    boolean remove(java.lang.Object) -> remove
+    boolean addAll(java.util.Collection) -> addAll
+    boolean removeAll(java.util.Collection) -> removeAll
+    boolean retainAll(java.util.Collection) -> retainAll
+    void clear() -> clear
+    com.google.common.collect.ImmutableList asList() -> b
+    com.google.common.collect.ImmutableList createAsList() -> f
+    boolean isPartialView() -> e
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.ImmutableCollection$1 -> aF:
+com.google.common.collect.ImmutableCollection$EmptyImmutableCollection -> aG:
+    java.lang.Object[] EMPTY_ARRAY -> a
+    int size() -> size
+    boolean isEmpty() -> isEmpty
+    boolean contains(java.lang.Object) -> contains
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    java.lang.Object[] toArray() -> toArray
+    java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    com.google.common.collect.ImmutableList createAsList() -> f
+    boolean isPartialView() -> e
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.ImmutableEntry -> aH:
+    java.lang.Object key -> a
+    java.lang.Object value -> b
+    java.lang.Object getKey() -> getKey
+    java.lang.Object getValue() -> getValue
+    java.lang.Object setValue(java.lang.Object) -> setValue
+com.google.common.collect.ImmutableEnumSet -> aI:
+    java.util.EnumSet delegate -> a
+    int hashCode -> c
+    com.google.common.collect.ImmutableSet asImmutable(java.util.EnumSet) -> a
+    boolean isPartialView() -> e
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    int size() -> size
+    boolean contains(java.lang.Object) -> contains
+    boolean containsAll(java.util.Collection) -> containsAll
+    boolean isEmpty() -> isEmpty
+    java.lang.Object[] toArray() -> toArray
+    java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.ImmutableList -> aJ:
+    com.google.common.collect.ImmutableList of() -> d
+    com.google.common.collect.ImmutableList of(java.lang.Object) -> a
+    com.google.common.collect.ImmutableList asImmutableList(java.lang.Object[]) -> a
+    com.google.common.collect.ImmutableList construct(java.lang.Object[]) -> b
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    com.google.common.collect.UnmodifiableListIterator listIterator() -> c_
+    com.google.common.collect.UnmodifiableListIterator listIterator(int) -> a
+    int indexOf(java.lang.Object) -> indexOf
+    int lastIndexOf(java.lang.Object) -> lastIndexOf
+    boolean contains(java.lang.Object) -> contains
+    com.google.common.collect.ImmutableList subList(int,int) -> a
+    com.google.common.collect.ImmutableList subListUnchecked(int,int) -> b
+    boolean addAll(int,java.util.Collection) -> addAll
+    java.lang.Object set(int,java.lang.Object) -> set
+    void add(int,java.lang.Object) -> add
+    java.lang.Object remove(int) -> remove
+    com.google.common.collect.ImmutableList asList() -> b
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.util.Iterator iterator() -> iterator
+    java.util.List subList(int,int) -> subList
+    java.util.ListIterator listIterator(int) -> listIterator
+    java.util.ListIterator listIterator() -> listIterator
+com.google.common.collect.ImmutableList$1 -> aK:
+    com.google.common.collect.ImmutableList this$0 -> a
+    java.lang.Object get(int) -> a
+com.google.common.collect.ImmutableList$SubList -> aL:
+    int offset -> a
+    int length -> c
+    com.google.common.collect.ImmutableList this$0 -> d
+    int size() -> size
+    java.lang.Object get(int) -> get
+    com.google.common.collect.ImmutableList subList(int,int) -> a
+    boolean isPartialView() -> e
+    java.util.List subList(int,int) -> subList
+    java.util.ListIterator listIterator(int) -> listIterator
+    java.util.ListIterator listIterator() -> listIterator
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.ImmutableSet -> aM:
+    int CUTOFF -> a
+    com.google.common.collect.ImmutableSet of() -> g
+    com.google.common.collect.ImmutableSet of(java.lang.Object) -> a
+    com.google.common.collect.ImmutableSet construct(int,java.lang.Object[]) -> a
+    int chooseTableSize(int) -> a
+    com.google.common.collect.ImmutableSet copyOf(java.util.Collection) -> a
+    com.google.common.collect.ImmutableSet copyFromCollection(java.util.Collection) -> b
+    boolean isHashCodeFast() -> b_
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.ImmutableSet$ArrayImmutableSet -> aN:
+    java.lang.Object[] elements -> a
+    int size() -> size
+    boolean isEmpty() -> isEmpty
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    java.lang.Object[] toArray() -> toArray
+    java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    boolean containsAll(java.util.Collection) -> containsAll
+    boolean isPartialView() -> e
+    com.google.common.collect.ImmutableList createAsList() -> f
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.ImmutableSortedSet -> aO:
+    java.util.Comparator NATURAL_ORDER -> d
+    com.google.common.collect.ImmutableSortedSet NATURAL_EMPTY_SET -> e
+    java.util.Comparator comparator -> a
+    com.google.common.collect.ImmutableSortedSet descendingSet -> c
+    java.util.Comparator comparator() -> comparator
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    com.google.common.collect.ImmutableSortedSet headSet(java.lang.Object) -> b
+    com.google.common.collect.ImmutableSortedSet headSet(java.lang.Object,boolean) -> c
+    com.google.common.collect.ImmutableSortedSet subSet(java.lang.Object,java.lang.Object) -> a
+    com.google.common.collect.ImmutableSortedSet subSet(java.lang.Object,boolean,java.lang.Object,boolean) -> b
+    com.google.common.collect.ImmutableSortedSet tailSet(java.lang.Object) -> c
+    com.google.common.collect.ImmutableSortedSet tailSet(java.lang.Object,boolean) -> d
+    com.google.common.collect.ImmutableSortedSet headSetImpl(java.lang.Object,boolean) -> a
+    com.google.common.collect.ImmutableSortedSet subSetImpl(java.lang.Object,boolean,java.lang.Object,boolean) -> a
+    com.google.common.collect.ImmutableSortedSet tailSetImpl(java.lang.Object,boolean) -> b
+    java.lang.Object lower(java.lang.Object) -> lower
+    java.lang.Object floor(java.lang.Object) -> floor
+    java.lang.Object ceiling(java.lang.Object) -> ceiling
+    java.lang.Object higher(java.lang.Object) -> higher
+    java.lang.Object first() -> first
+    java.lang.Object last() -> last
+    java.lang.Object pollFirst() -> pollFirst
+    java.lang.Object pollLast() -> pollLast
+    com.google.common.collect.ImmutableSortedSet descendingSet() -> a_
+    com.google.common.collect.ImmutableSortedSet createDescendingSet() -> d
+    com.google.common.collect.UnmodifiableIterator descendingIterator() -> c
+    java.util.Iterator iterator() -> iterator
+    java.util.SortedSet tailSet(java.lang.Object) -> tailSet
+    java.util.SortedSet headSet(java.lang.Object) -> headSet
+    java.util.SortedSet subSet(java.lang.Object,java.lang.Object) -> subSet
+    java.util.NavigableSet tailSet(java.lang.Object,boolean) -> tailSet
+    java.util.NavigableSet headSet(java.lang.Object,boolean) -> headSet
+    java.util.NavigableSet subSet(java.lang.Object,boolean,java.lang.Object,boolean) -> subSet
+    java.util.Iterator descendingIterator() -> descendingIterator
+    java.util.NavigableSet descendingSet() -> descendingSet
+com.google.common.collect.ImmutableSortedSetFauxverideShim -> aP:
+com.google.common.collect.Iterables -> aQ:
+    java.lang.String toString(java.lang.Iterable) -> a
+    java.lang.Object getOnlyElement(java.lang.Iterable) -> b
+    java.lang.Iterable filter(java.lang.Iterable,com.google.common.base.Predicate) -> a
+    java.lang.Iterable transform(java.lang.Iterable,com.google.common.base.Function) -> a
+    java.lang.Object getFirst(java.lang.Iterable,java.lang.Object) -> a
+com.google.common.collect.Iterables$6 -> aR:
+    java.lang.Iterable val$unfiltered -> a
+    com.google.common.base.Predicate val$predicate -> b
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.Iterables$8 -> aS:
+    java.lang.Iterable val$fromIterable -> a
+    com.google.common.base.Function val$function -> b
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.Iterators -> aT:
+    com.google.common.collect.UnmodifiableListIterator EMPTY_LIST_ITERATOR -> a
+    java.util.Iterator EMPTY_MODIFIABLE_ITERATOR -> b
+    com.google.common.collect.UnmodifiableIterator emptyIterator() -> a
+    com.google.common.collect.UnmodifiableListIterator emptyListIterator() -> b
+    java.util.Iterator emptyModifiableIterator() -> c
+    com.google.common.collect.UnmodifiableIterator unmodifiableIterator(java.util.Iterator) -> a
+    boolean contains(java.util.Iterator,java.lang.Object) -> a
+    boolean elementsEqual(java.util.Iterator,java.util.Iterator) -> a
+    java.lang.String toString(java.util.Iterator) -> b
+    java.lang.Object getOnlyElement(java.util.Iterator) -> c
+    com.google.common.collect.UnmodifiableIterator filter(java.util.Iterator,com.google.common.base.Predicate) -> a
+    java.util.Iterator transform(java.util.Iterator,com.google.common.base.Function) -> a
+    java.lang.Object getNext(java.util.Iterator,java.lang.Object) -> b
+    void clear(java.util.Iterator) -> d
+    com.google.common.collect.UnmodifiableListIterator forArray(java.lang.Object[],int,int,int) -> a
+    com.google.common.collect.UnmodifiableIterator singletonIterator(java.lang.Object) -> a
+    void checkRemove(boolean) -> a
+com.google.common.collect.Iterators$1 -> aU:
+    boolean hasNext() -> hasNext
+    java.lang.Object next() -> next
+    boolean hasPrevious() -> hasPrevious
+    java.lang.Object previous() -> previous
+    int nextIndex() -> nextIndex
+    int previousIndex() -> previousIndex
+com.google.common.collect.Iterators$12 -> aV:
+    java.lang.Object[] val$array -> a
+    int val$offset -> b
+    java.lang.Object get(int) -> a
+com.google.common.collect.Iterators$13 -> aW:
+    boolean done -> a
+    java.lang.Object val$value -> b
+    boolean hasNext() -> hasNext
+    java.lang.Object next() -> next
+com.google.common.collect.Iterators$2 -> aX:
+    boolean hasNext() -> hasNext
+    java.lang.Object next() -> next
+    void remove() -> remove
+com.google.common.collect.Iterators$3 -> aY:
+    java.util.Iterator val$iterator -> a
+    boolean hasNext() -> hasNext
+    java.lang.Object next() -> next
+com.google.common.collect.Iterators$7 -> aZ:
+    java.util.Iterator val$unfiltered -> a
+    com.google.common.base.Predicate val$predicate -> b
+    java.lang.Object computeNext() -> a
+com.google.common.collect.Iterators$8 -> ba:
+    com.google.common.base.Function val$function -> a
+    java.lang.Object transform(java.lang.Object) -> a
+com.google.common.collect.LinkedHashMultimap -> bb:
+    int valueSetCapacity -> a
+    com.google.common.collect.LinkedHashMultimap$ValueEntry multimapHeaderEntry -> b
+    com.google.common.collect.LinkedHashMultimap create() -> n
+    void succeedsInValueSet(com.google.common.collect.LinkedHashMultimap$ValueSetLink,com.google.common.collect.LinkedHashMultimap$ValueSetLink) -> b
+    void succeedsInMultimap(com.google.common.collect.LinkedHashMultimap$ValueEntry,com.google.common.collect.LinkedHashMultimap$ValueEntry) -> b
+    void deleteFromValueSet(com.google.common.collect.LinkedHashMultimap$ValueSetLink) -> b
+    void deleteFromMultimap(com.google.common.collect.LinkedHashMultimap$ValueEntry) -> b
+    java.util.Set createCollection() -> l
+    java.util.Collection createCollection(java.lang.Object) -> a
+    java.util.Set entries() -> m
+    java.util.Iterator entryIterator() -> f
+    void clear() -> c
+    boolean equals(java.lang.Object) -> equals
+    boolean put(java.lang.Object,java.lang.Object) -> a
+    java.util.Map asMap() -> k
+    java.util.Set get(java.lang.Object) -> c
+    java.util.Collection entries() -> e
+    int size() -> b
+    java.util.Collection createCollection() -> a
+    java.lang.String toString() -> toString
+    int hashCode() -> hashCode
+    java.util.Set keySet() -> j
+    boolean remove(java.lang.Object,java.lang.Object) -> c
+    boolean containsEntry(java.lang.Object,java.lang.Object) -> b
+    boolean isEmpty() -> h
+    void access$200(com.google.common.collect.LinkedHashMultimap$ValueSetLink) -> a
+    void access$300(com.google.common.collect.LinkedHashMultimap$ValueEntry) -> a
+    void access$500(com.google.common.collect.LinkedHashMultimap$ValueSetLink,com.google.common.collect.LinkedHashMultimap$ValueSetLink) -> a
+    com.google.common.collect.LinkedHashMultimap$ValueEntry access$600(com.google.common.collect.LinkedHashMultimap) -> a
+    void access$700(com.google.common.collect.LinkedHashMultimap$ValueEntry,com.google.common.collect.LinkedHashMultimap$ValueEntry) -> a
+com.google.common.collect.LinkedHashMultimap$1 -> bc:
+    com.google.common.collect.LinkedHashMultimap$ValueEntry nextEntry -> a
+    com.google.common.collect.LinkedHashMultimap$ValueEntry toRemove -> b
+    com.google.common.collect.LinkedHashMultimap this$0 -> c
+    boolean hasNext() -> hasNext
+    java.util.Map$Entry next() -> a
+    void remove() -> remove
+    java.lang.Object next() -> next
+com.google.common.collect.LinkedHashMultimap$ValueEntry -> bd:
+    java.lang.Object key -> a
+    java.lang.Object value -> b
+    int valueHash -> c
+    com.google.common.collect.LinkedHashMultimap$ValueEntry nextInValueSetHashRow -> d
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink predecessorInValueSet -> e
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink successorInValueSet -> f
+    com.google.common.collect.LinkedHashMultimap$ValueEntry predecessorInMultimap -> g
+    com.google.common.collect.LinkedHashMultimap$ValueEntry successorInMultimap -> h
+    java.lang.Object getKey() -> getKey
+    java.lang.Object getValue() -> getValue
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink getPredecessorInValueSet() -> a
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink getSuccessorInValueSet() -> b
+    void setPredecessorInValueSet(com.google.common.collect.LinkedHashMultimap$ValueSetLink) -> a
+    void setSuccessorInValueSet(com.google.common.collect.LinkedHashMultimap$ValueSetLink) -> b
+    com.google.common.collect.LinkedHashMultimap$ValueEntry getPredecessorInMultimap() -> c
+    com.google.common.collect.LinkedHashMultimap$ValueEntry getSuccessorInMultimap() -> d
+    void setSuccessorInMultimap(com.google.common.collect.LinkedHashMultimap$ValueEntry) -> a
+    void setPredecessorInMultimap(com.google.common.collect.LinkedHashMultimap$ValueEntry) -> b
+com.google.common.collect.LinkedHashMultimap$ValueSet -> be:
+    java.lang.Object key -> c
+    com.google.common.collect.LinkedHashMultimap$ValueEntry[] hashTable -> a
+    int size -> d
+    int modCount -> e
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink firstEntry -> f
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink lastEntry -> g
+    com.google.common.collect.LinkedHashMultimap this$0 -> b
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink getPredecessorInValueSet() -> a
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink getSuccessorInValueSet() -> b
+    void setPredecessorInValueSet(com.google.common.collect.LinkedHashMultimap$ValueSetLink) -> a
+    void setSuccessorInValueSet(com.google.common.collect.LinkedHashMultimap$ValueSetLink) -> b
+    java.util.Iterator iterator() -> iterator
+    int size() -> size
+    boolean contains(java.lang.Object) -> contains
+    boolean add(java.lang.Object) -> add
+    void rehashIfNecessary() -> c
+    boolean remove(java.lang.Object) -> remove
+    void clear() -> clear
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink access$000(com.google.common.collect.LinkedHashMultimap$ValueSet) -> a
+    int access$100(com.google.common.collect.LinkedHashMultimap$ValueSet) -> b
+    int access$410(com.google.common.collect.LinkedHashMultimap$ValueSet) -> c
+    int access$104(com.google.common.collect.LinkedHashMultimap$ValueSet) -> d
+com.google.common.collect.LinkedHashMultimap$ValueSet$1 -> bf:
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink nextEntry -> a
+    com.google.common.collect.LinkedHashMultimap$ValueEntry toRemove -> b
+    int expectedModCount -> c
+    com.google.common.collect.LinkedHashMultimap$ValueSet this$1 -> d
+    void checkForComodification() -> a
+    boolean hasNext() -> hasNext
+    java.lang.Object next() -> next
+    void remove() -> remove
+com.google.common.collect.LinkedHashMultimap$ValueSetLink -> bg:
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink getPredecessorInValueSet() -> a
+    com.google.common.collect.LinkedHashMultimap$ValueSetLink getSuccessorInValueSet() -> b
+    void setPredecessorInValueSet(com.google.common.collect.LinkedHashMultimap$ValueSetLink) -> a
+    void setSuccessorInValueSet(com.google.common.collect.LinkedHashMultimap$ValueSetLink) -> b
+com.google.common.collect.Lists -> bh:
+    java.util.ArrayList newArrayList() -> a
+    java.util.ArrayList newArrayList(java.lang.Iterable) -> a
+    java.util.ArrayList newArrayList(java.util.Iterator) -> a
+    int hashCodeImpl(java.util.List) -> a
+    boolean equalsImpl(java.util.List,java.lang.Object) -> a
+    int indexOfImpl(java.util.List,java.lang.Object) -> b
+    int lastIndexOfImpl(java.util.List,java.lang.Object) -> c
+com.google.common.collect.Maps -> bi:
+    com.google.common.base.Joiner$MapJoiner STANDARD_JOINER -> a
+    java.util.HashMap newHashMap() -> a
+    int capacity(int) -> a
+    java.util.TreeMap newTreeMap() -> b
+    java.util.Map$Entry immutableEntry(java.lang.Object,java.lang.Object) -> a
+    java.lang.Object safeGet(java.util.Map,java.lang.Object) -> a
+    boolean safeContainsKey(java.util.Map,java.lang.Object) -> b
+    java.lang.Object safeRemove(java.util.Map,java.lang.Object) -> c
+    java.util.Iterator keyIterator(java.util.Iterator) -> a
+com.google.common.collect.Maps$7 -> bj:
+    java.lang.Object transform(java.util.Map$Entry) -> a
+    java.lang.Object transform(java.lang.Object) -> a
+com.google.common.collect.Maps$EntrySet -> bk:
+    java.util.Map map() -> a
+    int size() -> size
+    void clear() -> clear
+    boolean contains(java.lang.Object) -> contains
+    boolean isEmpty() -> isEmpty
+    boolean remove(java.lang.Object) -> remove
+    boolean removeAll(java.util.Collection) -> removeAll
+    boolean retainAll(java.util.Collection) -> retainAll
+com.google.common.collect.Maps$KeySet -> bl:
+    java.util.Map map() -> a
+    java.util.Iterator iterator() -> iterator
+    int size() -> size
+    boolean isEmpty() -> isEmpty
+    boolean contains(java.lang.Object) -> contains
+    boolean remove(java.lang.Object) -> remove
+    void clear() -> clear
+com.google.common.collect.Multimap -> bm:
+    int size() -> b
+    boolean isEmpty() -> h
+    boolean containsEntry(java.lang.Object,java.lang.Object) -> b
+    boolean put(java.lang.Object,java.lang.Object) -> a
+    boolean remove(java.lang.Object,java.lang.Object) -> c
+    void clear() -> c
+    java.util.Collection get(java.lang.Object) -> b
+    java.util.Collection entries() -> e
+    java.util.Map asMap() -> k
+com.google.common.collect.Multimaps -> bn:
+com.google.common.collect.Multimaps$Entries -> bo:
+    com.google.common.collect.Multimap multimap() -> a
+    int size() -> size
+    boolean contains(java.lang.Object) -> contains
+    boolean remove(java.lang.Object) -> remove
+    void clear() -> clear
+com.google.common.collect.Multimaps$EntrySet -> bp:
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+com.google.common.collect.Multiset -> bq:
+    java.util.Set elementSet() -> a
+com.google.common.collect.NaturalOrdering -> br:
+    com.google.common.collect.NaturalOrdering INSTANCE -> a
+    int compare(java.lang.Comparable,java.lang.Comparable) -> a
+    com.google.common.collect.Ordering reverse() -> a
+    java.lang.String toString() -> toString
+    int compare(java.lang.Object,java.lang.Object) -> compare
+com.google.common.collect.ObjectArrays -> bs:
+    java.lang.Object[] EMPTY_ARRAY -> a
+    java.lang.Object[] newArray(java.lang.Object[],int) -> a
+    java.lang.Object[] arraysCopyOf(java.lang.Object[],int) -> b
+    java.lang.Object[] toArrayImpl(java.util.Collection,java.lang.Object[]) -> a
+    java.lang.Object[] toArrayImpl(java.util.Collection) -> a
+    java.lang.Object[] fillArray(java.lang.Iterable,java.lang.Object[]) -> a
+    java.lang.Object checkElementNotNull(java.lang.Object,int) -> a
+com.google.common.collect.Ordering -> bt:
+    com.google.common.collect.Ordering natural() -> b
+    com.google.common.collect.Ordering from(java.util.Comparator) -> a
+    com.google.common.collect.Ordering reverse() -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+com.google.common.collect.Platform -> bu:
+    java.lang.Object[] newArray(java.lang.Object[],int) -> a
+com.google.common.collect.RegularImmutableAsList -> bv:
+    com.google.common.collect.ImmutableCollection delegate -> a
+    com.google.common.collect.ImmutableList delegateList -> c
+    com.google.common.collect.ImmutableCollection delegateCollection() -> c
+    com.google.common.collect.UnmodifiableListIterator listIterator(int) -> a
+    java.lang.Object[] toArray() -> toArray
+    java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    int indexOf(java.lang.Object) -> indexOf
+    int lastIndexOf(java.lang.Object) -> lastIndexOf
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.Object get(int) -> get
+    java.util.ListIterator listIterator(int) -> listIterator
+com.google.common.collect.RegularImmutableList -> bw:
+    int offset -> a
+    int size -> c
+    java.lang.Object[] array -> d
+    int size() -> size
+    boolean isEmpty() -> isEmpty
+    boolean isPartialView() -> e
+    java.lang.Object[] toArray() -> toArray
+    java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    java.lang.Object get(int) -> get
+    com.google.common.collect.ImmutableList subListUnchecked(int,int) -> b
+    com.google.common.collect.UnmodifiableListIterator listIterator(int) -> a
+    boolean equals(java.lang.Object) -> equals
+    java.lang.String toString() -> toString
+    java.util.ListIterator listIterator(int) -> listIterator
+com.google.common.collect.RegularImmutableSet -> bx:
+    java.lang.Object[] table -> c
+    int mask -> d
+    int hashCode -> e
+    boolean contains(java.lang.Object) -> contains
+    int hashCode() -> hashCode
+    boolean isHashCodeFast() -> b_
+com.google.common.collect.ReverseNaturalOrdering -> by:
+    com.google.common.collect.ReverseNaturalOrdering INSTANCE -> a
+    int compare(java.lang.Comparable,java.lang.Comparable) -> a
+    com.google.common.collect.Ordering reverse() -> a
+    java.lang.String toString() -> toString
+    int compare(java.lang.Object,java.lang.Object) -> compare
+com.google.common.collect.ReverseOrdering -> bz:
+    com.google.common.collect.Ordering forwardOrder -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+    com.google.common.collect.Ordering reverse() -> a
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+    java.lang.String toString() -> toString
+com.google.common.collect.SetMultimap -> bA:
+com.google.common.collect.Sets -> bB:
+    java.util.HashSet newHashSetWithExpectedSize(int) -> a
+    java.util.TreeSet newTreeSet() -> a
+    java.util.TreeSet newTreeSet(java.lang.Iterable) -> a
+    int hashCodeImpl(java.util.Set) -> a
+    boolean equalsImpl(java.util.Set,java.lang.Object) -> a
+    boolean removeAllImpl(java.util.Set,java.util.Iterator) -> a
+    boolean removeAllImpl(java.util.Set,java.util.Collection) -> a
+com.google.common.collect.Sets$ImprovedAbstractSet -> bC:
+    boolean removeAll(java.util.Collection) -> removeAll
+    boolean retainAll(java.util.Collection) -> retainAll
+com.google.common.collect.SingletonImmutableList -> bD:
+    java.lang.Object element -> a
+    java.lang.Object get(int) -> get
+    int indexOf(java.lang.Object) -> indexOf
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    int lastIndexOf(java.lang.Object) -> lastIndexOf
+    int size() -> size
+    com.google.common.collect.ImmutableList subList(int,int) -> a
+    boolean contains(java.lang.Object) -> contains
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    boolean isEmpty() -> isEmpty
+    boolean isPartialView() -> e
+    java.lang.Object[] toArray() -> toArray
+    java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    java.util.List subList(int,int) -> subList
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.SingletonImmutableSet -> bE:
+    java.lang.Object element -> a
+    int cachedHashCode -> c
+    int size() -> size
+    boolean isEmpty() -> isEmpty
+    boolean contains(java.lang.Object) -> contains
+    com.google.common.collect.UnmodifiableIterator iterator() -> a
+    boolean isPartialView() -> e
+    java.lang.Object[] toArray() -> toArray
+    java.lang.Object[] toArray(java.lang.Object[]) -> toArray
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    boolean isHashCodeFast() -> b_
+    java.lang.String toString() -> toString
+    java.util.Iterator iterator() -> iterator
+com.google.common.collect.SortedIterable -> bF:
+com.google.common.collect.TransformedIterator -> bG:
+    java.util.Iterator backingIterator -> b
+    java.lang.Object transform(java.lang.Object) -> a
+    boolean hasNext() -> hasNext
+    java.lang.Object next() -> next
+    void remove() -> remove
+com.google.common.collect.UnmodifiableIterator -> bH:
+    void remove() -> remove
+com.google.common.collect.UnmodifiableListIterator -> bI:
+    void add(java.lang.Object) -> add
+    void set(java.lang.Object) -> set
+com.natpryce.jnirn.JNIRN -> com.natpryce.jnirn.JNIRN:
+    java.util.List inputFiles -> a
+    java.lang.String cSourceFileTemplate -> b
+    java.lang.String cHeaderFileTemplate -> c
+    java.lang.String outputCSourceFile -> d
+    java.lang.String outputCHeaderFile -> e
+    java.lang.String modulePrefix -> f
+    java.lang.String outputMakefile -> g
+    java.util.Set callbackAnnotations -> h
+    java.util.Set instantiatedAnnotations -> i
+    java.util.Set instantiatedClasses -> j
+    boolean help -> k
+    void main(java.lang.String[]) -> main
+    void run() -> a
+    java.lang.Iterable outputs() -> b
+    com.samskivert.mustache.Template loadTemplateOrDefault(java.lang.String,java.lang.Class,java.lang.String) -> a
+    com.samskivert.mustache.Template fromClass(java.lang.Class,java.lang.String) -> a
+    com.samskivert.mustache.Template fromFile(java.lang.String) -> a
+    com.samskivert.mustache.Template fromReader(java.io.InputStreamReader) -> a
+    void closeQuietly(java.io.InputStreamReader) -> b
+com.natpryce.jnirn.Output -> com.natpryce.jnirn.a:
+    void write(java.lang.Iterable) -> a
+com.natpryce.jnirn.OutputFormat -> com.natpryce.jnirn.b:
+    void writeTo(java.io.PrintWriter,java.lang.Iterable) -> a
+com.natpryce.jnirn.ParsedClass -> com.natpryce.jnirn.c:
+    java.lang.String name -> h
+    java.io.File file -> a
+    boolean isInstantiatedByNativeCode -> b
+    java.util.List nativeMethods -> c
+    java.util.List callbackMethods -> d
+    com.google.common.base.Function toFile -> e
+    com.google.common.base.Predicate hasNativeMethods -> f
+    com.google.common.base.Predicate hasCallbackMethods -> g
+    java.util.List aslist(com.google.common.collect.Multimap) -> a
+com.natpryce.jnirn.ParsedClass$1 -> com.natpryce.jnirn.d:
+    com.google.common.collect.Multimap val$nativeMethods -> a
+    com.natpryce.jnirn.ParsedClass this$0 -> b
+    com.natpryce.jnirn.ParsedMethod apply(java.util.Map$Entry) -> a
+    java.lang.Object apply(java.lang.Object) -> a
+com.natpryce.jnirn.ParsedClass$2 -> com.natpryce.jnirn.e:
+    java.io.File apply(com.natpryce.jnirn.ParsedClass) -> a
+    java.lang.Object apply(java.lang.Object) -> a
+com.natpryce.jnirn.ParsedClass$3 -> com.natpryce.jnirn.f:
+    boolean apply(com.natpryce.jnirn.ParsedClass) -> a
+    boolean apply(java.lang.Object) -> a
+com.natpryce.jnirn.ParsedClass$4 -> com.natpryce.jnirn.g:
+    boolean apply(com.natpryce.jnirn.ParsedClass) -> a
+    boolean apply(java.lang.Object) -> a
+com.natpryce.jnirn.ParsedMethod -> com.natpryce.jnirn.h:
+    java.lang.String name -> a
+    org.objectweb.asm.commons.Method method -> b
+    boolean overloaded -> c
+com.natpryce.jnirn.analysis.ClassAnalysis -> bJ:
+    boolean isInstantiatedFromNativeCode -> a
+    com.google.common.collect.Multimap nativeMethodsByName -> b
+    com.google.common.collect.Multimap callbackMethodsByName -> c
+    java.util.Set callbackAnnotations -> f
+    java.util.Set instantiatedClasses -> g
+    java.util.Set instantiatedAnnotations -> h
+    boolean classInterfacesWithNativeCode() -> a
+    void visit(int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    org.objectweb.asm.MethodVisitor visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    boolean recordNativeMethod(org.objectweb.asm.commons.Method) -> a
+    void recordCallbackMethod(org.objectweb.asm.commons.Method) -> b
+    int access$000(com.natpryce.jnirn.analysis.ClassAnalysis) -> a
+    java.util.Set access$100(com.natpryce.jnirn.analysis.ClassAnalysis) -> b
+    void access$200(com.natpryce.jnirn.analysis.ClassAnalysis,org.objectweb.asm.commons.Method) -> a
+com.natpryce.jnirn.analysis.ClassAnalysis$MethodAnalysis -> bK:
+    org.objectweb.asm.commons.Method methodInfo -> d
+    com.natpryce.jnirn.analysis.ClassAnalysis this$0 -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+com.natpryce.jnirn.analysis.JavaBytecodeParser -> bL:
+    com.google.common.collect.ImmutableSet callbackAnnotations -> a
+    com.google.common.collect.ImmutableSet instantiatedAnnotations -> b
+    com.google.common.collect.ImmutableSet instantiatedClasses -> c
+    java.util.SortedMap classesByName -> d
+    void parse(java.io.File) -> a
+    void parseDirectoryContents(java.io.File) -> c
+    java.io.FileFilter onlyPackageOrClass() -> a
+    void parseJAR(java.io.File) -> b
+    void parseClassFile(java.io.File) -> d
+    void parseClassBytecode(java.io.File,java.io.InputStream) -> a
+    void parseAll(java.lang.Iterable) -> a
+    void writeTo(com.natpryce.jnirn.Output) -> a
+com.natpryce.jnirn.analysis.JavaBytecodeParser$1 -> bM:
+    com.natpryce.jnirn.analysis.JavaBytecodeParser this$0 -> a
+    boolean accept(java.io.File) -> accept
+com.natpryce.jnirn.output.CHeaderFormat -> bN:
+    java.lang.String modulePrefix -> a
+    com.samskivert.mustache.Template template -> b
+    void writeTo(java.io.PrintWriter,java.lang.Iterable) -> a
+com.natpryce.jnirn.output.CSourceFormat -> bO:
+    java.lang.String modulePrefix -> a
+    com.samskivert.mustache.Template template -> b
+    com.google.common.base.Optional headerFileName -> c
+    void writeTo(java.io.PrintWriter,java.lang.Iterable) -> a
+com.natpryce.jnirn.output.CSourceFormat$1 -> bP:
+    com.natpryce.jnirn.output.CSourceFormat this$0 -> a
+    java.lang.String apply(java.lang.String) -> a
+    java.lang.Object apply(java.lang.Object) -> a
+com.natpryce.jnirn.output.FileOutput -> bQ:
+    java.lang.String file -> a
+    com.natpryce.jnirn.OutputFormat format -> b
+    void write(java.lang.Iterable) -> a
+com.natpryce.jnirn.output.MakeDependencyFormat -> bR:
+    java.lang.String outputCSourceFile -> a
+    void writeTo(java.io.PrintWriter,java.lang.Iterable) -> a
+com.samskivert.mustache.BasicCollector -> bS:
+    com.samskivert.mustache.Mustache$VariableFetcher MAP_FETCHER -> a
+    com.samskivert.mustache.Mustache$VariableFetcher THIS_FETCHER -> b
+    java.util.Iterator toIterator(java.lang.Object) -> a
+    com.samskivert.mustache.Mustache$VariableFetcher createFetcher(java.lang.Object,java.lang.String) -> a
+com.samskivert.mustache.BasicCollector$1 -> bT:
+    java.lang.Object get(java.lang.Object,java.lang.String) -> a
+com.samskivert.mustache.BasicCollector$2 -> bU:
+    java.lang.Object get(java.lang.Object,java.lang.String) -> a
+com.samskivert.mustache.DefaultCollector -> bV:
+    java.util.Iterator toIterator(java.lang.Object) -> a
+    com.samskivert.mustache.Mustache$VariableFetcher createFetcher(java.lang.Object,java.lang.String) -> a
+    java.util.Map createFetcherCache() -> a
+    java.lang.reflect.Method getMethod(java.lang.Class,java.lang.String) -> a
+    java.lang.reflect.Field getField(java.lang.Class,java.lang.String) -> b
+com.samskivert.mustache.DefaultCollector$1 -> bW:
+    java.lang.Object val$value -> a
+    com.samskivert.mustache.DefaultCollector this$0 -> b
+    int size() -> size
+    java.lang.Object get(int) -> get
+com.samskivert.mustache.DefaultCollector$2 -> bX:
+    java.lang.reflect.Method val$m -> a
+    com.samskivert.mustache.DefaultCollector this$0 -> b
+    java.lang.Object get(java.lang.Object,java.lang.String) -> a
+com.samskivert.mustache.DefaultCollector$3 -> bY:
+    java.lang.reflect.Field val$f -> a
+    com.samskivert.mustache.DefaultCollector this$0 -> b
+    java.lang.Object get(java.lang.Object,java.lang.String) -> a
+com.samskivert.mustache.Mustache -> bZ:
+    java.lang.String[][] ATTR_ESCAPES -> a
+    com.samskivert.mustache.Mustache$TemplateLoader FAILING_LOADER -> b
+    com.samskivert.mustache.Mustache$Compiler compiler() -> a
+    com.samskivert.mustache.Template compile(java.io.Reader,com.samskivert.mustache.Mustache$Compiler) -> a
+    void restoreStartTag(java.lang.StringBuilder,com.samskivert.mustache.Mustache$Delims) -> a
+    java.lang.String escapeHTML(java.lang.String) -> a
+com.samskivert.mustache.Mustache$1 -> ca:
+    java.io.Reader getTemplate(java.lang.String) -> a
+com.samskivert.mustache.Mustache$Accumulator -> cb:
+    com.samskivert.mustache.Mustache$Compiler _compiler -> a
+    java.util.List _segs -> b
+    boolean justOpenedOrClosedBlock() -> a
+    void addTextSegment(java.lang.StringBuilder) -> a
+    com.samskivert.mustache.Mustache$Accumulator addTagSegment(java.lang.StringBuilder,int) -> a
+    com.samskivert.mustache.Template$Segment[] finish() -> b
+    com.samskivert.mustache.Mustache$Accumulator addCloseSectionSegment(java.lang.String,int) -> a
+    void requireNoNewlines(java.lang.String,int) -> b
+    void requireSameName(java.lang.String,java.lang.String,int) -> a
+com.samskivert.mustache.Mustache$Accumulator$1 -> cc:
+    java.lang.String val$tag1 -> c
+    int val$tagLine -> d
+    com.samskivert.mustache.Mustache$Accumulator val$outer -> e
+    com.samskivert.mustache.Mustache$Accumulator this$0 -> f
+    boolean justOpenedOrClosedBlock() -> a
+    com.samskivert.mustache.Template$Segment[] finish() -> b
+    com.samskivert.mustache.Mustache$Accumulator addCloseSectionSegment(java.lang.String,int) -> a
+com.samskivert.mustache.Mustache$Accumulator$2 -> cd:
+    java.lang.String val$tag1 -> c
+    int val$tagLine -> d
+    com.samskivert.mustache.Mustache$Accumulator val$outer -> e
+    com.samskivert.mustache.Mustache$Accumulator this$0 -> f
+    boolean justOpenedOrClosedBlock() -> a
+    com.samskivert.mustache.Template$Segment[] finish() -> b
+    com.samskivert.mustache.Mustache$Accumulator addCloseSectionSegment(java.lang.String,int) -> a
+com.samskivert.mustache.Mustache$BlockSegment -> ce:
+    com.samskivert.mustache.Template$Segment[] _segs -> a
+    void executeSegs(com.samskivert.mustache.Template,com.samskivert.mustache.Template$Context,java.io.Writer) -> a_
+com.samskivert.mustache.Mustache$Collector -> cf:
+    java.util.Iterator toIterator(java.lang.Object) -> a
+    com.samskivert.mustache.Mustache$VariableFetcher createFetcher(java.lang.Object,java.lang.String) -> a
+    java.util.Map createFetcherCache() -> a
+com.samskivert.mustache.Mustache$Compiler -> cg:
+    boolean escapeHTML -> a
+    boolean standardsMode -> b
+    java.lang.String nullValue -> c
+    boolean missingIsNull -> d
+    boolean emptyStringIsFalse -> e
+    com.samskivert.mustache.Mustache$TemplateLoader loader -> f
+    com.samskivert.mustache.Mustache$Collector collector -> g
+    com.samskivert.mustache.Mustache$Delims delims -> h
+    com.samskivert.mustache.Template compile(java.io.Reader) -> a
+    java.lang.String computeNullValue(java.lang.String) -> a
+com.samskivert.mustache.Mustache$Delims -> ch:
+    char start1 -> a
+    char start2 -> b
+    char end1 -> c
+    char end2 -> d
+    boolean isStaches() -> a
+    com.samskivert.mustache.Mustache$Delims updateDelims(java.lang.String) -> a
+    java.lang.String errmsg(java.lang.String) -> b
+com.samskivert.mustache.Mustache$IncludedTemplateSegment -> ci:
+    java.lang.String _name -> a
+    com.samskivert.mustache.Mustache$Compiler _compiler -> b
+    com.samskivert.mustache.Template _template -> c
+    void execute(com.samskivert.mustache.Template,com.samskivert.mustache.Template$Context,java.io.Writer) -> a
+com.samskivert.mustache.Mustache$InvertedSectionSegment -> cj:
+    void execute(com.samskivert.mustache.Template,com.samskivert.mustache.Template$Context,java.io.Writer) -> a
+com.samskivert.mustache.Mustache$Lambda -> ck:
+    void execute(com.samskivert.mustache.Template$Fragment,java.io.Writer) -> a
+com.samskivert.mustache.Mustache$NamedSegment -> cl:
+    java.lang.String _name -> b
+    int _line -> c
+com.samskivert.mustache.Mustache$Parser -> cm:
+    com.samskivert.mustache.Mustache$Delims delims -> a
+    java.lang.StringBuilder text -> b
+    java.io.Reader source -> c
+    com.samskivert.mustache.Mustache$Accumulator accum -> d
+    int state -> e
+    int line -> f
+    int column -> g
+    int tagStartColumn -> h
+    boolean skipNewline -> i
+    com.samskivert.mustache.Mustache$Accumulator parse(java.io.Reader) -> a
+    void parseChar(char) -> a
+com.samskivert.mustache.Mustache$SectionSegment -> cn:
+    com.samskivert.mustache.Mustache$Compiler _compiler -> d
+    void execute(com.samskivert.mustache.Template,com.samskivert.mustache.Template$Context,java.io.Writer) -> a
+com.samskivert.mustache.Mustache$StringSegment -> co:
+    java.lang.String _text -> a
+    void execute(com.samskivert.mustache.Template,com.samskivert.mustache.Template$Context,java.io.Writer) -> a
+com.samskivert.mustache.Mustache$TemplateLoader -> cp:
+    java.io.Reader getTemplate(java.lang.String) -> a
+com.samskivert.mustache.Mustache$VariableFetcher -> cq:
+    java.lang.Object get(java.lang.Object,java.lang.String) -> a
+com.samskivert.mustache.Mustache$VariableSegment -> cr:
+    boolean _escapeHTML -> a
+    void execute(com.samskivert.mustache.Template,com.samskivert.mustache.Template$Context,java.io.Writer) -> a
+com.samskivert.mustache.MustacheException -> cs:
+com.samskivert.mustache.MustacheException$Context -> ct:
+    java.lang.String key -> a
+    int lineNo -> b
+com.samskivert.mustache.MustacheParseException -> cu:
+com.samskivert.mustache.Template -> cv:
+    java.lang.Object NO_FETCHER_FOUND -> a
+    com.samskivert.mustache.Template$Segment[] _segs -> b
+    com.samskivert.mustache.Mustache$Compiler _compiler -> c
+    java.util.Map _fcache -> d
+    java.lang.String DOT_NAME -> e
+    java.lang.String THIS_NAME -> f
+    java.lang.String FIRST_NAME -> g
+    java.lang.String LAST_NAME -> h
+    java.lang.String INDEX_NAME -> i
+    void execute(java.lang.Object,java.io.Writer) -> a
+    void executeSegs(com.samskivert.mustache.Template$Context,java.io.Writer) -> a
+    com.samskivert.mustache.Template$Fragment createFragment(com.samskivert.mustache.Template$Segment[],com.samskivert.mustache.Template$Context) -> a
+    java.lang.Object getValue(com.samskivert.mustache.Template$Context,java.lang.String,int,boolean) -> a
+    java.lang.Object getSectionValue(com.samskivert.mustache.Template$Context,java.lang.String,int) -> a
+    java.lang.Object getValueOrDefault(com.samskivert.mustache.Template$Context,java.lang.String,int) -> b
+    java.lang.Object getValueIn(java.lang.Object,java.lang.String,int) -> a
+    java.lang.Object checkForMissing(java.lang.String,int,boolean,java.lang.Object) -> a
+com.samskivert.mustache.Template$1 -> cw:
+    com.samskivert.mustache.Template$Segment[] val$segs -> a
+    com.samskivert.mustache.Template$Context val$ctx -> b
+    com.samskivert.mustache.Template this$0 -> c
+com.samskivert.mustache.Template$Context -> cx:
+    java.lang.Object data -> a
+    com.samskivert.mustache.Template$Context parent -> b
+    int index -> c
+    boolean onFirst -> d
+    boolean onLast -> e
+    com.samskivert.mustache.Template$Context nest(java.lang.Object,int,boolean,boolean) -> a
+com.samskivert.mustache.Template$Fragment -> cy:
+    com.samskivert.mustache.Template this$0 -> d
+com.samskivert.mustache.Template$Key -> cz:
+    java.lang.Class cclass -> a
+    java.lang.String name -> b
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+com.samskivert.mustache.Template$Segment -> cA:
+    void execute(com.samskivert.mustache.Template,com.samskivert.mustache.Template$Context,java.io.Writer) -> a
+    void write(java.io.Writer,java.lang.String) -> a
+org.objectweb.asm.AnnotationVisitor -> cB:
+    int api -> a
+    org.objectweb.asm.AnnotationVisitor av -> b
+    void visit(java.lang.String,java.lang.Object) -> a
+    void visitEnum(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitArray(java.lang.String) -> a
+    void visitEnd() -> a
+org.objectweb.asm.AnnotationWriter -> cC:
+    org.objectweb.asm.ClassWriter cw -> e
+    int size -> f
+    boolean named -> g
+    org.objectweb.asm.ByteVector bv -> h
+    org.objectweb.asm.ByteVector parent -> i
+    int offset -> j
+    org.objectweb.asm.AnnotationWriter next -> c
+    org.objectweb.asm.AnnotationWriter prev -> d
+    void visit(java.lang.String,java.lang.Object) -> a
+    void visitEnum(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitArray(java.lang.String) -> a
+    void visitEnd() -> a
+    int getSize() -> b
+    void put(org.objectweb.asm.ByteVector) -> a
+    void put(org.objectweb.asm.AnnotationWriter[],int,org.objectweb.asm.ByteVector) -> a
+org.objectweb.asm.Attribute -> cD:
+    java.lang.String type -> a
+    byte[] value -> b
+    org.objectweb.asm.Attribute next -> c
+    boolean isCodeAttribute() -> a
+    org.objectweb.asm.Label[] getLabels() -> b
+    org.objectweb.asm.Attribute read(org.objectweb.asm.ClassReader,int,int,char[],int,org.objectweb.asm.Label[]) -> a
+    org.objectweb.asm.ByteVector write(org.objectweb.asm.ClassWriter,byte[],int,int,int) -> a
+    int getCount() -> c
+    int getSize(org.objectweb.asm.ClassWriter,byte[],int,int,int) -> b
+    void put(org.objectweb.asm.ClassWriter,byte[],int,int,int,org.objectweb.asm.ByteVector) -> a
+org.objectweb.asm.ByteVector -> cE:
+    byte[] data -> a
+    int length -> b
+    org.objectweb.asm.ByteVector putByte(int) -> a
+    org.objectweb.asm.ByteVector put11(int,int) -> a
+    org.objectweb.asm.ByteVector putShort(int) -> b
+    org.objectweb.asm.ByteVector put12(int,int) -> b
+    org.objectweb.asm.ByteVector putInt(int) -> c
+    org.objectweb.asm.ByteVector putLong(long) -> a
+    org.objectweb.asm.ByteVector putUTF8(java.lang.String) -> a
+    org.objectweb.asm.ByteVector putByteArray(byte[],int,int) -> a
+    void enlarge(int) -> d
+org.objectweb.asm.ClassReader -> cF:
+    byte[] b -> a
+    int[] items -> c
+    java.lang.String[] strings -> d
+    int maxStringLength -> e
+    int header -> b
+    java.lang.String getClassName() -> a
+    byte[] readClass(java.io.InputStream,boolean) -> a
+    void accept(org.objectweb.asm.ClassVisitor,int) -> a
+    void accept(org.objectweb.asm.ClassVisitor,org.objectweb.asm.Attribute[],int) -> a
+    int readField(org.objectweb.asm.ClassVisitor,org.objectweb.asm.Context,int) -> a
+    int readMethod(org.objectweb.asm.ClassVisitor,org.objectweb.asm.Context,int) -> b
+    void readCode(org.objectweb.asm.MethodVisitor,org.objectweb.asm.Context,int) -> a
+    void readParameterAnnotations(int,java.lang.String,char[],boolean,org.objectweb.asm.MethodVisitor) -> a
+    int readAnnotationValues(int,char[],boolean,org.objectweb.asm.AnnotationVisitor) -> a
+    int readAnnotationValue(int,char[],java.lang.String,org.objectweb.asm.AnnotationVisitor) -> a
+    void getImplicitFrame(org.objectweb.asm.Context) -> a
+    int readFrame(int,boolean,boolean,org.objectweb.asm.Label[],org.objectweb.asm.Context) -> a
+    int readFrameType(java.lang.Object[],int,int,char[],org.objectweb.asm.Label[]) -> a
+    org.objectweb.asm.Label readLabel(int,org.objectweb.asm.Label[]) -> a
+    int getAttributes() -> b
+    org.objectweb.asm.Attribute readAttribute(org.objectweb.asm.Attribute[],java.lang.String,int,int,char[],int,org.objectweb.asm.Label[]) -> a
+    int readByte(int) -> a
+    int readUnsignedShort(int) -> b
+    short readShort(int) -> c
+    int readInt(int) -> d
+    long readLong(int) -> e
+    java.lang.String readUTF8(int,char[]) -> a
+    java.lang.String readUTF(int,int,char[]) -> a
+    java.lang.String readClass(int,char[]) -> b
+    java.lang.Object readConst(int,char[]) -> c
+org.objectweb.asm.ClassVisitor -> cG:
+    int api -> d
+    org.objectweb.asm.ClassVisitor cv -> e
+    void visit(int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitSource(java.lang.String,java.lang.String) -> a
+    void visitOuterClass(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitInnerClass(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    org.objectweb.asm.FieldVisitor visitField(int,java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> a
+    org.objectweb.asm.MethodVisitor visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitEnd() -> b
+org.objectweb.asm.ClassWriter -> cH:
+    byte[] TYPE -> a
+    org.objectweb.asm.ClassReader cr -> b
+    int version -> c
+    int index -> f
+    org.objectweb.asm.ByteVector pool -> g
+    org.objectweb.asm.Item[] items -> h
+    int threshold -> i
+    org.objectweb.asm.Item key -> j
+    org.objectweb.asm.Item key2 -> k
+    org.objectweb.asm.Item key3 -> l
+    org.objectweb.asm.Item key4 -> m
+    org.objectweb.asm.Item[] typeTable -> n
+    short typeCount -> w
+    int access -> x
+    int name -> y
+    java.lang.String thisName -> o
+    int signature -> z
+    int superName -> A
+    int interfaceCount -> B
+    int[] interfaces -> C
+    int sourceFile -> D
+    org.objectweb.asm.ByteVector sourceDebug -> E
+    int enclosingMethodOwner -> F
+    int enclosingMethod -> G
+    org.objectweb.asm.AnnotationWriter anns -> H
+    org.objectweb.asm.AnnotationWriter ianns -> I
+    org.objectweb.asm.Attribute attrs -> J
+    int innerClassesCount -> K
+    org.objectweb.asm.ByteVector innerClasses -> L
+    int bootstrapMethodsCount -> p
+    org.objectweb.asm.ByteVector bootstrapMethods -> q
+    org.objectweb.asm.FieldWriter firstField -> r
+    org.objectweb.asm.FieldWriter lastField -> s
+    org.objectweb.asm.MethodWriter firstMethod -> t
+    org.objectweb.asm.MethodWriter lastMethod -> u
+    boolean computeMaxs -> M
+    boolean computeFrames -> N
+    boolean invalidFrames -> v
+    void visit(int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitSource(java.lang.String,java.lang.String) -> a
+    void visitOuterClass(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitInnerClass(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    org.objectweb.asm.FieldVisitor visitField(int,java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> a
+    org.objectweb.asm.MethodVisitor visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitEnd() -> b
+    byte[] toByteArray() -> a
+    org.objectweb.asm.Item newConstItem(java.lang.Object) -> a
+    int newConst(java.lang.Object) -> b
+    int newUTF8(java.lang.String) -> a
+    org.objectweb.asm.Item newClassItem(java.lang.String) -> b
+    int newClass(java.lang.String) -> c
+    org.objectweb.asm.Item newMethodTypeItem(java.lang.String) -> d
+    org.objectweb.asm.Item newHandleItem(int,java.lang.String,java.lang.String,java.lang.String) -> a
+    int newHandle(int,java.lang.String,java.lang.String,java.lang.String) -> b
+    org.objectweb.asm.Item newInvokeDynamicItem(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[]) -> a
+    org.objectweb.asm.Item newFieldItem(java.lang.String,java.lang.String,java.lang.String) -> b
+    int newField(java.lang.String,java.lang.String,java.lang.String) -> c
+    org.objectweb.asm.Item newMethodItem(java.lang.String,java.lang.String,java.lang.String,boolean) -> a
+    int newMethod(java.lang.String,java.lang.String,java.lang.String,boolean) -> b
+    org.objectweb.asm.Item newInteger(int) -> a
+    org.objectweb.asm.Item newFloat(float) -> a
+    org.objectweb.asm.Item newLong(long) -> a
+    org.objectweb.asm.Item newDouble(double) -> a
+    org.objectweb.asm.Item newString(java.lang.String) -> f
+    int newNameType(java.lang.String,java.lang.String) -> b
+    org.objectweb.asm.Item newNameTypeItem(java.lang.String,java.lang.String) -> c
+    int addType(java.lang.String) -> e
+    int addUninitializedType(java.lang.String,int) -> a
+    org.objectweb.asm.Item addType(org.objectweb.asm.Item) -> a
+    int getMergedType(int,int) -> a
+    java.lang.String getCommonSuperClass(java.lang.String,java.lang.String) -> d
+    org.objectweb.asm.Item get(org.objectweb.asm.Item) -> b
+    void put(org.objectweb.asm.Item) -> c
+    void put122(int,int,int) -> a
+    void put112(int,int,int) -> b
+org.objectweb.asm.Context -> cI:
+    org.objectweb.asm.Attribute[] attrs -> a
+    int flags -> b
+    char[] buffer -> c
+    int[] bootstrapMethods -> d
+    int access -> e
+    java.lang.String name -> f
+    java.lang.String desc -> g
+    int offset -> h
+    int mode -> i
+    int localCount -> j
+    int localDiff -> k
+    java.lang.Object[] local -> l
+    int stackCount -> m
+    java.lang.Object[] stack -> n
+org.objectweb.asm.Edge -> cJ:
+    int info -> a
+    org.objectweb.asm.Label successor -> b
+    org.objectweb.asm.Edge next -> c
+org.objectweb.asm.FieldVisitor -> cK:
+    int api -> a
+    org.objectweb.asm.FieldVisitor fv -> b
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitEnd() -> a
+org.objectweb.asm.FieldWriter -> cL:
+    org.objectweb.asm.ClassWriter cw -> c
+    int access -> d
+    int name -> e
+    int desc -> f
+    int signature -> g
+    int value -> h
+    org.objectweb.asm.AnnotationWriter anns -> i
+    org.objectweb.asm.AnnotationWriter ianns -> j
+    org.objectweb.asm.Attribute attrs -> k
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitEnd() -> a
+    int getSize() -> b
+    void put(org.objectweb.asm.ByteVector) -> a
+org.objectweb.asm.Frame -> cM:
+    int[] SIZE -> a
+    org.objectweb.asm.Label owner -> b
+    int[] inputLocals -> c
+    int[] inputStack -> d
+    int[] outputLocals -> e
+    int[] outputStack -> f
+    int outputStackTop -> g
+    int initializationCount -> h
+    int[] initializations -> i
+    int get(int) -> a
+    void set(int,int) -> a
+    void push(int) -> b
+    void push(org.objectweb.asm.ClassWriter,java.lang.String) -> a
+    int type(org.objectweb.asm.ClassWriter,java.lang.String) -> b
+    int pop() -> a
+    void pop(int) -> c
+    void pop(java.lang.String) -> a
+    void init(int) -> d
+    int init(org.objectweb.asm.ClassWriter,int) -> a
+    void initInputFrame(org.objectweb.asm.ClassWriter,int,org.objectweb.asm.Type[],int) -> a
+    void execute(int,int,org.objectweb.asm.ClassWriter,org.objectweb.asm.Item) -> a
+    boolean merge(org.objectweb.asm.ClassWriter,org.objectweb.asm.Frame,int) -> a
+    boolean merge(org.objectweb.asm.ClassWriter,int,int[],int) -> a
+org.objectweb.asm.Handle -> cN:
+    int tag -> a
+    java.lang.String owner -> b
+    java.lang.String name -> c
+    java.lang.String desc -> d
+    int getTag() -> a
+    java.lang.String getOwner() -> b
+    java.lang.String getName() -> c
+    java.lang.String getDesc() -> d
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+org.objectweb.asm.Handler -> cO:
+    org.objectweb.asm.Label start -> a
+    org.objectweb.asm.Label end -> b
+    org.objectweb.asm.Label handler -> c
+    java.lang.String desc -> d
+    int type -> e
+    org.objectweb.asm.Handler next -> f
+    org.objectweb.asm.Handler remove(org.objectweb.asm.Handler,org.objectweb.asm.Label,org.objectweb.asm.Label) -> a
+org.objectweb.asm.Item -> cP:
+    int index -> a
+    int type -> b
+    int intVal -> c
+    long longVal -> d
+    java.lang.String strVal1 -> e
+    java.lang.String strVal2 -> f
+    java.lang.String strVal3 -> g
+    int hashCode -> h
+    org.objectweb.asm.Item next -> i
+    void set(int) -> a
+    void set(long) -> a
+    void set(float) -> a
+    void set(double) -> a
+    void set(int,java.lang.String,java.lang.String,java.lang.String) -> a
+    void set(java.lang.String,java.lang.String,int) -> a
+    void set(int,int) -> a
+    boolean isEqualTo(org.objectweb.asm.Item) -> a
+org.objectweb.asm.Label -> cQ:
+    java.lang.Object info -> a
+    int status -> b
+    int line -> c
+    int position -> d
+    int referenceCount -> k
+    int[] srcAndRefPositions -> l
+    int inputStackTop -> e
+    int outputStackMax -> f
+    org.objectweb.asm.Frame frame -> g
+    org.objectweb.asm.Label successor -> h
+    org.objectweb.asm.Edge successors -> i
+    org.objectweb.asm.Label next -> j
+    void put(org.objectweb.asm.MethodWriter,org.objectweb.asm.ByteVector,int,boolean) -> a
+    void addReference(int,int) -> a
+    boolean resolve(org.objectweb.asm.MethodWriter,int,byte[]) -> a
+    org.objectweb.asm.Label getFirst() -> a
+    boolean inSubroutine(long) -> a
+    boolean inSameSubroutine(org.objectweb.asm.Label) -> a
+    void addToSubroutine(long,int) -> a
+    void visitSubroutine(org.objectweb.asm.Label,long,int) -> a
+    java.lang.String toString() -> toString
+org.objectweb.asm.MethodVisitor -> cR:
+    int api -> b
+    org.objectweb.asm.MethodVisitor mv -> c
+    org.objectweb.asm.AnnotationVisitor visitAnnotationDefault() -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    org.objectweb.asm.AnnotationVisitor visitParameterAnnotation(int,java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitCode() -> b
+    void visitFrame(int,int,java.lang.Object[],int,java.lang.Object[]) -> a
+    void visitInsn(int) -> a
+    void visitIntInsn(int,int) -> a
+    void visitVarInsn(int,int) -> b
+    void visitTypeInsn(int,java.lang.String) -> a
+    void visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String) -> a
+    void visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String) -> b
+    void visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[]) -> a
+    void visitJumpInsn(int,org.objectweb.asm.Label) -> a
+    void visitLabel(org.objectweb.asm.Label) -> a
+    void visitLdcInsn(java.lang.Object) -> a
+    void visitIincInsn(int,int) -> c
+    void visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[]) -> a
+    void visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[]) -> a
+    void visitMultiANewArrayInsn(java.lang.String,int) -> a
+    void visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String) -> a
+    void visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,org.objectweb.asm.Label,org.objectweb.asm.Label,int) -> a
+    void visitLineNumber(int,org.objectweb.asm.Label) -> b
+    void visitMaxs(int,int) -> d
+    void visitEnd() -> c
+org.objectweb.asm.MethodWriter -> cS:
+    org.objectweb.asm.ClassWriter cw -> a
+    int access -> i
+    int name -> j
+    int desc -> k
+    java.lang.String descriptor -> l
+    java.lang.String signature -> d
+    int classReaderOffset -> e
+    int classReaderLength -> f
+    int exceptionCount -> g
+    int[] exceptions -> h
+    org.objectweb.asm.ByteVector annd -> m
+    org.objectweb.asm.AnnotationWriter anns -> n
+    org.objectweb.asm.AnnotationWriter ianns -> o
+    org.objectweb.asm.AnnotationWriter[] panns -> p
+    org.objectweb.asm.AnnotationWriter[] ipanns -> q
+    int synthetics -> r
+    org.objectweb.asm.Attribute attrs -> s
+    org.objectweb.asm.ByteVector code -> t
+    int maxStack -> u
+    int maxLocals -> v
+    int currentLocals -> w
+    int frameCount -> x
+    org.objectweb.asm.ByteVector stackMap -> y
+    int previousFrameOffset -> z
+    int[] previousFrame -> A
+    int[] frame -> B
+    int handlerCount -> C
+    org.objectweb.asm.Handler firstHandler -> D
+    org.objectweb.asm.Handler lastHandler -> E
+    int localVarCount -> F
+    org.objectweb.asm.ByteVector localVar -> G
+    int localVarTypeCount -> H
+    org.objectweb.asm.ByteVector localVarType -> I
+    int lineNumberCount -> J
+    org.objectweb.asm.ByteVector lineNumber -> K
+    org.objectweb.asm.Attribute cattrs -> L
+    boolean resize -> M
+    int subroutines -> N
+    int compute -> O
+    org.objectweb.asm.Label labels -> P
+    org.objectweb.asm.Label previousBlock -> Q
+    org.objectweb.asm.Label currentBlock -> R
+    int stackSize -> S
+    int maxStackSize -> T
+    org.objectweb.asm.AnnotationVisitor visitAnnotationDefault() -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    org.objectweb.asm.AnnotationVisitor visitParameterAnnotation(int,java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitCode() -> b
+    void visitFrame(int,int,java.lang.Object[],int,java.lang.Object[]) -> a
+    void visitInsn(int) -> a
+    void visitIntInsn(int,int) -> a
+    void visitVarInsn(int,int) -> b
+    void visitTypeInsn(int,java.lang.String) -> a
+    void visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String) -> a
+    void visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String) -> b
+    void visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[]) -> a
+    void visitJumpInsn(int,org.objectweb.asm.Label) -> a
+    void visitLabel(org.objectweb.asm.Label) -> a
+    void visitLdcInsn(java.lang.Object) -> a
+    void visitIincInsn(int,int) -> c
+    void visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[]) -> a
+    void visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[]) -> a
+    void visitSwitchInsn(org.objectweb.asm.Label,org.objectweb.asm.Label[]) -> a
+    void visitMultiANewArrayInsn(java.lang.String,int) -> a
+    void visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String) -> a
+    void visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,org.objectweb.asm.Label,org.objectweb.asm.Label,int) -> a
+    void visitLineNumber(int,org.objectweb.asm.Label) -> b
+    void visitMaxs(int,int) -> d
+    void visitEnd() -> c
+    void addSuccessor(int,org.objectweb.asm.Label) -> c
+    void noSuccessor() -> e
+    void visitFrame(org.objectweb.asm.Frame) -> a
+    void visitImplicitFirstFrame() -> f
+    int startFrame(int,int,int) -> a
+    void endFrame() -> g
+    void writeFrame() -> h
+    void writeFrameTypes(int,int) -> e
+    void writeFrameType(java.lang.Object) -> b
+    int getSize() -> d
+    void put(org.objectweb.asm.ByteVector) -> a
+    void resizeInstructions() -> i
+    int readUnsignedShort(byte[],int) -> a
+    short readShort(byte[],int) -> b
+    int readInt(byte[],int) -> c
+    void writeShort(byte[],int,int) -> a
+    int getNewOffset(int[],int[],int,int) -> a
+    void getNewOffset(int[],int[],org.objectweb.asm.Label) -> a
+org.objectweb.asm.Opcodes -> cT:
+    java.lang.Integer TOP -> a
+    java.lang.Integer INTEGER -> b
+    java.lang.Integer FLOAT -> c
+    java.lang.Integer DOUBLE -> d
+    java.lang.Integer LONG -> e
+    java.lang.Integer NULL -> f
+    java.lang.Integer UNINITIALIZED_THIS -> g
+org.objectweb.asm.Type -> cU:
+    org.objectweb.asm.Type VOID_TYPE -> a
+    org.objectweb.asm.Type BOOLEAN_TYPE -> b
+    org.objectweb.asm.Type CHAR_TYPE -> c
+    org.objectweb.asm.Type BYTE_TYPE -> d
+    org.objectweb.asm.Type SHORT_TYPE -> e
+    org.objectweb.asm.Type INT_TYPE -> f
+    org.objectweb.asm.Type FLOAT_TYPE -> g
+    org.objectweb.asm.Type LONG_TYPE -> h
+    org.objectweb.asm.Type DOUBLE_TYPE -> i
+    int sort -> j
+    char[] buf -> k
+    int off -> l
+    int len -> m
+    org.objectweb.asm.Type getType(java.lang.String) -> a
+    org.objectweb.asm.Type getObjectType(java.lang.String) -> b
+    org.objectweb.asm.Type getMethodType(java.lang.String) -> c
+    org.objectweb.asm.Type getType(java.lang.Class) -> a
+    org.objectweb.asm.Type[] getArgumentTypes(java.lang.String) -> d
+    org.objectweb.asm.Type getReturnType(java.lang.String) -> e
+    int getArgumentsAndReturnSizes(java.lang.String) -> f
+    org.objectweb.asm.Type getType(char[],int) -> a
+    int getSort() -> a
+    int getDimensions() -> b
+    org.objectweb.asm.Type getElementType() -> c
+    java.lang.String getClassName() -> d
+    java.lang.String getInternalName() -> e
+    java.lang.String getDescriptor() -> f
+    void getDescriptor(java.lang.StringBuffer) -> a
+    java.lang.String getDescriptor(java.lang.Class) -> b
+    void getDescriptor(java.lang.StringBuffer,java.lang.Class) -> a
+    int getSize() -> g
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+org.objectweb.asm.commons.Method -> cV:
+    java.lang.String name -> a
+    java.lang.String desc -> b
+    java.util.Map DESCRIPTORS -> c
+    java.lang.String getName() -> a
+    java.lang.String toString() -> toString
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+org.objectweb.asm.signature.SignatureReader -> cW:
+    java.lang.String signature -> a
+    void accept(org.objectweb.asm.signature.SignatureVisitor) -> a
+    void acceptType(org.objectweb.asm.signature.SignatureVisitor) -> b
+    int parseType(java.lang.String,int,org.objectweb.asm.signature.SignatureVisitor) -> a
+org.objectweb.asm.signature.SignatureVisitor -> cX:
+    int api -> a
+    void visitFormalTypeParameter(java.lang.String) -> a
+    org.objectweb.asm.signature.SignatureVisitor visitClassBound() -> a
+    org.objectweb.asm.signature.SignatureVisitor visitInterfaceBound() -> b
+    org.objectweb.asm.signature.SignatureVisitor visitSuperclass() -> c
+    org.objectweb.asm.signature.SignatureVisitor visitInterface() -> d
+    org.objectweb.asm.signature.SignatureVisitor visitParameterType() -> e
+    org.objectweb.asm.signature.SignatureVisitor visitReturnType() -> f
+    org.objectweb.asm.signature.SignatureVisitor visitExceptionType() -> g
+    void visitBaseType(char) -> a
+    void visitTypeVariable(java.lang.String) -> b
+    org.objectweb.asm.signature.SignatureVisitor visitArrayType() -> h
+    void visitClassType(java.lang.String) -> c
+    void visitInnerClassType(java.lang.String) -> d
+    void visitTypeArgument() -> i
+    org.objectweb.asm.signature.SignatureVisitor visitTypeArgument(char) -> b
+    void visitEnd() -> j
+org.objectweb.asm.tree.AbstractInsnNode -> cY:
+    int opcode -> a
+    org.objectweb.asm.tree.AbstractInsnNode prev -> b
+    org.objectweb.asm.tree.AbstractInsnNode next -> c
+    int index -> d
+    int getOpcode() -> a
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.AnnotationNode -> cZ:
+    java.lang.String desc -> c
+    java.util.List values -> d
+    void visit(java.lang.String,java.lang.Object) -> a
+    void visitEnum(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitArray(java.lang.String) -> a
+    void visitEnd() -> a
+    void accept(org.objectweb.asm.AnnotationVisitor) -> a
+    void accept(org.objectweb.asm.AnnotationVisitor,java.lang.String,java.lang.Object) -> a
+org.objectweb.asm.tree.ClassNode -> da:
+    int version -> a
+    int access -> b
+    java.lang.String name -> c
+    java.lang.String signature -> f
+    java.lang.String superName -> g
+    java.util.List interfaces -> h
+    java.lang.String sourceFile -> i
+    java.lang.String sourceDebug -> j
+    java.lang.String outerClass -> k
+    java.lang.String outerMethod -> l
+    java.lang.String outerMethodDesc -> m
+    java.util.List visibleAnnotations -> n
+    java.util.List invisibleAnnotations -> o
+    java.util.List attrs -> p
+    java.util.List innerClasses -> q
+    java.util.List fields -> r
+    java.util.List methods -> s
+    void visit(int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitSource(java.lang.String,java.lang.String) -> a
+    void visitOuterClass(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitInnerClass(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    org.objectweb.asm.FieldVisitor visitField(int,java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> a
+    org.objectweb.asm.MethodVisitor visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitEnd() -> b
+org.objectweb.asm.tree.FieldInsnNode -> db:
+    java.lang.String owner -> e
+    java.lang.String name -> f
+    java.lang.String desc -> g
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.FieldNode -> dc:
+    int access -> c
+    java.lang.String name -> d
+    java.lang.String desc -> e
+    java.lang.String signature -> f
+    java.lang.Object value -> g
+    java.util.List visibleAnnotations -> h
+    java.util.List invisibleAnnotations -> i
+    java.util.List attrs -> j
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitEnd() -> a
+org.objectweb.asm.tree.FrameNode -> dd:
+    int type -> e
+    java.util.List local -> f
+    java.util.List stack -> g
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+    java.util.List asList(int,java.lang.Object[]) -> a
+    java.lang.Object[] asArray(java.util.List) -> a
+org.objectweb.asm.tree.IincInsnNode -> de:
+    int var -> e
+    int incr -> f
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.InnerClassNode -> df:
+    java.lang.String name -> a
+    java.lang.String outerName -> b
+    java.lang.String innerName -> c
+    int access -> d
+org.objectweb.asm.tree.InsnList -> dg:
+    int size -> b
+    org.objectweb.asm.tree.AbstractInsnNode first -> c
+    org.objectweb.asm.tree.AbstractInsnNode last -> d
+    org.objectweb.asm.tree.AbstractInsnNode[] cache -> a
+    int size() -> a
+    org.objectweb.asm.tree.AbstractInsnNode get(int) -> a
+    int indexOf(org.objectweb.asm.tree.AbstractInsnNode) -> a
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+    org.objectweb.asm.tree.AbstractInsnNode[] toArray() -> b
+    void add(org.objectweb.asm.tree.AbstractInsnNode) -> b
+    void resetLabels() -> c
+org.objectweb.asm.tree.InsnNode -> dh:
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.IntInsnNode -> di:
+    int operand -> e
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.InvokeDynamicInsnNode -> dj:
+    java.lang.String name -> e
+    java.lang.String desc -> f
+    org.objectweb.asm.Handle bsm -> g
+    java.lang.Object[] bsmArgs -> h
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.JumpInsnNode -> dk:
+    org.objectweb.asm.tree.LabelNode label -> e
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.LabelNode -> dl:
+    org.objectweb.asm.Label label -> e
+    int getType() -> b
+    org.objectweb.asm.Label getLabel() -> c
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+    void resetLabel() -> d
+org.objectweb.asm.tree.LdcInsnNode -> dm:
+    java.lang.Object cst -> e
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.LineNumberNode -> dn:
+    int line -> e
+    org.objectweb.asm.tree.LabelNode start -> f
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.LocalVariableNode -> do:
+    java.lang.String name -> a
+    java.lang.String desc -> b
+    java.lang.String signature -> c
+    org.objectweb.asm.tree.LabelNode start -> d
+    org.objectweb.asm.tree.LabelNode end -> e
+    int index -> f
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.LookupSwitchInsnNode -> dp:
+    org.objectweb.asm.tree.LabelNode dflt -> e
+    java.util.List keys -> f
+    java.util.List labels -> g
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.MethodInsnNode -> dq:
+    java.lang.String owner -> e
+    java.lang.String name -> f
+    java.lang.String desc -> g
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.MethodNode -> dr:
+    int access -> a
+    java.lang.String name -> d
+    java.lang.String desc -> e
+    java.lang.String signature -> f
+    java.util.List exceptions -> g
+    java.util.List visibleAnnotations -> h
+    java.util.List invisibleAnnotations -> i
+    java.util.List attrs -> j
+    java.lang.Object annotationDefault -> k
+    java.util.List[] visibleParameterAnnotations -> l
+    java.util.List[] invisibleParameterAnnotations -> m
+    org.objectweb.asm.tree.InsnList instructions -> n
+    java.util.List tryCatchBlocks -> o
+    int maxStack -> p
+    int maxLocals -> q
+    java.util.List localVariables -> r
+    boolean visited -> s
+    org.objectweb.asm.AnnotationVisitor visitAnnotationDefault() -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    org.objectweb.asm.AnnotationVisitor visitParameterAnnotation(int,java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitCode() -> b
+    void visitFrame(int,int,java.lang.Object[],int,java.lang.Object[]) -> a
+    void visitInsn(int) -> a
+    void visitIntInsn(int,int) -> a
+    void visitVarInsn(int,int) -> b
+    void visitTypeInsn(int,java.lang.String) -> a
+    void visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String) -> a
+    void visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String) -> b
+    void visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[]) -> a
+    void visitJumpInsn(int,org.objectweb.asm.Label) -> a
+    void visitLabel(org.objectweb.asm.Label) -> a
+    void visitLdcInsn(java.lang.Object) -> a
+    void visitIincInsn(int,int) -> c
+    void visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[]) -> a
+    void visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[]) -> a
+    void visitMultiANewArrayInsn(java.lang.String,int) -> a
+    void visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String) -> a
+    void visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,org.objectweb.asm.Label,org.objectweb.asm.Label,int) -> a
+    void visitLineNumber(int,org.objectweb.asm.Label) -> b
+    void visitMaxs(int,int) -> d
+    void visitEnd() -> c
+    org.objectweb.asm.tree.LabelNode getLabelNode(org.objectweb.asm.Label) -> b
+    org.objectweb.asm.tree.LabelNode[] getLabelNodes(org.objectweb.asm.Label[]) -> a
+    java.lang.Object[] getLabelNodes(java.lang.Object[]) -> a
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.MethodNode$1 -> ds:
+    org.objectweb.asm.tree.MethodNode this$0 -> a
+    boolean add(java.lang.Object) -> add
+org.objectweb.asm.tree.MultiANewArrayInsnNode -> dt:
+    java.lang.String desc -> e
+    int dims -> f
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.TableSwitchInsnNode -> du:
+    int min -> e
+    int max -> f
+    org.objectweb.asm.tree.LabelNode dflt -> g
+    java.util.List labels -> h
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.TryCatchBlockNode -> dv:
+    org.objectweb.asm.tree.LabelNode start -> a
+    org.objectweb.asm.tree.LabelNode end -> b
+    org.objectweb.asm.tree.LabelNode handler -> c
+    java.lang.String type -> d
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.TypeInsnNode -> dw:
+    java.lang.String desc -> e
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.VarInsnNode -> dx:
+    int var -> e
+    int getType() -> b
+    void accept(org.objectweb.asm.MethodVisitor) -> a
+org.objectweb.asm.tree.analysis.Analyzer -> dy:
+    org.objectweb.asm.tree.analysis.Interpreter interpreter -> h
+    int n -> i
+    org.objectweb.asm.tree.InsnList insns -> j
+    java.util.List[] handlers -> k
+    org.objectweb.asm.tree.analysis.Frame[] frames -> l
+    org.objectweb.asm.tree.analysis.Subroutine[] subroutines -> m
+    boolean[] queued -> n
+    int[] queue -> o
+    int top -> p
+    org.objectweb.asm.tree.analysis.Frame[] analyze(java.lang.String,org.objectweb.asm.tree.MethodNode) -> a
+    void findSubroutine(int,org.objectweb.asm.tree.analysis.Subroutine,java.util.List) -> a
+    org.objectweb.asm.tree.analysis.Frame[] getFrames() -> a
+    void init(java.lang.String,org.objectweb.asm.tree.MethodNode) -> b
+    org.objectweb.asm.tree.analysis.Frame newFrame(int,int) -> a
+    org.objectweb.asm.tree.analysis.Frame newFrame(org.objectweb.asm.tree.analysis.Frame) -> a
+    void newControlFlowEdge(int,int) -> b
+    boolean newControlFlowExceptionEdge(int,int) -> c
+    boolean newControlFlowExceptionEdge(int,org.objectweb.asm.tree.TryCatchBlockNode) -> a
+    void merge(int,org.objectweb.asm.tree.analysis.Frame,org.objectweb.asm.tree.analysis.Subroutine) -> a
+    void merge(int,org.objectweb.asm.tree.analysis.Frame,org.objectweb.asm.tree.analysis.Frame,org.objectweb.asm.tree.analysis.Subroutine,boolean[]) -> a
+org.objectweb.asm.tree.analysis.AnalyzerException -> dz:
+    org.objectweb.asm.tree.AbstractInsnNode node -> a
+org.objectweb.asm.tree.analysis.BasicInterpreter -> dA:
+    org.objectweb.asm.tree.analysis.BasicValue newValue(org.objectweb.asm.Type) -> a
+    org.objectweb.asm.tree.analysis.BasicValue newOperation(org.objectweb.asm.tree.AbstractInsnNode) -> a
+    org.objectweb.asm.tree.analysis.BasicValue copyOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.BasicValue) -> a
+    org.objectweb.asm.tree.analysis.BasicValue unaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.BasicValue) -> b
+    org.objectweb.asm.tree.analysis.BasicValue binaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue) -> a
+    org.objectweb.asm.tree.analysis.BasicValue ternaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue) -> a
+    org.objectweb.asm.tree.analysis.BasicValue naryOperation(org.objectweb.asm.tree.AbstractInsnNode,java.util.List) -> a
+    void returnOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue) -> b
+    org.objectweb.asm.tree.analysis.BasicValue merge(org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue) -> a
+    org.objectweb.asm.tree.analysis.Value merge(org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> a
+    void returnOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> a
+    org.objectweb.asm.tree.analysis.Value naryOperation(org.objectweb.asm.tree.AbstractInsnNode,java.util.List) -> b
+    org.objectweb.asm.tree.analysis.Value ternaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> a
+    org.objectweb.asm.tree.analysis.Value binaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> b
+    org.objectweb.asm.tree.analysis.Value unaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value) -> a
+    org.objectweb.asm.tree.analysis.Value copyOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value) -> b
+    org.objectweb.asm.tree.analysis.Value newOperation(org.objectweb.asm.tree.AbstractInsnNode) -> b
+    org.objectweb.asm.tree.analysis.Value newValue(org.objectweb.asm.Type) -> b
+org.objectweb.asm.tree.analysis.BasicValue -> dB:
+    org.objectweb.asm.tree.analysis.BasicValue UNINITIALIZED_VALUE -> a
+    org.objectweb.asm.tree.analysis.BasicValue INT_VALUE -> b
+    org.objectweb.asm.tree.analysis.BasicValue FLOAT_VALUE -> c
+    org.objectweb.asm.tree.analysis.BasicValue LONG_VALUE -> d
+    org.objectweb.asm.tree.analysis.BasicValue DOUBLE_VALUE -> e
+    org.objectweb.asm.tree.analysis.BasicValue REFERENCE_VALUE -> f
+    org.objectweb.asm.tree.analysis.BasicValue RETURNADDRESS_VALUE -> g
+    org.objectweb.asm.Type type -> h
+    org.objectweb.asm.Type getType() -> a
+    int getSize() -> b
+    boolean isReference() -> c
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+org.objectweb.asm.tree.analysis.BasicVerifier -> dC:
+    org.objectweb.asm.tree.analysis.BasicValue copyOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.BasicValue) -> a
+    org.objectweb.asm.tree.analysis.BasicValue unaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.BasicValue) -> b
+    org.objectweb.asm.tree.analysis.BasicValue binaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue) -> a
+    org.objectweb.asm.tree.analysis.BasicValue ternaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue) -> a
+    org.objectweb.asm.tree.analysis.BasicValue naryOperation(org.objectweb.asm.tree.AbstractInsnNode,java.util.List) -> a
+    void returnOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue) -> b
+    boolean isArrayValue(org.objectweb.asm.tree.analysis.BasicValue) -> a
+    org.objectweb.asm.tree.analysis.BasicValue getElementValue(org.objectweb.asm.tree.analysis.BasicValue) -> b
+    boolean isSubTypeOf(org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue) -> b
+    void returnOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> a
+    org.objectweb.asm.tree.analysis.Value naryOperation(org.objectweb.asm.tree.AbstractInsnNode,java.util.List) -> b
+    org.objectweb.asm.tree.analysis.Value ternaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> a
+    org.objectweb.asm.tree.analysis.Value binaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> b
+    org.objectweb.asm.tree.analysis.Value unaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value) -> a
+    org.objectweb.asm.tree.analysis.Value copyOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value) -> b
+org.objectweb.asm.tree.analysis.Frame -> dD:
+    org.objectweb.asm.tree.analysis.Value returnValue -> a
+    org.objectweb.asm.tree.analysis.Value[] values -> b
+    int locals -> c
+    int top -> d
+    org.objectweb.asm.tree.analysis.Frame init(org.objectweb.asm.tree.analysis.Frame) -> a
+    void setReturn(org.objectweb.asm.tree.analysis.Value) -> a
+    int getLocals() -> a
+    org.objectweb.asm.tree.analysis.Value getLocal(int) -> a
+    void setLocal(int,org.objectweb.asm.tree.analysis.Value) -> a
+    int getStackSize() -> b
+    org.objectweb.asm.tree.analysis.Value getStack(int) -> b
+    void clearStack() -> c
+    org.objectweb.asm.tree.analysis.Value pop() -> d
+    void push(org.objectweb.asm.tree.analysis.Value) -> b
+    void execute(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Interpreter) -> a
+    boolean merge(org.objectweb.asm.tree.analysis.Frame,org.objectweb.asm.tree.analysis.Interpreter) -> a
+    boolean merge(org.objectweb.asm.tree.analysis.Frame,boolean[]) -> a
+    java.lang.String toString() -> toString
+org.objectweb.asm.tree.analysis.Interpreter -> dE:
+    int api -> a_
+    org.objectweb.asm.tree.analysis.Value newValue(org.objectweb.asm.Type) -> b
+    org.objectweb.asm.tree.analysis.Value newOperation(org.objectweb.asm.tree.AbstractInsnNode) -> b
+    org.objectweb.asm.tree.analysis.Value copyOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value) -> b
+    org.objectweb.asm.tree.analysis.Value unaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value) -> a
+    org.objectweb.asm.tree.analysis.Value binaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> b
+    org.objectweb.asm.tree.analysis.Value ternaryOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> a
+    org.objectweb.asm.tree.analysis.Value naryOperation(org.objectweb.asm.tree.AbstractInsnNode,java.util.List) -> b
+    void returnOperation(org.objectweb.asm.tree.AbstractInsnNode,org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> a
+    org.objectweb.asm.tree.analysis.Value merge(org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> a
+org.objectweb.asm.tree.analysis.SimpleVerifier -> dF:
+    org.objectweb.asm.Type currentClass -> h
+    org.objectweb.asm.Type currentSuperClass -> i
+    java.util.List currentClassInterfaces -> j
+    boolean isInterface -> k
+    java.lang.ClassLoader loader -> l
+    void setClassLoader(java.lang.ClassLoader) -> a
+    org.objectweb.asm.tree.analysis.BasicValue newValue(org.objectweb.asm.Type) -> a
+    boolean isArrayValue(org.objectweb.asm.tree.analysis.BasicValue) -> a
+    org.objectweb.asm.tree.analysis.BasicValue getElementValue(org.objectweb.asm.tree.analysis.BasicValue) -> b
+    boolean isSubTypeOf(org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue) -> b
+    org.objectweb.asm.tree.analysis.BasicValue merge(org.objectweb.asm.tree.analysis.BasicValue,org.objectweb.asm.tree.analysis.BasicValue) -> a
+    boolean isInterface(org.objectweb.asm.Type) -> c
+    org.objectweb.asm.Type getSuperClass(org.objectweb.asm.Type) -> d
+    boolean isAssignableFrom(org.objectweb.asm.Type,org.objectweb.asm.Type) -> a
+    java.lang.Class getClass(org.objectweb.asm.Type) -> e
+    org.objectweb.asm.tree.analysis.Value merge(org.objectweb.asm.tree.analysis.Value,org.objectweb.asm.tree.analysis.Value) -> a
+    org.objectweb.asm.tree.analysis.Value newValue(org.objectweb.asm.Type) -> b
+org.objectweb.asm.tree.analysis.Subroutine -> dG:
+    org.objectweb.asm.tree.LabelNode start -> a
+    boolean[] access -> b
+    java.util.List callers -> c
+    org.objectweb.asm.tree.analysis.Subroutine copy() -> a
+    boolean merge(org.objectweb.asm.tree.analysis.Subroutine) -> a
+org.objectweb.asm.tree.analysis.Value -> dH:
+    int getSize() -> b
+org.objectweb.asm.util.ASMifiable -> org.objectweb.asm.util.a:
+    void asmify(java.lang.StringBuffer,java.lang.String,java.util.Map) -> a
+org.objectweb.asm.util.ASMifier -> org.objectweb.asm.util.ASMifier:
+    java.lang.String name -> a
+    int id -> b
+    java.util.Map labelNames -> c
+    void main(java.lang.String[]) -> main
+    void visit(int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitSource(java.lang.String,java.lang.String) -> a
+    void visitOuterClass(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.util.ASMifier visitClassAnnotation(java.lang.String,boolean) -> a
+    void visitClassAttribute(org.objectweb.asm.Attribute) -> a
+    void visitInnerClass(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    org.objectweb.asm.util.ASMifier visitField(int,java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> a
+    org.objectweb.asm.util.ASMifier visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitClassEnd() -> a
+    void visit(java.lang.String,java.lang.Object) -> a
+    void visitEnum(java.lang.String,java.lang.String,java.lang.String) -> b
+    org.objectweb.asm.util.ASMifier visitAnnotation(java.lang.String,java.lang.String) -> b
+    org.objectweb.asm.util.ASMifier visitArray(java.lang.String) -> a
+    void visitAnnotationEnd() -> b
+    org.objectweb.asm.util.ASMifier visitFieldAnnotation(java.lang.String,boolean) -> b
+    void visitFieldAttribute(org.objectweb.asm.Attribute) -> b
+    void visitFieldEnd() -> c
+    org.objectweb.asm.util.ASMifier visitAnnotationDefault() -> d
+    org.objectweb.asm.util.ASMifier visitMethodAnnotation(java.lang.String,boolean) -> c
+    org.objectweb.asm.util.ASMifier visitParameterAnnotation(int,java.lang.String,boolean) -> a
+    void visitMethodAttribute(org.objectweb.asm.Attribute) -> c
+    void visitCode() -> e
+    void visitFrame(int,int,java.lang.Object[],int,java.lang.Object[]) -> a
+    void visitInsn(int) -> a
+    void visitIntInsn(int,int) -> a
+    void visitVarInsn(int,int) -> b
+    void visitTypeInsn(int,java.lang.String) -> a
+    void visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String) -> a
+    void visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String) -> b
+    void visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[]) -> a
+    void visitJumpInsn(int,org.objectweb.asm.Label) -> a
+    void visitLabel(org.objectweb.asm.Label) -> a
+    void visitLdcInsn(java.lang.Object) -> a
+    void visitIincInsn(int,int) -> c
+    void visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[]) -> a
+    void visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[]) -> a
+    void visitMultiANewArrayInsn(java.lang.String,int) -> a
+    void visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String) -> a
+    void visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,org.objectweb.asm.Label,org.objectweb.asm.Label,int) -> a
+    void visitLineNumber(int,org.objectweb.asm.Label) -> b
+    void visitMaxs(int,int) -> d
+    void visitMethodEnd() -> f
+    org.objectweb.asm.util.ASMifier visitAnnotation(java.lang.String,boolean) -> d
+    void visitAttribute(org.objectweb.asm.Attribute) -> d
+    org.objectweb.asm.util.ASMifier createASMifier(java.lang.String,int) -> b
+    void appendAccess(int) -> b
+    void appendConstant(java.lang.Object) -> b
+    void appendConstant(java.lang.StringBuffer,java.lang.Object) -> a
+    void declareFrameTypes(int,java.lang.Object[]) -> a
+    void appendFrameTypes(int,java.lang.Object[]) -> b
+    void declareLabel(org.objectweb.asm.Label) -> b
+    void appendLabel(org.objectweb.asm.Label) -> c
+    org.objectweb.asm.util.Printer visitParameterAnnotation(int,java.lang.String,boolean) -> b
+    org.objectweb.asm.util.Printer visitMethodAnnotation(java.lang.String,boolean) -> e
+    org.objectweb.asm.util.Printer visitAnnotationDefault() -> g
+    org.objectweb.asm.util.Printer visitFieldAnnotation(java.lang.String,boolean) -> f
+    org.objectweb.asm.util.Printer visitArray(java.lang.String) -> b
+    org.objectweb.asm.util.Printer visitAnnotation(java.lang.String,java.lang.String) -> c
+    org.objectweb.asm.util.Printer visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> b
+    org.objectweb.asm.util.Printer visitField(int,java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> b
+    org.objectweb.asm.util.Printer visitClassAnnotation(java.lang.String,boolean) -> g
+org.objectweb.asm.util.CheckAnnotationAdapter -> org.objectweb.asm.util.b:
+    boolean named -> c
+    boolean end -> d
+    void visit(java.lang.String,java.lang.Object) -> a
+    void visitEnum(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitArray(java.lang.String) -> a
+    void visitEnd() -> a
+    void checkEnd() -> b
+    void checkName(java.lang.String) -> b
+org.objectweb.asm.util.CheckClassAdapter -> org.objectweb.asm.util.CheckClassAdapter:
+    int version -> a
+    boolean start -> b
+    boolean source -> c
+    boolean outer -> f
+    boolean end -> g
+    java.util.Map labels -> h
+    boolean checkDataFlow -> i
+    void main(java.lang.String[]) -> main
+    void verify(org.objectweb.asm.ClassReader,java.lang.ClassLoader,boolean,java.io.PrintWriter) -> a
+    void verify(org.objectweb.asm.ClassReader,boolean,java.io.PrintWriter) -> a
+    void printAnalyzerResult(org.objectweb.asm.tree.MethodNode,org.objectweb.asm.tree.analysis.Analyzer,java.io.PrintWriter) -> a
+    java.lang.String getShortName(java.lang.String) -> d
+    void visit(int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitSource(java.lang.String,java.lang.String) -> a
+    void visitOuterClass(java.lang.String,java.lang.String,java.lang.String) -> a
+    void visitInnerClass(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    org.objectweb.asm.FieldVisitor visitField(int,java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> a
+    org.objectweb.asm.MethodVisitor visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitEnd() -> b
+    void checkState() -> a
+    void checkAccess(int,int) -> a
+    void checkClassSignature(java.lang.String) -> a
+    void checkMethodSignature(java.lang.String) -> b
+    void checkFieldSignature(java.lang.String) -> c
+    int checkFormalTypeParameters(java.lang.String,int) -> a
+    int checkFormalTypeParameter(java.lang.String,int) -> b
+    int checkFieldTypeSignature(java.lang.String,int) -> c
+    int checkClassTypeSignature(java.lang.String,int) -> d
+    int checkTypeArguments(java.lang.String,int) -> e
+    int checkTypeArgument(java.lang.String,int) -> f
+    int checkTypeVariableSignature(java.lang.String,int) -> g
+    int checkTypeSignature(java.lang.String,int) -> h
+    int checkIdentifier(java.lang.String,int) -> i
+    int checkChar(char,java.lang.String,int) -> a
+    char getChar(java.lang.String,int) -> j
+org.objectweb.asm.util.CheckFieldAdapter -> org.objectweb.asm.util.c:
+    boolean end -> c
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitEnd() -> a
+    void checkEnd() -> b
+org.objectweb.asm.util.CheckMethodAdapter -> org.objectweb.asm.util.d:
+    int version -> a
+    int access -> d
+    boolean startCode -> e
+    boolean endCode -> f
+    boolean endMethod -> g
+    int insnCount -> h
+    java.util.Map labels -> i
+    java.util.Set usedLabels -> j
+    int expandedFrames -> k
+    int compressedFrames -> l
+    int lastFrame -> m
+    java.util.List handlers -> n
+    int[] TYPE -> o
+    java.lang.reflect.Field labelStatusField -> p
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotationDefault() -> a
+    org.objectweb.asm.AnnotationVisitor visitParameterAnnotation(int,java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitCode() -> b
+    void visitFrame(int,int,java.lang.Object[],int,java.lang.Object[]) -> a
+    void visitInsn(int) -> a
+    void visitIntInsn(int,int) -> a
+    void visitVarInsn(int,int) -> b
+    void visitTypeInsn(int,java.lang.String) -> a
+    void visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String) -> a
+    void visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String) -> b
+    void visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[]) -> a
+    void visitJumpInsn(int,org.objectweb.asm.Label) -> a
+    void visitLabel(org.objectweb.asm.Label) -> a
+    void visitLdcInsn(java.lang.Object) -> a
+    void visitIincInsn(int,int) -> c
+    void visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[]) -> a
+    void visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[]) -> a
+    void visitMultiANewArrayInsn(java.lang.String,int) -> a
+    void visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String) -> a
+    void visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,org.objectweb.asm.Label,org.objectweb.asm.Label,int) -> a
+    void visitLineNumber(int,org.objectweb.asm.Label) -> b
+    void visitMaxs(int,int) -> d
+    void visitEnd() -> c
+    void checkStartCode() -> d
+    void checkEndCode() -> e
+    void checkEndMethod() -> f
+    void checkFrameValue(java.lang.Object) -> b
+    void checkOpcode(int,int) -> e
+    void checkSignedByte(int,java.lang.String) -> b
+    void checkSignedShort(int,java.lang.String) -> c
+    void checkUnsignedShort(int,java.lang.String) -> d
+    void checkConstant(java.lang.Object) -> c
+    void checkLDCConstant(java.lang.Object) -> d
+    void checkUnqualifiedName(int,java.lang.String,java.lang.String) -> a
+    void checkIdentifier(java.lang.String,java.lang.String) -> a
+    void checkIdentifier(java.lang.String,int,int,java.lang.String) -> a
+    void checkMethodIdentifier(int,java.lang.String,java.lang.String) -> b
+    void checkInternalName(java.lang.String,java.lang.String) -> b
+    void checkInternalName(java.lang.String,int,int,java.lang.String) -> b
+    void checkDesc(java.lang.String,boolean) -> b
+    int checkDesc(java.lang.String,int,boolean) -> a
+    void checkMethodDesc(java.lang.String) -> a
+    void checkLabel(org.objectweb.asm.Label,boolean,java.lang.String) -> a
+    void checkNonDebugLabel(org.objectweb.asm.Label) -> b
+    java.lang.reflect.Field getLabelStatusField() -> g
+    java.lang.reflect.Field getLabelField(java.lang.String) -> b
+org.objectweb.asm.util.CheckMethodAdapter$1 -> org.objectweb.asm.util.e:
+    org.objectweb.asm.MethodVisitor val$cmv -> s
+    void visitEnd() -> c
+org.objectweb.asm.util.Printer -> org.objectweb.asm.util.f:
+    java.lang.String[] OPCODES -> d
+    java.lang.String[] TYPES -> e
+    java.lang.String[] HANDLE_TAG -> f
+    int api -> g
+    java.lang.StringBuffer buf -> h
+    java.util.List text -> i
+    void visit(int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitSource(java.lang.String,java.lang.String) -> a
+    void visitOuterClass(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.util.Printer visitClassAnnotation(java.lang.String,boolean) -> g
+    void visitClassAttribute(org.objectweb.asm.Attribute) -> a
+    void visitInnerClass(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    org.objectweb.asm.util.Printer visitField(int,java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> b
+    org.objectweb.asm.util.Printer visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> b
+    void visitClassEnd() -> a
+    void visit(java.lang.String,java.lang.Object) -> a
+    void visitEnum(java.lang.String,java.lang.String,java.lang.String) -> b
+    org.objectweb.asm.util.Printer visitAnnotation(java.lang.String,java.lang.String) -> c
+    org.objectweb.asm.util.Printer visitArray(java.lang.String) -> b
+    void visitAnnotationEnd() -> b
+    org.objectweb.asm.util.Printer visitFieldAnnotation(java.lang.String,boolean) -> f
+    void visitFieldAttribute(org.objectweb.asm.Attribute) -> b
+    void visitFieldEnd() -> c
+    org.objectweb.asm.util.Printer visitAnnotationDefault() -> g
+    org.objectweb.asm.util.Printer visitMethodAnnotation(java.lang.String,boolean) -> e
+    org.objectweb.asm.util.Printer visitParameterAnnotation(int,java.lang.String,boolean) -> b
+    void visitMethodAttribute(org.objectweb.asm.Attribute) -> c
+    void visitCode() -> e
+    void visitFrame(int,int,java.lang.Object[],int,java.lang.Object[]) -> a
+    void visitInsn(int) -> a
+    void visitIntInsn(int,int) -> a
+    void visitVarInsn(int,int) -> b
+    void visitTypeInsn(int,java.lang.String) -> a
+    void visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String) -> a
+    void visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String) -> b
+    void visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[]) -> a
+    void visitJumpInsn(int,org.objectweb.asm.Label) -> a
+    void visitLabel(org.objectweb.asm.Label) -> a
+    void visitLdcInsn(java.lang.Object) -> a
+    void visitIincInsn(int,int) -> c
+    void visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[]) -> a
+    void visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[]) -> a
+    void visitMultiANewArrayInsn(java.lang.String,int) -> a
+    void visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String) -> a
+    void visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,org.objectweb.asm.Label,org.objectweb.asm.Label,int) -> a
+    void visitLineNumber(int,org.objectweb.asm.Label) -> b
+    void visitMaxs(int,int) -> d
+    void visitMethodEnd() -> f
+    java.util.List getText() -> h
+    void print(java.io.PrintWriter) -> a
+    void appendString(java.lang.StringBuffer,java.lang.String) -> a
+    void printList(java.io.PrintWriter,java.util.List) -> a
+org.objectweb.asm.util.Textifiable -> org.objectweb.asm.util.g:
+    void textify(java.lang.StringBuffer,java.util.Map) -> a
+org.objectweb.asm.util.Textifier -> org.objectweb.asm.util.Textifier:
+    java.lang.String tab -> a
+    java.lang.String tab2 -> b
+    java.lang.String tab3 -> c
+    java.lang.String ltab -> j
+    java.util.Map labelNames -> k
+    int valueNumber -> l
+    void main(java.lang.String[]) -> main
+    void visit(int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitSource(java.lang.String,java.lang.String) -> a
+    void visitOuterClass(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.util.Textifier visitClassAnnotation(java.lang.String,boolean) -> a
+    void visitClassAttribute(org.objectweb.asm.Attribute) -> a
+    void visitInnerClass(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    org.objectweb.asm.util.Textifier visitField(int,java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> a
+    org.objectweb.asm.util.Textifier visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitClassEnd() -> a
+    void visit(java.lang.String,java.lang.Object) -> a
+    void visitInt(int) -> b
+    void visitLong(long) -> a
+    void visitFloat(float) -> a
+    void visitDouble(double) -> a
+    void visitChar(char) -> a
+    void visitShort(short) -> a
+    void visitByte(byte) -> a
+    void visitBoolean(boolean) -> a
+    void visitString(java.lang.String) -> c
+    void visitType(org.objectweb.asm.Type) -> a
+    void visitEnum(java.lang.String,java.lang.String,java.lang.String) -> b
+    org.objectweb.asm.util.Textifier visitAnnotation(java.lang.String,java.lang.String) -> b
+    org.objectweb.asm.util.Textifier visitArray(java.lang.String) -> a
+    void visitAnnotationEnd() -> b
+    org.objectweb.asm.util.Textifier visitFieldAnnotation(java.lang.String,boolean) -> b
+    void visitFieldAttribute(org.objectweb.asm.Attribute) -> b
+    void visitFieldEnd() -> c
+    org.objectweb.asm.util.Textifier visitAnnotationDefault() -> d
+    org.objectweb.asm.util.Textifier visitMethodAnnotation(java.lang.String,boolean) -> c
+    org.objectweb.asm.util.Textifier visitParameterAnnotation(int,java.lang.String,boolean) -> a
+    void visitMethodAttribute(org.objectweb.asm.Attribute) -> c
+    void visitCode() -> e
+    void visitFrame(int,int,java.lang.Object[],int,java.lang.Object[]) -> a
+    void visitInsn(int) -> a
+    void visitIntInsn(int,int) -> a
+    void visitVarInsn(int,int) -> b
+    void visitTypeInsn(int,java.lang.String) -> a
+    void visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String) -> a
+    void visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String) -> b
+    void visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[]) -> a
+    void visitJumpInsn(int,org.objectweb.asm.Label) -> a
+    void visitLabel(org.objectweb.asm.Label) -> a
+    void visitLdcInsn(java.lang.Object) -> a
+    void visitIincInsn(int,int) -> c
+    void visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[]) -> a
+    void visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[]) -> a
+    void visitMultiANewArrayInsn(java.lang.String,int) -> a
+    void visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String) -> a
+    void visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,org.objectweb.asm.Label,org.objectweb.asm.Label,int) -> a
+    void visitLineNumber(int,org.objectweb.asm.Label) -> b
+    void visitMaxs(int,int) -> d
+    void visitMethodEnd() -> f
+    org.objectweb.asm.util.Textifier visitAnnotation(java.lang.String,boolean) -> d
+    void visitAttribute(org.objectweb.asm.Attribute) -> d
+    org.objectweb.asm.util.Textifier createTextifier() -> i
+    void appendDescriptor(int,java.lang.String) -> b
+    void appendLabel(org.objectweb.asm.Label) -> b
+    void appendHandle(org.objectweb.asm.Handle) -> a
+    void appendAccess(int) -> c
+    void appendComa(int) -> d
+    void appendFrameTypes(int,java.lang.Object[]) -> a
+    org.objectweb.asm.util.Printer visitParameterAnnotation(int,java.lang.String,boolean) -> b
+    org.objectweb.asm.util.Printer visitMethodAnnotation(java.lang.String,boolean) -> e
+    org.objectweb.asm.util.Printer visitAnnotationDefault() -> g
+    org.objectweb.asm.util.Printer visitFieldAnnotation(java.lang.String,boolean) -> f
+    org.objectweb.asm.util.Printer visitArray(java.lang.String) -> b
+    org.objectweb.asm.util.Printer visitAnnotation(java.lang.String,java.lang.String) -> c
+    org.objectweb.asm.util.Printer visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> b
+    org.objectweb.asm.util.Printer visitField(int,java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> b
+    org.objectweb.asm.util.Printer visitClassAnnotation(java.lang.String,boolean) -> g
+org.objectweb.asm.util.TraceAnnotationVisitor -> org.objectweb.asm.util.h:
+    org.objectweb.asm.util.Printer p -> c
+    void visit(java.lang.String,java.lang.Object) -> a
+    void visitEnum(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitArray(java.lang.String) -> a
+    void visitEnd() -> a
+org.objectweb.asm.util.TraceClassVisitor -> org.objectweb.asm.util.i:
+    java.io.PrintWriter pw -> b
+    org.objectweb.asm.util.Printer p -> a
+    void visit(int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitSource(java.lang.String,java.lang.String) -> a
+    void visitOuterClass(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitInnerClass(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    org.objectweb.asm.FieldVisitor visitField(int,java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> a
+    org.objectweb.asm.MethodVisitor visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitEnd() -> b
+org.objectweb.asm.util.TraceFieldVisitor -> org.objectweb.asm.util.j:
+    org.objectweb.asm.util.Printer p -> c
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    void visitEnd() -> a
+org.objectweb.asm.util.TraceMethodVisitor -> org.objectweb.asm.util.k:
+    org.objectweb.asm.util.Printer p -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitAttribute(org.objectweb.asm.Attribute) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotationDefault() -> a
+    org.objectweb.asm.AnnotationVisitor visitParameterAnnotation(int,java.lang.String,boolean) -> a
+    void visitCode() -> b
+    void visitFrame(int,int,java.lang.Object[],int,java.lang.Object[]) -> a
+    void visitInsn(int) -> a
+    void visitIntInsn(int,int) -> a
+    void visitVarInsn(int,int) -> b
+    void visitTypeInsn(int,java.lang.String) -> a
+    void visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String) -> a
+    void visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String) -> b
+    void visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[]) -> a
+    void visitJumpInsn(int,org.objectweb.asm.Label) -> a
+    void visitLabel(org.objectweb.asm.Label) -> a
+    void visitLdcInsn(java.lang.Object) -> a
+    void visitIincInsn(int,int) -> c
+    void visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[]) -> a
+    void visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[]) -> a
+    void visitMultiANewArrayInsn(java.lang.String,int) -> a
+    void visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String) -> a
+    void visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,org.objectweb.asm.Label,org.objectweb.asm.Label,int) -> a
+    void visitLineNumber(int,org.objectweb.asm.Label) -> b
+    void visitMaxs(int,int) -> d
+    void visitEnd() -> c
+org.objectweb.asm.util.TraceSignatureVisitor -> org.objectweb.asm.util.l:
+    java.lang.StringBuffer declaration -> b
+    boolean isInterface -> c
+    boolean seenFormalParameter -> d
+    boolean seenInterfaceBound -> e
+    boolean seenParameter -> f
+    boolean seenInterface -> g
+    java.lang.StringBuffer returnType -> h
+    java.lang.StringBuffer exceptions -> i
+    int argumentStack -> j
+    int arrayStack -> k
+    java.lang.String separator -> l
+    void visitFormalTypeParameter(java.lang.String) -> a
+    org.objectweb.asm.signature.SignatureVisitor visitClassBound() -> a
+    org.objectweb.asm.signature.SignatureVisitor visitInterfaceBound() -> b
+    org.objectweb.asm.signature.SignatureVisitor visitSuperclass() -> c
+    org.objectweb.asm.signature.SignatureVisitor visitInterface() -> d
+    org.objectweb.asm.signature.SignatureVisitor visitParameterType() -> e
+    org.objectweb.asm.signature.SignatureVisitor visitReturnType() -> f
+    org.objectweb.asm.signature.SignatureVisitor visitExceptionType() -> g
+    void visitBaseType(char) -> a
+    void visitTypeVariable(java.lang.String) -> b
+    org.objectweb.asm.signature.SignatureVisitor visitArrayType() -> h
+    void visitClassType(java.lang.String) -> c
+    void visitInnerClassType(java.lang.String) -> d
+    void visitTypeArgument() -> i
+    org.objectweb.asm.signature.SignatureVisitor visitTypeArgument(char) -> b
+    void visitEnd() -> j
+    java.lang.String getDeclaration() -> k
+    java.lang.String getReturnType() -> l
+    java.lang.String getExceptions() -> m
+    void endFormals() -> n
+    void startType() -> o
+    void endType() -> p
+org.objectweb.asm.xml.ASMContentHandler -> org.objectweb.asm.xml.a:
+    java.util.ArrayList stack -> m
+    java.lang.String match -> h
+    org.objectweb.asm.ClassVisitor cv -> i
+    java.util.Map labels -> j
+    org.objectweb.asm.xml.ASMContentHandler$RuleSet RULES -> n
+    java.util.HashMap OPCODES -> k
+    java.util.HashMap TYPES -> l
+    void addOpcode(java.lang.String,int,int) -> a
+    void startElement(java.lang.String,java.lang.String,java.lang.String,org.xml.sax.Attributes) -> startElement
+    void endElement(java.lang.String,java.lang.String,java.lang.String) -> endElement
+    java.lang.Object peek() -> a
+    java.lang.Object pop() -> b
+    void push(java.lang.Object) -> a
+org.objectweb.asm.xml.ASMContentHandler$AnnotationDefaultRule -> org.objectweb.asm.xml.b:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$AnnotationParameterRule -> org.objectweb.asm.xml.c:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$AnnotationRule -> org.objectweb.asm.xml.d:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$AnnotationValueAnnotationRule -> org.objectweb.asm.xml.e:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$AnnotationValueArrayRule -> org.objectweb.asm.xml.f:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$AnnotationValueEnumRule -> org.objectweb.asm.xml.g:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$AnnotationValueRule -> org.objectweb.asm.xml.h:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$ClassRule -> org.objectweb.asm.xml.i:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$ExceptionRule -> org.objectweb.asm.xml.j:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$ExceptionsRule -> org.objectweb.asm.xml.k:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$FieldRule -> org.objectweb.asm.xml.l:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$FrameRule -> org.objectweb.asm.xml.m:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$FrameTypeRule -> org.objectweb.asm.xml.n:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$InnerClassRule -> org.objectweb.asm.xml.o:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$InterfaceRule -> org.objectweb.asm.xml.p:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$InterfacesRule -> org.objectweb.asm.xml.q:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$InvokeDynamicBsmArgumentsRule -> org.objectweb.asm.xml.r:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$InvokeDynamicRule -> org.objectweb.asm.xml.s:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$LabelRule -> org.objectweb.asm.xml.t:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$LineNumberRule -> org.objectweb.asm.xml.u:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$LocalVarRule -> org.objectweb.asm.xml.v:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$LookupSwitchLabelRule -> org.objectweb.asm.xml.w:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$LookupSwitchRule -> org.objectweb.asm.xml.x:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$MaxRule -> org.objectweb.asm.xml.y:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$MethodRule -> org.objectweb.asm.xml.z:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$Opcode -> org.objectweb.asm.xml.A:
+    int opcode -> a
+    int type -> b
+org.objectweb.asm.xml.ASMContentHandler$OpcodesRule -> org.objectweb.asm.xml.B:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$OuterClassRule -> org.objectweb.asm.xml.C:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$Rule -> org.objectweb.asm.xml.D:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> b
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+    java.lang.Object getValue(java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.Handle decodeHandle(java.lang.String) -> b
+    java.lang.String decode(java.lang.String) -> d
+    org.objectweb.asm.Label getLabel(java.lang.Object) -> a
+    org.objectweb.asm.MethodVisitor getCodeVisitor() -> a
+    int getAccess(java.lang.String) -> c
+org.objectweb.asm.xml.ASMContentHandler$RuleSet -> org.objectweb.asm.xml.E:
+    java.util.HashMap rules -> a
+    java.util.ArrayList lpatterns -> b
+    java.util.ArrayList rpatterns -> c
+    void add(java.lang.String,java.lang.Object) -> a
+    java.lang.Object match(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$SourceRule -> org.objectweb.asm.xml.F:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$TableSwitchLabelRule -> org.objectweb.asm.xml.G:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.ASMContentHandler$TableSwitchRule -> org.objectweb.asm.xml.H:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+    void end(java.lang.String) -> a
+org.objectweb.asm.xml.ASMContentHandler$TryCatchRule -> org.objectweb.asm.xml.I:
+    org.objectweb.asm.xml.ASMContentHandler this$0 -> a
+    void begin(java.lang.String,org.xml.sax.Attributes) -> a
+org.objectweb.asm.xml.Processor -> org.objectweb.asm.xml.Processor:
+    int inRepresentation -> a
+    int outRepresentation -> b
+    java.io.InputStream input -> c
+    java.io.OutputStream output -> d
+    javax.xml.transform.Source xslt -> e
+    int n -> f
+    int process() -> a
+    void copyEntry(java.io.InputStream,java.io.OutputStream) -> a
+    boolean isClassEntry(java.util.zip.ZipEntry) -> a
+    void processEntry(java.util.zip.ZipInputStream,java.util.zip.ZipEntry,org.objectweb.asm.xml.Processor$ContentHandlerFactory) -> a
+    org.objectweb.asm.xml.Processor$EntryElement getEntryElement(java.util.zip.ZipOutputStream) -> a
+    java.lang.String getName(java.util.zip.ZipEntry) -> b
+    byte[] readEntry(java.io.InputStream,java.util.zip.ZipEntry) -> a
+    void update(java.lang.Object,int) -> a
+    void main(java.lang.String[]) -> main
+    int getRepresentation(java.lang.String) -> a
+    void showUsage() -> b
+org.objectweb.asm.xml.Processor$ASMContentHandlerFactory -> org.objectweb.asm.xml.J:
+    java.io.OutputStream os -> a
+    org.xml.sax.ContentHandler createContentHandler() -> a
+org.objectweb.asm.xml.Processor$ASMContentHandlerFactory$1 -> org.objectweb.asm.xml.K:
+    org.objectweb.asm.ClassWriter val$cw -> m
+    org.objectweb.asm.xml.Processor$ASMContentHandlerFactory this$0 -> n
+    void endDocument() -> endDocument
+org.objectweb.asm.xml.Processor$ContentHandlerFactory -> org.objectweb.asm.xml.L:
+    org.xml.sax.ContentHandler createContentHandler() -> a
+org.objectweb.asm.xml.Processor$EntryElement -> org.objectweb.asm.xml.M:
+    java.io.OutputStream openEntry(java.lang.String) -> a
+    void closeEntry() -> a
+org.objectweb.asm.xml.Processor$InputSlicingHandler -> org.objectweb.asm.xml.N:
+    java.lang.String subdocumentRoot -> a
+    org.xml.sax.ContentHandler rootHandler -> b
+    org.objectweb.asm.xml.Processor$ContentHandlerFactory subdocumentHandlerFactory -> c
+    boolean subdocument -> d
+    org.xml.sax.ContentHandler subdocumentHandler -> e
+    void startElement(java.lang.String,java.lang.String,java.lang.String,org.xml.sax.Attributes) -> startElement
+    void endElement(java.lang.String,java.lang.String,java.lang.String) -> endElement
+    void startDocument() -> startDocument
+    void endDocument() -> endDocument
+    void characters(char[],int,int) -> characters
+org.objectweb.asm.xml.Processor$OutputSlicingHandler -> org.objectweb.asm.xml.O:
+    java.lang.String subdocumentRoot -> a
+    org.objectweb.asm.xml.Processor$ContentHandlerFactory subdocumentHandlerFactory -> b
+    org.objectweb.asm.xml.Processor$EntryElement entryElement -> c
+    boolean isXml -> d
+    boolean subdocument -> e
+    org.xml.sax.ContentHandler subdocumentHandler -> f
+    void startElement(java.lang.String,java.lang.String,java.lang.String,org.xml.sax.Attributes) -> startElement
+    void endElement(java.lang.String,java.lang.String,java.lang.String) -> endElement
+    void startDocument() -> startDocument
+    void endDocument() -> endDocument
+    void characters(char[],int,int) -> characters
+org.objectweb.asm.xml.Processor$ProtectedInputStream -> org.objectweb.asm.xml.P:
+    java.io.InputStream is -> a
+    void close() -> close
+    int read() -> read
+    int read(byte[],int,int) -> read
+    int available() -> available
+org.objectweb.asm.xml.Processor$SAXWriter -> org.objectweb.asm.xml.Q:
+    char[] OFF -> a
+    java.io.Writer w -> b
+    boolean optimizeEmptyElements -> c
+    boolean openElement -> d
+    int ident -> e
+    void startElement(java.lang.String,java.lang.String,java.lang.String,org.xml.sax.Attributes) -> startElement
+    void endElement(java.lang.String,java.lang.String,java.lang.String) -> endElement
+    void endDocument() -> endDocument
+    void comment(char[],int,int) -> comment
+    void startDTD(java.lang.String,java.lang.String,java.lang.String) -> startDTD
+    void endDTD() -> endDTD
+    void startEntity(java.lang.String) -> startEntity
+    void endEntity(java.lang.String) -> endEntity
+    void startCDATA() -> startCDATA
+    void endCDATA() -> endCDATA
+    void writeAttributes(org.xml.sax.Attributes) -> a
+    java.lang.String esc(java.lang.String) -> a
+    void writeIdent() -> a
+    void closeElement() -> b
+org.objectweb.asm.xml.Processor$SAXWriterFactory -> org.objectweb.asm.xml.R:
+    java.io.Writer w -> a
+    boolean optimizeEmptyElements -> b
+    org.xml.sax.ContentHandler createContentHandler() -> a
+org.objectweb.asm.xml.Processor$SingleDocElement -> org.objectweb.asm.xml.S:
+    java.io.OutputStream os -> a
+    java.io.OutputStream openEntry(java.lang.String) -> a
+    void closeEntry() -> a
+org.objectweb.asm.xml.Processor$SubdocumentHandlerFactory -> org.objectweb.asm.xml.T:
+    org.xml.sax.ContentHandler subdocumentHandler -> a
+    org.xml.sax.ContentHandler createContentHandler() -> a
+org.objectweb.asm.xml.Processor$TransformerHandlerFactory -> org.objectweb.asm.xml.U:
+    javax.xml.transform.sax.SAXTransformerFactory saxtf -> a
+    javax.xml.transform.Templates templates -> b
+    org.xml.sax.ContentHandler outputHandler -> c
+    org.xml.sax.ContentHandler createContentHandler() -> a
+org.objectweb.asm.xml.Processor$ZipEntryElement -> org.objectweb.asm.xml.V:
+    java.util.zip.ZipOutputStream zos -> a
+    java.io.OutputStream openEntry(java.lang.String) -> a
+    void closeEntry() -> a
+org.objectweb.asm.xml.SAXAdapter -> org.objectweb.asm.xml.W:
+    org.xml.sax.ContentHandler h -> a
+    void addDocumentStart() -> a
+    void addDocumentEnd() -> b
+    void addStart(java.lang.String,org.xml.sax.Attributes) -> a
+    void addEnd(java.lang.String) -> a
+    void addElement(java.lang.String,org.xml.sax.Attributes) -> b
+org.objectweb.asm.xml.SAXAnnotationAdapter -> org.objectweb.asm.xml.X:
+    org.objectweb.asm.xml.SAXAdapter sa -> c
+    java.lang.String elementName -> d
+    void visit(java.lang.String,java.lang.Object) -> a
+    void visitEnum(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitArray(java.lang.String) -> a
+    void visitEnd() -> a
+    void addValueElement(java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
+org.objectweb.asm.xml.SAXClassAdapter -> org.objectweb.asm.xml.Y:
+    org.objectweb.asm.xml.SAXAdapter sa -> a
+    boolean singleDocument -> b
+    void visitSource(java.lang.String,java.lang.String) -> a
+    void visitOuterClass(java.lang.String,java.lang.String,java.lang.String) -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visit(int,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    org.objectweb.asm.FieldVisitor visitField(int,java.lang.String,java.lang.String,java.lang.String,java.lang.Object) -> a
+    org.objectweb.asm.MethodVisitor visitMethod(int,java.lang.String,java.lang.String,java.lang.String,java.lang.String[]) -> a
+    void visitInnerClass(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    void visitEnd() -> b
+    java.lang.String encode(java.lang.String) -> a
+    void appendAccess(int,java.lang.StringBuffer) -> a
+org.objectweb.asm.xml.SAXCodeAdapter -> org.objectweb.asm.xml.Z:
+    java.lang.String[] TYPES -> a
+    org.objectweb.asm.xml.SAXAdapter sa -> d
+    java.util.Map labelNames -> e
+    void visitCode() -> b
+    void visitFrame(int,int,java.lang.Object[],int,java.lang.Object[]) -> a
+    void appendFrameTypes(boolean,int,java.lang.Object[]) -> a
+    void visitInsn(int) -> a
+    void visitIntInsn(int,int) -> a
+    void visitVarInsn(int,int) -> b
+    void visitTypeInsn(int,java.lang.String) -> a
+    void visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String) -> a
+    void visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String) -> b
+    void visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[]) -> a
+    void visitJumpInsn(int,org.objectweb.asm.Label) -> a
+    void visitLabel(org.objectweb.asm.Label) -> a
+    void visitLdcInsn(java.lang.Object) -> a
+    org.xml.sax.helpers.AttributesImpl getConstantAttribute(java.lang.Object) -> b
+    void visitIincInsn(int,int) -> c
+    void visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[]) -> a
+    void visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[]) -> a
+    void visitMultiANewArrayInsn(java.lang.String,int) -> a
+    void visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String) -> a
+    void visitMaxs(int,int) -> d
+    void visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,org.objectweb.asm.Label,org.objectweb.asm.Label,int) -> a
+    void visitLineNumber(int,org.objectweb.asm.Label) -> b
+    org.objectweb.asm.AnnotationVisitor visitAnnotationDefault() -> a
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    org.objectweb.asm.AnnotationVisitor visitParameterAnnotation(int,java.lang.String,boolean) -> a
+    void visitEnd() -> c
+    java.lang.String getLabel(org.objectweb.asm.Label) -> b
+org.objectweb.asm.xml.SAXFieldAdapter -> org.objectweb.asm.xml.aa:
+    org.objectweb.asm.xml.SAXAdapter sa -> c
+    org.objectweb.asm.AnnotationVisitor visitAnnotation(java.lang.String,boolean) -> a
+    void visitEnd() -> a

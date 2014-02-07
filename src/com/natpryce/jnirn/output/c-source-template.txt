@@ -14,14 +14,14 @@ typedef void (*{{module}}ErrorCallback)(void *client_context, const char *class_
 
 {{#natives}}
 static const JNINativeMethod method_table_{{cclass}}[] = {
-{{#nativeMethods}}   {"{{name}}", "{{descriptor}}", Java_{{cclass}}_{{cmethod}}}{{^-last}},{{/-last}}
+{{#nativeMethods}}   {"{{methodName}}", "{{descriptor}}", Java_{{cclass}}_{{cmethod}}}{{^-last}},{{/-last}}
 {{/nativeMethods}}
 };
 {{/natives}}
 
 struct registration { const char * class_name; const JNINativeMethod *methods; int method_count; };
 static const struct registration registrations[] = {
-{{#natives}}    {"{{name}}", method_table_{{cclass}}, {{nativeMethods.size}}},
+{{#natives}}    {"{{className}}", method_table_{{cclass}}, {{nativeMethods.size}}},
 {{/natives}}
 };
 {{^callbacks.isEmpty}}
@@ -32,7 +32,7 @@ jclass {{module}}_class_{{cclass}};
 
 {{#callbacks}}
 {{#callbackMethods}}
-jmethodID {{module}}_method_{{cclass}}__{{name}};
+jmethodID {{module}}_method_{{cclass}}__{{methodName}};
 {{/callbackMethods}}{{/callbacks}}
 struct method_ref { const char *name; const char *signature; jmethodID *method_id_p; };
 struct class_ref { const char *name; jobject *global_ref_p; int method_count; const struct method_ref* methods; };
@@ -42,7 +42,7 @@ static const struct class_ref referenced_classes[] = {
     { "{{className}}", &{{module}}_class_{{cclass}}, {{callbackMethods.size}},
         (struct method_ref[]) {
 {{#callbackMethods}}
-            { "{{methodName}}", "{{descriptor}}", &{{module}}_method_{{cclass}}__{{name}} },
+            { "{{methodName}}", "{{descriptor}}", &{{module}}_method_{{cclass}}__{{methodName}} },
 {{/callbackMethods}}
         },
     },
