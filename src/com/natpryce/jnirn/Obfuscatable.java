@@ -16,4 +16,8 @@ public class Obfuscatable<T> {
     public static <T> Obfuscatable<T> of(T unobfuscated) {
         return new Obfuscatable<T>(unobfuscated);
     }
+
+    public Obfuscatable<T> obfuscatedAs(T obfuscated) {
+        return new Obfuscatable<T>(inSource, obfuscated);
+    }
 }

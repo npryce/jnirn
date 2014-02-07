@@ -3,6 +3,7 @@ package com.natpryce.jnirn;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.natpryce.jnirn.proguard.Obfuscation;
 
 import java.io.File;
 import java.util.List;
@@ -20,6 +21,13 @@ public class ParsedClass {
         this.file = file;
         this.nativeMethods = newArrayList(Iterables.filter(methods, isNative()));
         this.callbackMethods = newArrayList(Iterables.filter(methods, isCallback()));
+    }
+
+    private ParsedClass(Obfuscatable<String> name, File file, List<ParsedMethod> nativeMethods, List<ParsedMethod> callbackMethods) {
+        this.className = name;
+        this.file = file;
+        this.nativeMethods = nativeMethods;
+        this.callbackMethods = callbackMethods;
     }
 
     private Predicate<ParsedMethod> isNative() {
@@ -64,5 +72,14 @@ public class ParsedClass {
 
     public String cclass() {
         return className.inSource.replace("/", "_");
+    }
+
+    public ParsedClass obfuscate(Obfuscation mapper) {
+        return new ParsedClass(
+                className.obfuscatedAs(mapper.mapClass(className.inSource)),
+                file,
+                nativeMethods,
+                callbackMethods
+        );
     }
 }

@@ -81,8 +81,6 @@ public class JNIRN {
             throw new ParameterException("cannot generate Makefile dependencies if no output file name specified");
         }
 
-        Obfuscation mapper = proguardMapFile == null ? Obfuscation.NULL : useProguardMapping(proguardMapFile);
-
         JavaBytecodeParser parser = new JavaBytecodeParser(
                 ImmutableSet.copyOf(callbackAnnotations),
                 ImmutableSet.copyOf(instantiatedAnnotations),
@@ -90,9 +88,15 @@ public class JNIRN {
 
         Codebase codebase = parser.parseAll(inputFiles);
 
+        Codebase deployedCodebase = codebase.obfuscate(obfuscation());
+
         for (Output output : outputs()) {
-            codebase.writeTo(output);
+            deployedCodebase.writeTo(output);
         }
+    }
+
+    private Obfuscation obfuscation() throws IOException {
+        return proguardMapFile == null ? Obfuscation.NULL : useProguardMapping(proguardMapFile);
     }
 
     private Obfuscation useProguardMapping(File mapFile) throws IOException {
