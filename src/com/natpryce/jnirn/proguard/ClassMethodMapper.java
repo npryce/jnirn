@@ -10,13 +10,14 @@ import java.util.Map;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-public class ClassMethodMapper {
+public class ClassMethodMapper implements Obfuscation {
     private final Map<String, MapFileParser.MangledClass> parsed;
 
     public ClassMethodMapper(Map<String, MapFileParser.MangledClass> parsed) {
         this.parsed = parsed;
     }
 
+    @Override
     public String mapClass(String className) {
         if (parsed.containsKey(className)) {
             return parsed.get(className).mangledClassName;
@@ -24,6 +25,7 @@ public class ClassMethodMapper {
         throw new IllegalArgumentException("Unknown class " + className);
     }
 
+    @Override
     public ClassMethod mapMethod(ClassMethod classMethod) {
         Method method = classMethod.method;
 

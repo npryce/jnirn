@@ -5,15 +5,20 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.io.Files;
 import com.natpryce.jnirn.analysis.JavaBytecodeParser;
 import com.natpryce.jnirn.output.CHeaderFormat;
 import com.natpryce.jnirn.output.CSourceFormat;
 import com.natpryce.jnirn.output.FileOutput;
 import com.natpryce.jnirn.output.MakeDependencyFormat;
+import com.natpryce.jnirn.proguard.ClassMethodMapper;
+import com.natpryce.jnirn.proguard.MapFileParser;
+import com.natpryce.jnirn.proguard.Obfuscation;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Set;
 
@@ -54,7 +59,7 @@ public class JNIRN {
     public String modulePrefix = "Natives";
 
     @Parameter(names = "-m", description = "ProGuard mapping file")
-    public String proguardMapFile = null;
+    public File proguardMapFile = null;
 
     @Parameter(names = "-M", description = "file in which to generate dependency rules in make syntax (requires -o)")
     public String outputMakefile = null;
@@ -76,6 +81,8 @@ public class JNIRN {
             throw new ParameterException("cannot generate Makefile dependencies if no output file name specified");
         }
 
+        Obfuscation mapper = proguardMapFile == null ? Obfuscation.NULL : useProguardMapping(proguardMapFile);
+
         JavaBytecodeParser parser = new JavaBytecodeParser(
                 ImmutableSet.copyOf(callbackAnnotations),
                 ImmutableSet.copyOf(instantiatedAnnotations),
@@ -86,6 +93,10 @@ public class JNIRN {
         for (Output output : outputs()) {
             codebase.writeTo(output);
         }
+    }
+
+    private Obfuscation useProguardMapping(File mapFile) throws IOException {
+        return new ClassMethodMapper(new MapFileParser().parse(Files.readLines(mapFile, Charset.defaultCharset())));
     }
 
     private Iterable<Output> outputs() throws FileNotFoundException {
