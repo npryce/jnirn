@@ -1,4 +1,4 @@
-Header out/test/canGenerateHeaderDeclaringFunctionToRegisterNativeMethods.h:
+Header out/test/noproguard/canGenerateHeaderDeclaringFunctionToRegisterNativeMethods.h:
 
 #ifndef Natives_HEADER
 #define Natives_HEADER
@@ -14,7 +14,7 @@ int NativesInit(JNIEnv*, NativesErrorCallback error_callback, void *client_conte
 #endif
 
 
-C Source out/test/canGenerateHeaderDeclaringFunctionToRegisterNativeMethods.c:
+C Source out/test/noproguard/canGenerateHeaderDeclaringFunctionToRegisterNativeMethods.c:
 
 /* GENERATED CODE - DO NOT EDIT */
 

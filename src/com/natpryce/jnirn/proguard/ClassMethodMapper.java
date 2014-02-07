@@ -24,7 +24,7 @@ public class ClassMethodMapper {
         throw new IllegalArgumentException("Unknown class " + className);
     }
 
-    public ClassMethod map(ClassMethod classMethod) {
+    public ClassMethod mapMethod(ClassMethod classMethod) {
         Method method = classMethod.method;
 
         return new ClassMethod(

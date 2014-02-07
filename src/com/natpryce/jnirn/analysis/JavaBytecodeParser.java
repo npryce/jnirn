@@ -1,7 +1,7 @@
 package com.natpryce.jnirn.analysis;
 
 import com.google.common.collect.ImmutableSet;
-import com.natpryce.jnirn.Output;
+import com.natpryce.jnirn.Codebase;
 import com.natpryce.jnirn.ParsedClass;
 import org.objectweb.asm.ClassReader;
 
@@ -100,13 +100,10 @@ public class JavaBytecodeParser {
         }
     }
 
-    public void parseAll(Iterable<File> inputFiles) throws IOException {
+    public Codebase parseAll(Iterable<File> inputFiles) throws IOException {
         for (File inputFile : inputFiles) {
             parse(inputFile);
         }
-    }
-
-    public void writeTo(Output output) throws IOException {
-        output.write(classesByName.values());
+        return new Codebase(classesByName.values());
     }
 }

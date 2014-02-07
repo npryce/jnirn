@@ -29,14 +29,14 @@ public class ClassMethodMapperTest {
 
     @Test
     public void mappingMethodWithNoParameters() throws Exception {
-        ClassMethod mapped = classMethodMapper.map(new ClassMethod("com/beust/jcommander/Parameter", maker.descriptorFor("listConverter", "java.lang.Class", nothing)));
+        ClassMethod mapped = classMethodMapper.mapMethod(new ClassMethod("com/beust/jcommander/Parameter", maker.descriptorFor("listConverter", "java.lang.Class", nothing)));
         assertThat(mapped.className, equalTo("k"));
         assertThat(mapped.method, equalTo(maker.descriptorFor("h", "java.lang.Class", nothing)));
     }
 
     @Test
     public void mappingMethodWithJavaLangParameters() throws Exception {
-        ClassMethod mapped = classMethodMapper.map(
+        ClassMethod mapped = classMethodMapper.mapMethod(
                 new ClassMethod(
                         "com/beust/jcommander/converters/BigDecimalConverter",
                         maker.descriptorFor("convert", "java.math.BigDecimal", newArrayList("java.lang.String"))
@@ -48,7 +48,7 @@ public class ClassMethodMapperTest {
 
     @Test
     public void mappingMethodWithMappedParameters() throws Exception {
-        ClassMethod mapped = classMethodMapper.map(
+        ClassMethod mapped = classMethodMapper.mapMethod(
                 new ClassMethod(
                         "com/samskivert/mustache/Mustache$BlockSegment",
                         maker.descriptorFor("executeSegs", "void", newArrayList(
@@ -66,7 +66,7 @@ public class ClassMethodMapperTest {
     //com.samskivert.mustache.Template$Fragment createFragment(com.samskivert.mustache.Template$Segment[],com.samskivert.mustache.Template$Context) -> a
     @Test
     public void mappingMethodWithMappedParametersAndReturnValuesWithArrays() throws Exception {
-        ClassMethod mapped = classMethodMapper.map(
+        ClassMethod mapped = classMethodMapper.mapMethod(
                 new ClassMethod(
                         "com/samskivert/mustache/Template",
                         maker.descriptorFor("createFragment", "com.samskivert.mustache.Template$Fragment", newArrayList(

@@ -1,0 +1,4 @@
+out/test/noproguard/generatesDependencyRules.c: out/test/jnirn/com/natpryce/jnirn/examples/AClassWithOverloadedNativeMethods.class
+out/test/noproguard/generatesDependencyRules.c: out/test/jnirn/com/natpryce/jnirn/examples/AnotherClassWithNativeMethods.class
+out/test/noproguard/generatesDependencyRules.c: out/test/jnirn/com/natpryce/jnirn/examples/ClassWithNativeAndCallbackMethods.class
+out/test/noproguard/generatesDependencyRules.c: out/test/jnirn/com/natpryce/jnirn/examples/ClassWithNativeMethods.class

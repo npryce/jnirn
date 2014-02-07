@@ -1,8 +1,9 @@
-package com.natpryce.jnirn;
+package com.natpryce.jnirn.noproguard;
 
 import com.beust.jcommander.ParameterException;
 import com.natpryce.approvals.IO;
 import com.natpryce.approvals.junit.ApprovalRule;
+import com.natpryce.jnirn.JNIRN;
 import com.natpryce.jnirn.examples.NativeCallback;
 import org.junit.Assume;
 import org.junit.Rule;
@@ -81,6 +82,8 @@ public class JNIRegisterNativesTest {
     }
 
     public File fileNameForTest(String ext) {
-        return new File("out/test/" + testName.getMethodName() + ext);
+        File file = new File("out/test/noproguard/" + testName.getMethodName() + ext);
+        file.getParentFile().mkdirs();
+        return file;
     }
 }

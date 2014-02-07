@@ -53,6 +53,9 @@ public class JNIRN {
     @Parameter(names = "-p", description = "prefix for all globally visible symbols")
     public String modulePrefix = "Natives";
 
+    @Parameter(names = "-m", description = "ProGuard mapping file")
+    public String proguardMapFile = null;
+
     @Parameter(names = "-M", description = "file in which to generate dependency rules in make syntax (requires -o)")
     public String outputMakefile = null;
 
@@ -78,10 +81,10 @@ public class JNIRN {
                 ImmutableSet.copyOf(instantiatedAnnotations),
                 ImmutableSet.copyOf(instantiatedClasses));
 
-        parser.parseAll(inputFiles);
+        Codebase codebase = parser.parseAll(inputFiles);
 
         for (Output output : outputs()) {
-            parser.writeTo(output);
+            codebase.writeTo(output);
         }
     }
 
@@ -141,5 +144,4 @@ public class JNIRN {
 
         }
     }
-
 }

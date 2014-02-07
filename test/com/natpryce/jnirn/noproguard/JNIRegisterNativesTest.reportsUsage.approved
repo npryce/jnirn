@@ -13,6 +13,7 @@ Usage: jnirn [options]
     -M                              file in which to generate dependency rules
                                     in make syntax (requires -o)
     -ct                             mustache template for C source file
+    -m                              ProGuard mapping file
     -o                              name of generated C source file
     -p                              prefix for all globally visible symbols
                                     Default: Natives
