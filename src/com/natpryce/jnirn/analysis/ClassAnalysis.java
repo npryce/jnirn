@@ -5,12 +5,18 @@ import com.google.common.collect.Multimap;
 import org.objectweb.asm.*;
 import org.objectweb.asm.commons.Method;
 
+import java.util.List;
 import java.util.Set;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 public class ClassAnalysis extends ClassVisitor {
     public boolean isInstantiatedFromNativeCode = false;
-    public final Multimap<String, Method> nativeMethodsByName = LinkedHashMultimap.create();
-    public final Multimap<String, Method> callbackMethodsByName = LinkedHashMultimap.create();
+
+    public final List<Method> nativeMethodsByName = newArrayList();
+    public final List<Method> callbackMethodsByName = newArrayList();
+
+    public final Multimap<String, Method> allMethods = LinkedHashMultimap.create();
 
     private final Set<String> callbackAnnotations;
     private final Set<String> instantiatedClasses;
@@ -43,7 +49,8 @@ public class ClassAnalysis extends ClassVisitor {
         Method methodInfo = new Method(name, desc);
 
         if ((access & Opcodes.ACC_NATIVE) != 0) {
-            recordNativeMethod(methodInfo);
+            allMethods.put(name, methodInfo);
+            nativeMethodsByName.add(methodInfo);
             return null;
         }
         else if ((access & Opcodes.ACC_STATIC) != 0) {
@@ -54,14 +61,6 @@ public class ClassAnalysis extends ClassVisitor {
         else {
             return null;
         }
-    }
-
-    private boolean recordNativeMethod(Method methodInfo) {
-        return nativeMethodsByName.put(methodInfo.getName(), methodInfo);
-    }
-
-    private void recordCallbackMethod(Method methodInfo) {
-        callbackMethodsByName.put(methodInfo.getName(), methodInfo);
     }
 
     private class MethodAnalysis extends MethodVisitor {
@@ -77,7 +76,8 @@ public class ClassAnalysis extends ClassVisitor {
             Type annotationType = Type.getType(desc);
 
             if (callbackAnnotations.contains(annotationType.getClassName())) {
-                recordCallbackMethod(methodInfo);
+                allMethods.put(methodInfo.getName(), methodInfo);
+                callbackMethodsByName.add(methodInfo);
             }
 
             return null;

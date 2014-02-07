@@ -1,16 +1,24 @@
 package com.natpryce.jnirn.analysis;
 
+import com.google.common.base.Function;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterables;
 import com.natpryce.jnirn.Codebase;
 import com.natpryce.jnirn.ParsedClass;
+import com.natpryce.jnirn.ParsedMethod;
 import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.commons.Method;
 
 import java.io.*;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.SortedMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import static com.google.common.collect.Iterables.addAll;
+import static com.google.common.collect.Iterables.transform;
+import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newTreeMap;
 
 public class JavaBytecodeParser {
@@ -28,11 +36,9 @@ public class JavaBytecodeParser {
     public void parse(File file) throws IOException {
         if (file.isDirectory()) {
             parseDirectoryContents(file);
-        }
-        else if (file.getName().endsWith(".jar")) {
+        } else if (file.getName().endsWith(".jar")) {
             parseJAR(file);
-        }
-        else {
+        } else {
             throw new IOException("cannot parse " + file);
         }
     }
@@ -41,8 +47,7 @@ public class JavaBytecodeParser {
         for (File entry : dir.listFiles(onlyPackageOrClass())) {
             if (entry.isDirectory()) {
                 parseDirectoryContents(entry);
-            }
-            else {
+            } else {
                 parseClassFile(entry);
             }
         }
@@ -78,25 +83,51 @@ public class JavaBytecodeParser {
         InputStream in = new BufferedInputStream(new FileInputStream(file));
         try {
             parseClassBytecode(file, in);
-        }
-        finally {
+        } finally {
             in.close();
         }
     }
 
     private void parseClassBytecode(File file, InputStream in) throws IOException {
         ClassReader classReader = new ClassReader(in);
-        ClassAnalysis analysis = new ClassAnalysis(callbackAnnotations, instantiatedClasses, instantiatedAnnotations);
+        final ClassAnalysis analysis = new ClassAnalysis(callbackAnnotations, instantiatedClasses, instantiatedAnnotations);
 
         classReader.accept(analysis, ClassReader.SKIP_CODE);
 
         if (analysis.classInterfacesWithNativeCode()) {
             String className = classReader.getClassName();
 
-            classesByName.put(className, new ParsedClass(className, file,
-                    analysis.isInstantiatedFromNativeCode,
-                    analysis.nativeMethodsByName,
-                    analysis.callbackMethodsByName));
+            List<ParsedMethod> interestingMethods = newArrayList();
+
+            addAll(interestingMethods,
+                    transform(analysis.nativeMethodsByName, new Function<Method, ParsedMethod>() {
+                        @Override
+                        public ParsedMethod apply(org.objectweb.asm.commons.Method input) {
+                            return new ParsedMethod(
+                                    input,
+                                    analysis.allMethods.get(input.getName()).size() > 1,
+                                    true,
+                                    false
+                            );
+                        }
+                    })
+            );
+
+            addAll(interestingMethods,
+                    transform(analysis.callbackMethodsByName, new Function<Method, ParsedMethod>() {
+                        @Override
+                        public ParsedMethod apply(org.objectweb.asm.commons.Method input) {
+                            return new ParsedMethod(
+                                    input,
+                                    analysis.allMethods.get(input.getName()).size() > 1,
+                                    false,
+                                    true
+                            );
+                        }
+                    })
+            );
+
+            classesByName.put(className, new ParsedClass(className, file, interestingMethods));
         }
     }
 

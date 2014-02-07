@@ -4,13 +4,16 @@ import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.Method;
 
 public class ParsedMethod {
-    public final ParsedClass owner;
     public final Obfuscatable<String> methodName;
     public final Method method;
-    public final boolean overloaded;
 
-    public ParsedMethod(ParsedClass owner, Method method, boolean overloaded) {
-        this.owner = owner;
+    public final boolean overloaded;
+    public final boolean isNative;
+    public final boolean isCalledBack;
+
+    public ParsedMethod(Method method, boolean overloaded, boolean isNative, boolean isCalledBack) {
+        this.isNative = isNative;
+        this.isCalledBack = isCalledBack;
         this.methodName = Obfuscatable.of(method.getName());
         this.method = method;
         this.overloaded = overloaded;
