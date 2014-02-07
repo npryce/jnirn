@@ -5,13 +5,13 @@ import org.objectweb.asm.commons.Method;
 
 public class ParsedMethod {
     public final ParsedClass owner;
-    public final Name methodName;
+    public final Obfuscatable<String> methodName;
     public final Method method;
     public final boolean overloaded;
 
     public ParsedMethod(ParsedClass owner, Method method, boolean overloaded) {
         this.owner = owner;
-        this.methodName = new Name(method.getName());
+        this.methodName = Obfuscatable.of(method.getName());
         this.method = method;
         this.overloaded = overloaded;
     }
