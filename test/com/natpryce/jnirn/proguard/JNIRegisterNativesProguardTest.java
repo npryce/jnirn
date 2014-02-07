@@ -37,7 +37,7 @@ public class JNIRegisterNativesProguardTest {
     public void canGenerateHeaderDeclaringFunctionToRegisterNativeMethods() throws IOException {
         File cFile = fileNameForTest(".c");
         File headerFile = fileNameForTest(".h");
-        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-H", headerFile.toString());
+        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-H", headerFile.toString(), "-m", proguardMapFile.getAbsolutePath());
 
         approval.check("Header " + headerFile + ":\n\n" + IO.readContents(headerFile) +
                 "\n\nC Source " + cFile + ":\n\n" + IO.readContents(cFile));
@@ -47,7 +47,7 @@ public class JNIRegisterNativesProguardTest {
     public void generatesGlobalVariablesThatReferToMethodsInvokedFromNativeCode() throws IOException {
         File cFile = fileNameForTest(".c");
 
-        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-C", NativeCallback.class.getName());
+        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-C", NativeCallback.class.getName(), "-m", proguardMapFile.getAbsolutePath());
 
         approval.check(IO.readContents(cFile));
     }
@@ -55,7 +55,7 @@ public class JNIRegisterNativesProguardTest {
     @Test
     public void canSpecifyNameOfFunctionThatRegistersNativeMethods() throws IOException {
         File cFile = fileNameForTest(".c");
-        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-p", "Bobbly");
+        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-p", "Bobbly", "-m", proguardMapFile.getAbsolutePath());
         approval.check(IO.readContents(cFile));
     }
 
@@ -63,7 +63,7 @@ public class JNIRegisterNativesProguardTest {
     public void generatesDependencyRules() throws IOException {
         File mkFile = fileNameForTest(".mk");
         File cFile = fileNameForTest(".c");
-        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-M", mkFile.toString());
+        JNIRN.main("out/test/jnirn", "-o", cFile.toString(), "-M", mkFile.toString(), "-m", proguardMapFile.getAbsolutePath());
 
         approval.check(IO.readContents(mkFile));
     }

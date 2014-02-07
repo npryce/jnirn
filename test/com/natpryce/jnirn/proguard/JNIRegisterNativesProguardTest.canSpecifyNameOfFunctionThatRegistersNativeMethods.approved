@@ -1,0 +1,66 @@
+/* GENERATED CODE - DO NOT EDIT */
+
+#include <jni.h>
+#include "com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods.h"
+#include "com_natpryce_jnirn_examples_AnotherClassWithNativeMethods.h"
+#include "com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods.h"
+#include "com_natpryce_jnirn_examples_ClassWithNativeMethods.h"
+
+typedef void (*BobblyErrorCallback)(void *client_context, const char *class_name, const char *method_name, const char *method_signature);
+
+static const JNINativeMethod method_table_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods[] = {
+   {"a", "()V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__},
+   {"a", "(II)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__II},
+   {"a", "(Ljava/lang/String;)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__Ljava_lang_String_2},
+   {"a", "(Ljava/lang/String;Ljava/lang/String;)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__Ljava_lang_String_2Ljava_lang_String_2},
+   {"a", "(Ljava/math/BigInteger;Ljava/math/BigInteger;Ljava/math/BigInteger;)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_nativeMethod__Ljava_math_BigInteger_2Ljava_math_BigInteger_2Ljava_math_BigInteger_2},
+   {"b", "()V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_native_1Method_1With_1Underscores__},
+   {"b", "(II)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_native_1Method_1With_1Underscores__II},
+   {"b", "(Ljava/lang/String;Ljava/lang/String;)V", Java_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods_native_1Method_1With_1Underscores__Ljava_lang_String_2Ljava_lang_String_2}
+};
+static const JNINativeMethod method_table_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods[] = {
+   {"a", "()I", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodOne},
+   {"b", "()I", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodTwo},
+   {"a", "(Li;)Lj;", Java_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods_nativeMethodThree}
+};
+static const JNINativeMethod method_table_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods[] = {
+   {"a", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods_nativeMethod}
+};
+static const JNINativeMethod method_table_com_natpryce_jnirn_examples_ClassWithNativeMethods[] = {
+   {"a", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_simpleStatic},
+   {"b", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_simpleNonStatic},
+   {"c", "()V", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_method_1With_1Underscores},
+   {"a", "(ILjava/math/BigInteger;)Ljava/lang/String;", Java_com_natpryce_jnirn_examples_ClassWithNativeMethods_methodWithParametersAndResult}
+};
+
+struct registration { const char * class_name; const JNINativeMethod *methods; int method_count; };
+static const struct registration registrations[] = {
+    {"f", method_table_com_natpryce_jnirn_examples_AClassWithOverloadedNativeMethods, 8},
+    {"h", method_table_com_natpryce_jnirn_examples_AnotherClassWithNativeMethods, 3},
+    {"m", method_table_com_natpryce_jnirn_examples_ClassWithNativeAndCallbackMethods, 1},
+    {"n", method_table_com_natpryce_jnirn_examples_ClassWithNativeMethods, 4},
+};
+
+int BobblyInit(JNIEnv *env, BobblyErrorCallback error_callback, void *client_context) {
+    jclass the_class;
+    jint status;
+    int i, j;
+
+    for (i = 0; i < 4; i++) {
+        the_class = (*env)->FindClass(env, registrations[i].class_name);
+        if (the_class == NULL) {
+            error_callback(client_context, registrations[i].class_name, NULL, NULL);
+            return -1;
+        }
+        for (j = 0; j < registrations[i].method_count; j++) {
+            const JNINativeMethod *method = &registrations[i].methods[j];
+            status = (*env)->RegisterNatives(env, the_class, method, 1);
+            if (status < 0) {
+                error_callback(client_context, registrations[i].class_name, method->name, method->signature);
+                return -1;
+            }
+        }
+    }
+
+    return 0;
+}

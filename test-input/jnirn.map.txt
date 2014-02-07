@@ -38,22 +38,27 @@ com.natpryce.jnirn.examples.AbstractClassWithNoNativeMethods -> g:
 com.natpryce.jnirn.examples.AnotherClassWithNativeMethods -> h:
     int nativeMethodOne() -> a
     int nativeMethodTwo() -> b
-com.natpryce.jnirn.examples.ClassWithCallbackMethods -> i:
+    com.natpryce.jnirn.examples.AnotherClassWithNativeMethods$RetClass nativeMethodThree(com.natpryce.jnirn.examples.AnotherClassWithNativeMethods$ArgClass) -> a
+com.natpryce.jnirn.examples.AnotherClassWithNativeMethods$ArgClass -> i:
+com.natpryce.jnirn.examples.AnotherClassWithNativeMethods$RetClass -> j:
+com.natpryce.jnirn.examples.ClassWithCallbackMethods -> k:
     void callbackA() -> a
     void callbackB() -> b
-com.natpryce.jnirn.examples.ClassWithNativeAndCallbackMethods -> j:
+    void callbackC(com.natpryce.jnirn.examples.ClassWithCallbackMethods$MyClass) -> a
+com.natpryce.jnirn.examples.ClassWithCallbackMethods$MyClass -> l:
+com.natpryce.jnirn.examples.ClassWithNativeAndCallbackMethods -> m:
     void nativeMethod() -> a
     void calledFromNativeCode() -> b
-com.natpryce.jnirn.examples.ClassWithNativeMethods -> k:
+com.natpryce.jnirn.examples.ClassWithNativeMethods -> n:
     void simpleStatic() -> a
     void simpleNonStatic() -> b
     void method_With_Underscores() -> c
     java.lang.String methodWithParametersAndResult(int,java.math.BigInteger) -> a
-com.natpryce.jnirn.examples.ClassWithNoNativeMethods -> l:
+com.natpryce.jnirn.examples.ClassWithNoNativeMethods -> o:
     void thisIsNotNative() -> a
     void thisIsNotNativeEither() -> b
-com.natpryce.jnirn.examples.NativeCallback -> m:
-com.natpryce.jnirn.noproguard.JNIRegisterNativesTest -> n:
+com.natpryce.jnirn.examples.NativeCallback -> p:
+com.natpryce.jnirn.noproguard.JNIRegisterNativesTest -> q:
     org.junit.rules.TestName testName -> a
     org.junit.contrib.java.lang.system.StandardOutputStreamLog stdout -> b
     com.natpryce.approvals.junit.ApprovalRule approval -> c
@@ -65,7 +70,7 @@ com.natpryce.jnirn.noproguard.JNIRegisterNativesTest -> n:
     void cannotGenerateMakefileDependenciesIfOutputFileNameNotSpecified() -> f
     void reportsUsage() -> g
     java.io.File fileNameForTest(java.lang.String) -> a
-com.natpryce.jnirn.proguard.ClassMethodMapperTest -> o:
+com.natpryce.jnirn.proguard.ClassMethodMapperTest -> r:
     java.util.List nothing -> a
     com.natpryce.jnirn.proguard.MethodMaker maker -> b
     com.natpryce.jnirn.proguard.Obfuscation obfuscation -> c
@@ -74,7 +79,7 @@ com.natpryce.jnirn.proguard.ClassMethodMapperTest -> o:
     void mappingMethodWithJavaLangParameters() -> c
     void mappingMethodWithMappedParameters() -> d
     void mappingMethodWithMappedParametersAndReturnValuesWithArrays() -> e
-com.natpryce.jnirn.proguard.JNIRegisterNativesProguardTest -> p:
+com.natpryce.jnirn.proguard.JNIRegisterNativesProguardTest -> s:
     org.junit.rules.TestName testName -> a
     org.junit.contrib.java.lang.system.StandardOutputStreamLog stdout -> b
     com.natpryce.approvals.junit.ApprovalRule approval -> c
@@ -87,19 +92,19 @@ com.natpryce.jnirn.proguard.JNIRegisterNativesProguardTest -> p:
     void cannotGenerateMakefileDependenciesIfOutputFileNameNotSpecified() -> f
     void reportsUsage() -> g
     java.io.File fileNameForTest(java.lang.String) -> a
-com.natpryce.jnirn.proguard.JavaTypeConverterTest -> q:
+com.natpryce.jnirn.proguard.JavaTypeConverterTest -> t:
     com.natpryce.jnirn.proguard.JavaTypeConverter converter -> a
     void testBasicTypes() -> a
     void testStandardJavaTypes() -> b
     void testSomeClassThatWeCantActuallyLoad() -> c
     void testBasicArrayType() -> d
     void testClassArrayType() -> e
-com.natpryce.jnirn.proguard.MapFileParserTest -> r:
+com.natpryce.jnirn.proguard.MapFileParserTest -> u:
     java.util.Map parsed -> a
     void readTheMapFile() -> a
     void testCanParseClassesFromAMapFile() -> b
     void testIncludesClassesEvenWhenTheHaveNoFieldsOrMethods() -> c
-com.natpryce.jnirn.proguard.MethodMakerTest -> s:
+com.natpryce.jnirn.proguard.MethodMakerTest -> v:
     java.util.List NO -> a
     com.natpryce.jnirn.proguard.MethodMaker methodMaker -> b
     void testConvertVoidNoArg() -> a

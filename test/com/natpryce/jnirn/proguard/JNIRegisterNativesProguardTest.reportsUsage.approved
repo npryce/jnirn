@@ -1,0 +1,20 @@
+Usage: jnirn [options] 
+  Options:
+    -C, --callback-annotation       FQN of an annotation used to identify Java
+                                    methods called from native code
+                                    Default: []
+    -I, --instantiated-annotation   FQN of an annotation used to identify
+                                    classes instantiated from native code
+                                    Default: []
+    -i, --instantiated-class        FQN of a class instantiated from native code
+                                    Default: []
+    -H                              name of generated C header file
+    -Ht                             mustache template for C header file
+    -M                              file in which to generate dependency rules
+                                    in make syntax (requires -o)
+    -ct                             mustache template for C source file
+    -m                              ProGuard mapping file
+    -o                              name of generated C source file
+    -p                              prefix for all globally visible symbols
+                                    Default: Natives
+
