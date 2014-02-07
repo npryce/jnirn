@@ -33,7 +33,7 @@ public class ParsedClass {
                     public ParsedMethod apply(Method method) {
                         boolean isOverloaded = nativeMethods.get(method.getName()).size() > 1;
 
-                        return new ParsedMethod(method, isOverloaded);
+                        return new ParsedMethod(ParsedClass.this, method, isOverloaded);
                     }
                 })
         );
