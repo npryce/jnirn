@@ -12,14 +12,14 @@ import java.util.List;
 import static com.google.common.collect.Lists.newArrayList;
 
 public class ParsedClass {
-    private final Name _name;
+    private final Name className;
     public final File file;
     public final boolean isInstantiatedByNativeCode;
     public final List<ParsedMethod> nativeMethods;
     public final List<ParsedMethod> callbackMethods;
 
     public ParsedClass(String name, File file, boolean instantiatedByNativeCode, Multimap<String, Method> nativeMethods, Multimap<String, Method> callbackMethods) {
-        this._name = new Name(name);
+        this.className = new Name(name);
         this.file = file;
         this.isInstantiatedByNativeCode = instantiatedByNativeCode;
         this.nativeMethods = aslist(nativeMethods);
@@ -60,11 +60,7 @@ public class ParsedClass {
         }
     };
 
-    public String className() {
-        return _name.atRuntime;
-    }
-
     public String cclass() {
-        return _name.inSource.replace("/", "_");
+        return className.inSource.replace("/", "_");
     }
 }

@@ -21,7 +21,7 @@ static const JNINativeMethod method_table_{{cclass}}[] = {
 
 struct registration { const char * class_name; const JNINativeMethod *methods; int method_count; };
 static const struct registration registrations[] = {
-{{#natives}}    {"{{className}}", method_table_{{cclass}}, {{nativeMethods.size}}},
+{{#natives}}    {"{{className.atRuntime}}", method_table_{{cclass}}, {{nativeMethods.size}}},
 {{/natives}}
 };
 {{^callbacks.isEmpty}}
@@ -39,7 +39,7 @@ struct class_ref { const char *name; jobject *global_ref_p; int method_count; co
 
 static const struct class_ref referenced_classes[] = {
 {{#callbacks}}
-    { "{{className}}", &{{module}}_class_{{cclass}}, {{callbackMethods.size}},
+    { "{{className.atRuntime}}", &{{module}}_class_{{cclass}}, {{callbackMethods.size}},
         (struct method_ref[]) {
 {{#callbackMethods}}
             { "{{methodName.atRuntime}}", "{{descriptor}}", &{{module}}_method_{{cclass}}__{{methodName.inSource}} },
